@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/03 19:38:11 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/03 21:17:38 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,8 +136,9 @@ int     main(int ac, char **av)
         way = av[1];
     if (!(names = (t_list *)malloc(sizeof(t_list))))
         ft_perror("main() malloc: ");
+    ft_null(names);
     go = in_directory(way, names);
     go = sorting(go, i);
     print(go);
-    return (0);
+    return (EXIT_SUCCESS);
 }

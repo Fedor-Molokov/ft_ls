@@ -6,13 +6,13 @@
 #    By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/24 22:57:41 by dmarsell          #+#    #+#              #
-#    Updated: 2020/08/03 19:36:24 by dmarsell         ###   ########.fr        #
+#    Updated: 2020/08/03 21:04:40 by dmarsell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
 
-CC = gcc -Wall -Wextra -g
+CC = gcc -Wall -Wextra -Werror -g
 
 HD = ft_ls.h
 
