@@ -6,13 +6,13 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 00:44:53 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 02:31:51 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void            print(t_list *nm)
+int            print(t_list *nm)
 {
     int     i;
     t_list  *cur;
@@ -37,6 +37,7 @@ void            print(t_list *nm)
             print(nm->child);
         nm = nm->next;
     }
+    return (0);
 }
 
 char            *get_name(char *obj)
@@ -96,7 +97,7 @@ t_list     *in_directory(char *way, t_list *names)
     t_list          *cur;
 
     if (!(dirp = opendir(way)))
-        ft_perror("in_directory() opendir: ", names);           // ft_printf("./ft_ls: %s: No such file or directory\n", names->path);
+        return (ft_start_file(way, names));
     if (!(entry = readdir(dirp)))
         ft_perror("in_directory() readdir: ", names);
     cur = names;
@@ -117,7 +118,7 @@ t_list     *in_directory(char *way, t_list *names)
     return (names);
 }
 
-void    ft_start(int flags, char *way)
+int    ft_start(int flags, char *way)
 {
     t_list  *names;
     t_list  *go;
@@ -127,7 +128,7 @@ void    ft_start(int flags, char *way)
     ft_null(names);
     go = in_directory(way, names);
     go = sorting(go, flags);
-    print(go);
+    return (print(go));
 }
 
 int     main(int argc, char **argv)
@@ -136,7 +137,6 @@ int     main(int argc, char **argv)
     int     flags;
     int     count;
       
-    // flags = 1;
     flags = 0;
     count = 1;
     if (argc == 1)
@@ -148,7 +148,8 @@ int     main(int argc, char **argv)
     while(argv[count])
     {
         way = ft_parsing(argv, way, &flags, &count);
-        ft_start(flags, way);
+        if (!(ft_start(flags, way)))
+            continue;
     }
     return (0);
 }

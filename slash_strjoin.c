@@ -6,26 +6,11 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 18:12:00 by cassunta          #+#    #+#             */
-/*   Updated: 2020/08/03 21:53:56 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 02:25:36 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-void        ft_perror(char *str, t_list *list)
-{
-    perror(str);
-	ft_printf("%s\n", list->path);
-    exit(EXIT_FAILURE);
-}
-
-void		ft_null(t_list *list)
-{
-	list->name = NULL;
-	list->child = NULL;
-	list->next = NULL;
-	list->path = NULL;
-}
 
 char	*slash_strjoin(char const *s1, char const *s2)
 {

@@ -91,6 +91,8 @@ t_list        *sorting(t_list *nm, int flags)
     t_list  *head;
     t_list  *cur;
 
+    if (nm == NULL)
+        return (NULL);
     if (!(head = (t_list *)malloc(sizeof(t_list))))
         ft_perror("sorting() malloc: ", nm);
     head->next = nm;
