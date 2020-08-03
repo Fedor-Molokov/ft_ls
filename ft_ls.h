@@ -14,6 +14,13 @@
 # include <fcntl.h>
 # include "libft/ft_printf/ft_printf.h"
 
+# define FLAG_NON	0x0			// without flags
+# define FLAG_L		0x1			// -l
+# define FLAG_A		0x2			// -a
+# define FLAG_R		0x4			// -R
+# define FLAG_T		0x8			// -t
+# define FLAG_MIN_R	0x10		// -r
+
 typedef struct		s_list
 {
 	char				*name;
@@ -24,26 +31,27 @@ typedef struct		s_list
 	struct	s_list		*next;
 }                   t_list;
 
-void		ft_null(t_list *list);
-void        ft_perror(char *str, t_list *list);
-t_list      *sorting(t_list *nm, int i);
+char    	*ft_parsing(char **argv, char *way, int *flags, int *count);
+char		*slash_strjoin(char const *s1, char const *s2);
+void        process(t_list *cur, char *name,char *way);
+int			ft_strcmp(const char *s1, const char *s2);
 int        	conditions(t_list *a, t_list *b, int i);
-int     	time_sort(t_list *a, t_list *b);
-int     	time_rev_sort(t_list *a, t_list *b);
-char        *get_name(char *obj);
-t_list      *sort_list(t_list *lst, int i);
-int        	is_it_sorted(t_list *nm, int i);
-void        swap(t_list *a, t_list *b);
-void        copy(t_list *p1, t_list *p2);
 t_list     	*in_directory(char *way, t_list *names);
+int     	time_rev_sort(t_list *a, t_list *b);
+void        ft_perror(char *str, t_list *list);
+int     	time_sort(t_list *a, t_list *b);
+int        	is_it_sorted(t_list *nm, int i);
+t_list      *sort_list(t_list *lst, int i);
+void        copy(t_list *p1, t_list *p2);
+t_list      *sorting(t_list *nm, int i);
+void        swap(t_list *a, t_list *b);
 int         are_you_dir(t_list *cur);
 size_t		ft_strlen(const char *s);
 char		*ft_strnew(size_t size);
-char		*slash_strjoin(char const *s1, char const *s2);
-int			ft_strcmp(const char *s1, const char *s2);
-void        process(t_list *cur, char *name,char *way);
-void        type_file(int mode);
 void        about_file(t_list *nm);
+void		ft_null(t_list *list);
+char        *get_name(char *obj);
+void        type_file(int mode);
 void        file_mode(int mode);
 
 #endif

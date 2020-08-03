@@ -6,7 +6,7 @@
 #    By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/24 22:57:41 by dmarsell          #+#    #+#              #
-#    Updated: 2020/08/03 21:04:40 by dmarsell         ###   ########.fr        #
+#    Updated: 2020/08/03 23:13:02 by dmarsell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRC = file_info.c \
 		slash_strjoin.c \
 		sort.c          \
 		take_in_list.c	\
-		time_sort.c
+		time_sort.c		\
+		parsing.c
 all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJ)

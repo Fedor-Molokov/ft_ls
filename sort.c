@@ -18,18 +18,20 @@ void        swap(t_list *a, t_list *b)
     copy(b, &tmp);
 }
 
-int        is_it_sorted(t_list *nm, int i)
+int        is_it_sorted(t_list *nm, int flags)
 {
     while (nm->next)
     {
-        if (i == 2 && ft_strcmp(nm->name, nm->next->name) < 0)
+        if (/*flags == 2*/ flags == (FLAG_R | FLAG_A | FLAG_MIN_R) && ft_strcmp(nm->name, nm->next->name) < 0)
             return (0);
-        if (i == 1 && ft_strcmp(nm->name, nm->next->name) > 0)
+        if (/*flags == 1*/ flags == (FLAG_R | FLAG_A) && ft_strcmp(nm->name, nm->next->name) > 0)
             return (0);
-        if (i == 3)
+        // if (flags == 3)
+        if (flags == (FLAG_R | FLAG_A | FLAG_T))
             if (time_sort(nm, nm->next))
                 return (0);
-        if (i == 4)
+        // if (flags == 4)
+        if (flags == (FLAG_R | FLAG_A | FLAG_T | FLAG_MIN_R))
             if (time_rev_sort(nm, nm->next))
                 return(0);
         nm = nm->next;
@@ -37,24 +39,28 @@ int        is_it_sorted(t_list *nm, int i)
     return (1);
 }
 
-int      conditions(t_list *a, t_list *b, int i)
+int      conditions(t_list *a, t_list *b, int flags)
 {
-    if (i == 2)
+    // if (flags == 2)
+    if (flags == (FLAG_R | FLAG_A | FLAG_MIN_R))
         if (ft_strcmp(a->name, b->name) < 0)
             return (1);
-    if (i == 1)
+    // if (flags == 1)
+    if (flags == (FLAG_R | FLAG_A))
         if (ft_strcmp(a->name, b->name) > 0)
             return (1);
-     if (i == 3)
+    // if (flags == 3)
+    if (flags == (FLAG_R | FLAG_A | FLAG_T))
         if (time_sort(a, b))
             return (1);
-   if (i == 4)
+    // if (flags == 4)
+    if (flags == (FLAG_R | FLAG_A | FLAG_T | FLAG_MIN_R))
         if (time_rev_sort(a, b))
             return (1);
     return (0);
 }
 
-t_list      *sort_list(t_list *lst, int i)
+t_list      *sort_list(t_list *lst, int flags)
 {
     t_list  *a;
     t_list  *b;
@@ -65,20 +71,17 @@ t_list      *sort_list(t_list *lst, int i)
     cur = lst;
     while (b)
     {
-        // if (a->name && b->name)
-        // {
-            if (conditions(a, b, i))
-                swap(a, b);
-        // }
+        if (conditions(a, b, flags))
+            swap(a, b);
         a = a->next;
         b = b->next;
     }
-    if (!(is_it_sorted(cur, i)))
-        sort_list(lst, i);
+    if (!(is_it_sorted(cur, flags)))
+        sort_list(lst, flags);
     return (lst);
 }
 
-t_list        *sorting(t_list *nm, int i)
+t_list        *sorting(t_list *nm, int flags)
 {
     t_list  *head;
     t_list  *cur;
@@ -86,12 +89,12 @@ t_list        *sorting(t_list *nm, int i)
     if (!(head = (t_list *)malloc(sizeof(t_list))))
         ft_perror("sorting() malloc: ", nm);
     head->next = nm;
-    sort_list(nm, i);
+    sort_list(nm, flags);
     cur = head->next;
     while (cur)
     {
         if(cur->child)
-            sorting(cur->child, i);
+            sorting(cur->child, flags);
         cur = cur->next;
     }
     free(head);

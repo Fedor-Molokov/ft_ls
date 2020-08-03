@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/03 21:50:45 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 00:30:09 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ t_list     *in_directory(char *way, t_list *names)
     t_list          *cur;
 
     if (!(dirp = opendir(way)))
-        ft_perror("in_directory() opendir: ", names);
+        ft_perror("in_directory() opendir: ", names);           // ft_printf("./ft_ls: %s: No such file or directory\n", names->path);
     if (!(entry = readdir(dirp)))
         ft_perror("in_directory() readdir: ", names);
     cur = names;
@@ -117,28 +117,44 @@ t_list     *in_directory(char *way, t_list *names)
     return (names);
 }
 
-int     main(int ac, char **av)
+void    ft_start(int flags, char *way)
 {
-    char    *way;
     t_list  *names;
     t_list  *go;
-    int     i;
+    
+    if (!(names = (t_list *)malloc(sizeof(t_list))))
+        ft_perror("ft_start() malloc: ", names);
+    ft_null(names);
+    go = in_directory(way, names);
+    go = sorting(go, flags);
+    print(go);
+}
+
+int     main(int argc, char **argv)
+{
+    char    *way;
+    int     flags;
+    int     count;
 
     // 1 - Ra
     // 2 - Rar
     // 3 - Rat
     // 4 - Ratr
-
-    i = 1;
-    if (ac == 1)
+      
+    // flags = 1;
+    
+    flags = 0;
+    count = 1;
+    if (argc == 1)
+    {
         way = "./";
-    else
-        way = av[1];
-    if (!(names = (t_list *)malloc(sizeof(t_list))))
-        ft_perror("main() malloc: ", names);
-    ft_null(names);
-    go = in_directory(way, names);
-    go = sorting(go, i);
-    print(go);
-    return (EXIT_SUCCESS);
+        flags = FLAG_NON;
+        ft_start(flags, way);
+    }
+    while(argv[count])
+    {
+        way = ft_parsing(argv, way, &flags, &count);
+        ft_start(flags, way);
+    }
+    return (0);
 }
