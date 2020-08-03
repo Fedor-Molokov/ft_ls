@@ -39,6 +39,11 @@ int        is_it_sorted(t_list *nm, int flags)
     return (1);
 }
 
+    // 1 - Ra
+    // 2 - Rar
+    // 3 - Rat
+    // 4 - Ratr
+
 int      conditions(t_list *a, t_list *b, int flags)
 {
     // if (flags == 2)

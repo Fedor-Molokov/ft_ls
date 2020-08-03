@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 00:30:09 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 00:44:53 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,14 +135,8 @@ int     main(int argc, char **argv)
     char    *way;
     int     flags;
     int     count;
-
-    // 1 - Ra
-    // 2 - Rar
-    // 3 - Rat
-    // 4 - Ratr
       
     // flags = 1;
-    
     flags = 0;
     count = 1;
     if (argc == 1)
