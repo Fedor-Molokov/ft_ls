@@ -84,7 +84,7 @@ t_list        *sorting(t_list *nm, int i)
     t_list  *cur;
 
     if (!(head = (t_list *)malloc(sizeof(t_list))))
-        ft_perror("sorting() malloc: ");
+        ft_perror("sorting() malloc: ", nm);
     head->next = nm;
     sort_list(nm, i);
     cur = head->next;

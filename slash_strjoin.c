@@ -6,15 +6,16 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 18:12:00 by cassunta          #+#    #+#             */
-/*   Updated: 2020/08/03 04:55:34 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/03 21:53:56 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void        ft_perror(char *str)
+void        ft_perror(char *str, t_list *list)
 {
     perror(str);
+	ft_printf("%s\n", list->path);
     exit(EXIT_FAILURE);
 }
 

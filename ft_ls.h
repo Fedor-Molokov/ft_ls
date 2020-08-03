@@ -25,7 +25,7 @@ typedef struct		s_list
 }                   t_list;
 
 void		ft_null(t_list *list);
-void        ft_perror(char *str);
+void        ft_perror(char *str, t_list *list);
 t_list      *sorting(t_list *nm, int i);
 int        	conditions(t_list *a, t_list *b, int i);
 int     	time_sort(t_list *a, t_list *b);

@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/03 21:17:38 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/03 21:50:45 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char            *get_name(char *obj)
     while (obj[l])
         l++;
     if (!(name = (char *)malloc(sizeof(char) * l + 1)))
-        ft_perror("get_name() malloc: ");
+        ft_perror("get_name() malloc: ", (t_list *) obj);
     while (i < l)
     {
         name[i] = obj[i];
@@ -67,7 +67,7 @@ int         are_you_dir(t_list *dir)
     if (S_ISDIR(dir->stat.st_mode))
     {
         if (!(new_dir = (t_list *)malloc(sizeof(t_list))))
-            ft_perror("are_you_dir() malloc: ");
+            ft_perror("are_you_dir() malloc: ", dir);
         dir->child = new_dir;
         new_dir->path = dir->path;
         return (1);
@@ -81,7 +81,7 @@ void        process(t_list *cur, char *name, char *way)
     cur->name = get_name(name);
     cur->path = slash_strjoin(way, cur->name);
     if(lstat(cur->path, &cur->stat) < 0)
-        ft_perror("process() lstat: ");
+        ft_perror("process() lstat: ", cur);
     if((ft_strcmp(cur->name, ".") != 0 ) && (ft_strcmp(cur->name, "..") != 0))
     {
         if (are_you_dir(cur))
@@ -96,9 +96,9 @@ t_list     *in_directory(char *way, t_list *names)
     t_list          *cur;
 
     if (!(dirp = opendir(way)))
-        ft_perror("in_directory() opendir: ");
+        ft_perror("in_directory() opendir: ", names);
     if (!(entry = readdir(dirp)))
-        ft_perror("in_directory() readdir: ");
+        ft_perror("in_directory() readdir: ", names);
     cur = names;
     while (entry)
     {
@@ -106,14 +106,14 @@ t_list     *in_directory(char *way, t_list *names)
         if ((entry = readdir(dirp)))
         {
             if (!(cur->next = (t_list *)malloc(sizeof(t_list))))
-                ft_perror("in_directory() malloc: ");
+                ft_perror("in_directory() malloc: ", cur);
             cur = cur->next;
             ft_null(cur);
         }
     }
     cur->next = NULL;
     if (closedir(dirp) < 0)
-        ft_perror("in_directory() closedir: ");
+        ft_perror("in_directory() closedir: ", cur);
     return (names);
 }
 
@@ -135,7 +135,7 @@ int     main(int ac, char **av)
     else
         way = av[1];
     if (!(names = (t_list *)malloc(sizeof(t_list))))
-        ft_perror("main() malloc: ");
+        ft_perror("main() malloc: ", names);
     ft_null(names);
     go = in_directory(way, names);
     go = sorting(go, i);
