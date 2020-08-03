@@ -42,5 +42,8 @@ char			*ft_strnew(size_t size);
 char			*slash_strjoin(char const *s1, char const *s2);
 int		ft_strcmp(const char *s1, const char *s2);
 void        process(t_list *cur, char *name,char *way);
+void        type_file(int mode);
+void        about_file(t_list *nm);
+void        file_mode(int mode);
 
 #endif
