@@ -54,7 +54,7 @@ char		*ft_strnew(size_t size);
 void        about_file(t_list *nm);
 void		ft_null(t_list *list);
 char        *get_name(char *obj);
-void        type_file(int mode, t_list *nm);
+void        type_file(int mode);
 void        file_mode(int mode);
 void        user_and_group(t_list *nm);
 void        read_link(t_list *nm);

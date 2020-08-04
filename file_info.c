@@ -1,12 +1,12 @@
 #include "ft_ls.h"
 
-void        read_link(t_list *nm)
+/*void        read_link(t_list *nm)
 {
     struct stat *buf;
 
     buf = stat(nm->name);
 
-}
+}*/
 
 void        file_mode(int mode)
 {
@@ -32,7 +32,7 @@ void        file_mode(int mode)
     write(1, " ", 1);
 }
 
-void        type_file(int mode, t_list *nm)
+void        type_file(int mode)
 {
     if (S_ISREG(mode))
         ft_putchar('-');
@@ -41,7 +41,7 @@ void        type_file(int mode, t_list *nm)
     if (S_ISLNK(mode))
     {
         ft_putchar('l');
-        read_link(nm);
+        //read_link(nm);
     }
     if (S_ISBLK(mode))
         ft_putchar('b');
@@ -71,6 +71,6 @@ void        user_and_group(t_list *nm)
 void        about_file(t_list *nm)
 {
     type_file(nm->stat.st_mode);
-    file_mode(nm->stat.st_mode, nm->link);
+    file_mode(nm->stat.st_mode);
     user_and_group(nm);
 }
