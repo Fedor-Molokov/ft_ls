@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 11:21:20 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 12:15:10 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,8 @@ int     main(int argc, char **argv)
             if (!(cur->next = (t_list *)malloc(sizeof(t_list))))
                 ft_perror("ft_yep() malloc: ", cur->next);
             ft_null(cur->next);
-            cur = cur->next;
+            if (argv[count])
+                cur = cur->next;
         }
     }
     cur->next = NULL;
