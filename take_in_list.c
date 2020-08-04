@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 20:21:59 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 21:32:55 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,27 +42,6 @@ int            print(t_list *nm)
     return (0);
 }
 
-char            *get_name(char *obj)                            // ft_strdup() ??
-{
-    int     l;
-    int     i;
-    char    *name;
-
-    l = 0;
-    i = 0;
-    while (obj[l])
-        l++;
-    if (!(name = (char *)malloc(sizeof(char) * l + 1)))
-        ft_perror("get_name() malloc: ", (t_list *) obj);
-    while (i < l)
-    {
-        name[i] = obj[i];
-        i++;
-    }
-    name[i] = '\0';
-    return (name);
-}
-
 int         are_you_dir(t_list *dir)
 {
     t_list      *new_dir;
@@ -82,7 +61,7 @@ int         are_you_dir(t_list *dir)
 
 void        process(t_list *cur, char *name, char *way)
 {
-    cur->name = get_name(name);
+    cur->name = ft_strdup(name);
     cur->path = slash_strjoin(way, cur->name);
     if(lstat(cur->path, &cur->stat) < 0)
         ft_perror("process() lstat: ", cur);
@@ -161,16 +140,15 @@ void    ft_prestart(t_head *head, char **argv, t_crutch *data)
     t_list          *argp;
     t_list          *failp;
     int             notfile;
-    int             arg;
+    int             argument;
     
-    arg = 0;
+    argument = 0;
     notfile = 0;
     while(argv[data->count])
     {
         data->way = ft_parsing(argv, data->way, &data->flags, &data->count);
         if (lstat(data->way, &head->stat) < 0)
         {
-
             if (notfile == 0)
             { 
                 ft_init(head, data, 2);
@@ -182,19 +160,17 @@ void    ft_prestart(t_head *head, char **argv, t_crutch *data)
         }
         else
         {
-            if (arg == 0)
+            if (argument == 0)
             {
                 ft_init(head, data, 1);
                 argp = head->arg_start;
-                arg++;
+                argument++;
                 continue ;
             }
             argp = ft_arg_create(data, argp);
         }
-        // if (!(ft_start(data.flags, data.way)))
-        //     continue;
     }
-    if (arg)
+    if (argument)
         argp->next = NULL;
     if (notfile)
         failp->next = NULL;
@@ -204,8 +180,8 @@ int     main(int argc, char **argv)
 {
     t_head          head;
     t_crutch        data;
-    // t_list          *argp;
-    // t_list          *failp;
+    t_list          *argp;
+    t_list          *failp;
     
     data.arg = 0;
     data.fail= 0;
@@ -218,22 +194,13 @@ int     main(int argc, char **argv)
         ft_start(data.flags, data.way);
     }
     ft_prestart(&head, argv, &data);
-    // ft_init(&head);
-    // while(argv[data.count])
-    // {
-    //     data.way = ft_parsing(argv, data.way, &data.flags, &data.count);
-    //     if (lstat(data.way, &head.stat) < 0)
-    //     {
-    //         failp = ft_fail_create(&data, failp, &head);
-    //         failp = failp->next;
-    //     }
-    //     else
-    //     {
-    //         argp = ft_arg_create(&data, argp, &head);
-    //         argp = argp->next;
-    //     }
-    //     // if (!(ft_start(data.flags, data.way)))
-    //     //     continue;
-    // }
+    failp = sorting(head.fail_start, data.flags);
+    print(failp);
+    argp = sorting(head.arg_start, data.flags);
+    while(argp)
+    {
+        ft_start(data.flags, argp->path);
+        argp = argp->next;
+    }
     return (0);
 }
