@@ -19,14 +19,11 @@ int            print(t_list *nm)
 
     i = 0;
     cur = nm;
+    ft_printf("%s:\n", nm->dir);
     while(cur)
     {
         about_file(cur);
-        while (cur->name[i])
-        {
-            write(1, &cur->name[i], 1);
-            i++;
-        }
+        ft_putstr(cur->name);
         write(1, "\n", 1);
         cur = cur->next;
         i = 0;
@@ -83,6 +80,7 @@ void        process(t_list *cur, char *name, char *way)
 {
     cur->name = get_name(name);
     cur->path = slash_strjoin(way, cur->name);
+    cur->dir = get_name(way);
     if(lstat(cur->path, &cur->stat) < 0)
         ft_perror("process() lstat: ", cur);
     if((ft_strcmp(cur->name, ".") != 0 ) && (ft_strcmp(cur->name, "..") != 0))

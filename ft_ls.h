@@ -23,6 +23,7 @@
 
 typedef struct		s_list
 {
+    char                *dir;
 	char				*name;
 	char				*path;
 	struct s_list   	*child;
