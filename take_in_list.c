@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 20:01:48 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 20:06:36 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,33 +158,33 @@ void    ft_prestart(t_head *head, char **argv, t_crutch *data)
 {
     t_list          *argp;
     t_list          *failp;
-    int             n;
-    int             b;
+    int             notfile;
+    int             arg;
     
-    n = 0;
-    b = 0;
+    arg = 0;
+    notfile = 0;
     while(argv[data->count])
     {
         data->way = ft_parsing(argv, data->way, &data->flags, &data->count);
         if (lstat(data->way, &head->stat) < 0)
         {
-            if (n == 0)
+            if (arg == 0)
             {
                 ft_init(head, data, 1);
                 argp = head->arg_start;
-                n++;
+                arg++;
             }
-            failp = ft_fail_create(data, failp);
+            argp = ft_arg_create(data, argp);
         }
         else
         {
-            if (b == 0)
-            {
+            if (notfile == 0)
+            { 
                 ft_init(head, data, 2);
                 failp = head->fail_start;
-                b++;
+                notfile++;
             }
-            argp = ft_arg_create(data, argp);
+            failp = ft_fail_create(data, failp);
         }
         // if (!(ft_start(data.flags, data.way)))
         //     continue;
