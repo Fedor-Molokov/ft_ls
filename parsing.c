@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 22:37:52 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 00:49:55 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 03:07:18 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ char    *ft_parsing_next(char **argv, char *way, int *flags, int *count)
         }
         i = 1;
         j++;
+    }
+    if (!(argv[j]))
+    {
+        way = "./";
+        (*count)++;
     }
     return (way);
 }
