@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 04:07:46 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 08:51:09 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int            print(t_list *nm)
     cur = nm;
     while(cur)
     {
+        if (lstat(cur->path, &cur->stat) < 0)
+            ft_printf_exit(cur->name, cur);
         while (cur->name[i])
         {
             write(1, &cur->name[i], 1);
@@ -119,40 +121,108 @@ t_list     *in_directory(char *way, t_list *names)
     return (names);
 }
 
-int    ft_start(int flags, char *way)
-{
-    t_list  *names;
-    t_list  *go;
-    
-    if (way == NULL)
-        return (-1);
-    if (!(names = (t_list *)malloc(sizeof(t_list))))
-        ft_perror("ft_start() malloc: ", names);
-    ft_null(names);
-    go = in_directory(way, names);
-    go = sorting(go, flags);
-    return (print(go));
-}
-
 int     main(int argc, char **argv)
 {
+    t_list  *names;
+    t_list  *cur;
     char    *way;
     int     flags;
     int     count;
-      
+    
     flags = 0;
     count = 1;
+    if (!(names = (t_list *)malloc(sizeof(t_list))))
+        ft_perror("ft_yep() malloc: ", names);
+    ft_null(names);
+    cur = names;
     if (argc == 1)
     {
         way = "./";
         flags = FLAG_NON;
-        ft_start(flags, way);
+        cur = in_directory(way, names);
+        cur = sorting(cur, flags);
+        return (print(cur));
     }
     while(argv[count])
     {
         way = ft_parsing(argv, way, &flags, &count);
-        if (!(ft_start(flags, way)))
-            continue;
+        cur = in_directory(way, cur);
+        if (way[0] != '.' && way[1] != '/' && way[2] != '\0')
+        {
+            if (!(cur->next = (t_list *)malloc(sizeof(t_list))))
+                ft_perror("ft_yep() malloc: ", cur->next);
+            ft_null(cur->next);
+            cur = cur->next;
+        }
     }
-    return (0);
+    cur = sorting(names, flags);
+    return (print(cur));
 }
+
+// int     ft_go(int argc, char **argv)
+// {
+//     char    *way;
+//     int     flags;
+//     int     count;
+//     t_list  *names;
+//     t_list  *go;
+    
+    // if (!(names = (t_list *)malloc(sizeof(t_list))))
+    //     ft_perror("ft_go() malloc: ", names);
+    // ft_null(names);
+    // flags = 0;
+    // count = 1;
+    // if (argc == 1)
+    // {
+    //     way = "./";
+    //     flags = FLAG_NON;
+    //     // ft_start(flags, way);
+    // }
+    // // else
+    // //     ft_yep(NULL, flags);
+    // while(argv[count])
+    // {
+    //     way = ft_parsing(argv, way, &flags, &count);
+    //     if (!(ft_start(flags, way)))
+    //         continue;
+    // }
+    // return (0);
+// }
+
+// int    ft_start(int flags, char *way)
+// {
+//     t_list  *names;
+//     t_list  *go;
+    
+//     if (way == NULL)
+//         return (-1);
+    // if (!(names = (t_list *)malloc(sizeof(t_list))))
+    //     ft_perror("ft_start() malloc: ", names);
+    // ft_null(names);
+//     go = in_directory(way, names);
+//     go = sorting(go, flags);
+//     return (print(go));
+// }
+
+// int     main(int argc, char **argv)
+// {
+//     char    *way;
+//     int     flags;
+//     int     count;
+      
+//     flags = 0;
+//     count = 1;
+//     if (argc == 1)
+//     {
+//         way = "./";
+//         flags = FLAG_NON;
+//         ft_start(flags, way);
+//     }
+//     while(argv[count])
+//     {
+//         way = ft_parsing(argv, way, &flags, &count);
+//         if (!(ft_start(flags, way)))
+//             continue;
+//     }
+//     return (0);
+// }
