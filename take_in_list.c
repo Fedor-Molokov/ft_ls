@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 12:18:58 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 20:21:59 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,42 +121,119 @@ t_list     *in_directory(char *way, t_list *names)
     return (names);
 }
 
-int     main(int argc, char **argv)
+int    ft_start(int flags, char *way)
 {
     t_list  *names;
-    t_list  *cur;
-    char    *way;
-    int     flags;
-    int     count;
+    t_list  *go;
     
-    flags = 0;
-    count = 1;
+    if (way == NULL)
+        return (-1);
     if (!(names = (t_list *)malloc(sizeof(t_list))))
-        ft_perror("ft_yep() malloc: ", names);
+        ft_perror("ft_start() malloc: ", names);
     ft_null(names);
-    cur = names;
+    go = in_directory(way, names);
+    go = sorting(go, flags);
+    return (print(go));
+}
+
+void    ft_init(t_head *head, t_crutch *data, int i)
+{
+    if (i == 1)
+    {
+        if (!(head->arg_start = (t_list *)malloc(sizeof(t_list))))
+            ft_perror("ft_init() malloc: ", NULL);
+        ft_null(head->arg_start);
+        head->arg_start->name = ft_findlastname(data->way);
+        head->arg_start->path = ft_strdup(data->way);
+    }
+    else if (i == 2)
+    {
+        if (!(head->fail_start = (t_list *)malloc(sizeof(t_list))))
+            ft_perror("ft_init() malloc: ", NULL);
+        ft_null(head->fail_start);
+        head->fail_start->name = ft_findlastname(data->way);
+        head->fail_start->path = ft_strdup(data->way);
+    }
+}
+
+void    ft_prestart(t_head *head, char **argv, t_crutch *data)
+{
+    t_list          *argp;
+    t_list          *failp;
+    int             notfile;
+    int             arg;
+    
+    arg = 0;
+    notfile = 0;
+    while(argv[data->count])
+    {
+        data->way = ft_parsing(argv, data->way, &data->flags, &data->count);
+        if (lstat(data->way, &head->stat) < 0)
+        {
+
+            if (notfile == 0)
+            { 
+                ft_init(head, data, 2);
+                failp = head->fail_start;
+                notfile++;
+                continue ;
+            }
+            failp = ft_fail_create(data, failp);
+        }
+        else
+        {
+            if (arg == 0)
+            {
+                ft_init(head, data, 1);
+                argp = head->arg_start;
+                arg++;
+                continue ;
+            }
+            argp = ft_arg_create(data, argp);
+        }
+        // if (!(ft_start(data.flags, data.way)))
+        //     continue;
+    }
+    if (arg)
+        argp->next = NULL;
+    if (notfile)
+        failp->next = NULL;
+}
+
+int     main(int argc, char **argv)
+{
+    t_head          head;
+    t_crutch        data;
+    // t_list          *argp;
+    // t_list          *failp;
+    
+    data.arg = 0;
+    data.fail= 0;
+    data.flags = 0;
+    data.count = 1;
     if (argc == 1)
     {
-        way = "./";
-        flags = FLAG_NON;
-        cur = in_directory(way, names);
-        cur = sorting(cur, flags);
-        return (print(cur));
+        data.way = "./";
+        data.flags = FLAG_NON;
+        ft_start(data.flags, data.way);
     }
-    while(argv[count])
-    {
-        way = ft_parsing(argv, way, &flags, &count);
-        cur = process_arg(cur, way);                        
-        if (ft_strcmp(way, "./") != 0)
-        {
-            if (!(cur->next = (t_list *)malloc(sizeof(t_list))))
-                ft_perror("ft_yep() malloc: ", cur->next);
-            ft_null(cur->next);
-            if (argv[count])
-                cur = cur->next;
-        }
-    }
-    cur->next = NULL;
-    cur = sorting(names, flags);
-    return (print(cur));
+    ft_prestart(&head, argv, &data);
+    // ft_init(&head);
+    // while(argv[data.count])
+    // {
+    //     data.way = ft_parsing(argv, data.way, &data.flags, &data.count);
+    //     if (lstat(data.way, &head.stat) < 0)
+    //     {
+    //         failp = ft_fail_create(&data, failp, &head);
+    //         failp = failp->next;
+    //     }
+    //     else
+    //     {
+    //         argp = ft_arg_create(&data, argp, &head);
+    //         argp = argp->next;
+    //     }
+    //     // if (!(ft_start(data.flags, data.way)))
+    //     //     continue;
+    // }
+    return (0);
 }

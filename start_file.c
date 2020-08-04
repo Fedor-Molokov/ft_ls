@@ -6,11 +6,39 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 01:54:40 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 08:41:38 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 20:21:36 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+t_list    *ft_arg_create(t_crutch *data, t_list *argp)
+{
+    if (!(argp->next = (t_list *)malloc(sizeof(t_list))))
+        ft_perror("ft_arg_create() malloc: ", NULL);
+    if (data->arg > 1)
+        data->flags |= FLAG_ARG;
+    if(lstat(data->way, &argp->stat) < 0)
+        ft_perror("ft_arg_create() lstat: ", NULL);
+    argp = argp->next;
+    ft_null(argp);
+    argp->name = ft_findlastname(data->way);
+    argp->path = ft_strdup(data->way);
+    data->arg++;
+    return(argp);
+}
+
+t_list     *ft_fail_create(t_crutch *data, t_list *failp)
+{
+    if (!(failp->next = (t_list *)malloc(sizeof(t_list))))
+        ft_perror("ft_fail_create() malloc: ", NULL);
+    failp = failp->next;
+    ft_null(failp);
+    failp->name = ft_findlastname(data->way);
+    failp->path = ft_strdup(data->way);
+    data->fail++;
+    return(failp);
+}
 
 char    *ft_fillname(char *newname, int i, int j, const char *path)
 {

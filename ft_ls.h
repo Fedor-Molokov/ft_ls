@@ -20,6 +20,40 @@
 # define FLAG_R		0x4			// -R
 # define FLAG_T		0x8			// -t
 # define FLAG_MIN_R	0x10		// -r
+# define FLAG_ARG	0x20		// more than one argument
+
+typedef struct		s_crutch
+{
+    char    			*way;
+    int     			flags;
+    int     			count;
+	int					arg;
+	int					fail;
+}                   t_crutch;
+
+typedef struct		s_head
+{
+	struct	stat     	stat;
+	struct	s_list		*arg_start;
+	struct	s_list		*fail_start;
+}                   t_head;
+
+// typedef struct		s_arg_list
+// {
+// 	char				*name;
+// 	char				*path;
+// 	struct stat     	stat;
+
+// 	struct	s_arg_list	*next;
+// }                   t_arg_list;
+
+// typedef struct		s_fail_list
+// {
+// 	char				*name;
+// 	char				*path;
+
+// 	struct	s_fail_list	*next;
+// }                   t_fail_list;
 
 typedef struct		s_list
 {
@@ -32,6 +66,8 @@ typedef struct		s_list
 }                   t_list;
 
 char    	*ft_parsing(char **argv, char *way, int *flags, int *count);
+t_list     	*ft_fail_create(t_crutch *data, t_list *failp);
+t_list    	*ft_arg_create(t_crutch *data, t_list *argp);
 char		*slash_strjoin(char const *s1, char const *s2);
 void        process(t_list *cur, char *name,char *way);
 int			ft_strcmp(const char *s1, const char *s2);
@@ -42,10 +78,12 @@ t_list     	*in_directory(char *way, t_list *names);
 t_list     	*process_arg(t_list *cur, char *way);
 int     	time_rev_sort(t_list *a, t_list *b);
 void        ft_perror(char *str, t_list *list);
-char   		*ft_findlastname(const char *path);
+char    	*ft_findlastname(const char *path);
+// void		ft_fail_null(t_fail_list *list);
 int     	time_sort(t_list *a, t_list *b);
 int        	is_it_sorted(t_list *nm, int i);
 t_list      *sort_list(t_list *lst, int i);
+// void		ft_arg_null(t_arg_list *list);
 void        copy(t_list *p1, t_list *p2);
 t_list      *sorting(t_list *nm, int i);
 void        swap(t_list *a, t_list *b);
