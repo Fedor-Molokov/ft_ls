@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 17:11:40 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 20:01:48 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,15 +134,74 @@ int    ft_start(int flags, char *way)
     return (print(go));
 }
 
+void    ft_init(t_head *head, t_crutch *data, int i)
+{
+    if (i == 1)
+    {
+        if (!(head->arg_start = (t_list *)malloc(sizeof(t_list))))
+            ft_perror("ft_init() malloc: ", NULL);
+        ft_null(head->arg_start);
+        head->arg_start->name = ft_findlastname(data->way);
+        head->arg_start->path = ft_strdup(data->way);
+    }
+    else if (i == 2)
+    {
+        if (!(head->fail_start = (t_list *)malloc(sizeof(t_list))))
+            ft_perror("ft_init() malloc: ", NULL);
+        ft_null(head->fail_start);
+        head->fail_start->name = ft_findlastname(data->way);
+        head->fail_start->path = ft_strdup(data->way);
+    }
+}
+
+void    ft_prestart(t_head *head, char **argv, t_crutch *data)
+{
+    t_list          *argp;
+    t_list          *failp;
+    int             n;
+    int             b;
+    
+    n = 0;
+    b = 0;
+    while(argv[data->count])
+    {
+        data->way = ft_parsing(argv, data->way, &data->flags, &data->count);
+        if (lstat(data->way, &head->stat) < 0)
+        {
+            if (n == 0)
+            {
+                ft_init(head, data, 1);
+                argp = head->arg_start;
+                n++;
+            }
+            failp = ft_fail_create(data, failp);
+        }
+        else
+        {
+            if (b == 0)
+            {
+                ft_init(head, data, 2);
+                failp = head->fail_start;
+                b++;
+            }
+            argp = ft_arg_create(data, argp);
+        }
+        // if (!(ft_start(data.flags, data.way)))
+        //     continue;
+    }
+    argp->next = NULL;
+    failp->next = NULL;
+}
+
 int     main(int argc, char **argv)
 {
     t_head          head;
     t_crutch        data;
-    t_list          *argp;
-    t_list          *failp;
+    // t_list          *argp;
+    // t_list          *failp;
     
     data.arg = 0;
-    data.arg = 0;
+    data.fail= 0;
     data.flags = 0;
     data.count = 1;
     if (argc == 1)
@@ -151,21 +210,23 @@ int     main(int argc, char **argv)
         data.flags = FLAG_NON;
         ft_start(data.flags, data.way);
     }
-    while(argv[data.count])
-    {
-        data.way = ft_parsing(argv, data.way, &data.flags, &data.count);
-        if (lstat(data.way, &head.stat) < 0)
-        {
-            failp = ft_fail_create(&data, failp, &head);
-            failp = failp->next;
-        }
-        else
-        {
-            argp = ft_arg_create(&data, argp, &head);
-            argp = argp->next;
-        }
-        // if (!(ft_start(data.flags, data.way)))
-        //     continue;
-    }
+    ft_prestart(&head, argv, &data);
+    // ft_init(&head);
+    // while(argv[data.count])
+    // {
+    //     data.way = ft_parsing(argv, data.way, &data.flags, &data.count);
+    //     if (lstat(data.way, &head.stat) < 0)
+    //     {
+    //         failp = ft_fail_create(&data, failp, &head);
+    //         failp = failp->next;
+    //     }
+    //     else
+    //     {
+    //         argp = ft_arg_create(&data, argp, &head);
+    //         argp = argp->next;
+    //     }
+    //     // if (!(ft_start(data.flags, data.way)))
+    //     //     continue;
+    // }
     return (0);
 }

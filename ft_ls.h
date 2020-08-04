@@ -34,8 +34,8 @@ typedef struct		s_crutch
 typedef struct		s_head
 {
 	struct	stat     	stat;
-	struct	s_arg_list	*arg_start;
-	struct	s_fail_list	*fail_start;
+	struct	s_list		*arg_start;
+	struct	s_list		*fail_start;
 }                   t_head;
 
 // typedef struct		s_arg_list
@@ -66,8 +66,8 @@ typedef struct		s_list
 }                   t_list;
 
 char    	*ft_parsing(char **argv, char *way, int *flags, int *count);
-t_list     *ft_fail_create(t_crutch *data, t_list *failp, t_head *head);
-t_list    *ft_arg_create(t_crutch *data, t_list *argp, t_head *head);
+t_list     	*ft_fail_create(t_crutch *data, t_list *failp);
+t_list    	*ft_arg_create(t_crutch *data, t_list *argp);
 char		*slash_strjoin(char const *s1, char const *s2);
 void        process(t_list *cur, char *name,char *way);
 int			ft_strcmp(const char *s1, const char *s2);
