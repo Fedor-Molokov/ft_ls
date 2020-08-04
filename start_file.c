@@ -6,32 +6,36 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 01:54:40 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 16:50:29 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 17:17:10 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_arg_list    *ft_arg_create(char *way, t_arg_list *argp)
+t_list    *ft_arg_create(t_crutch *data, t_list *argp, t_head *head)
 {
-    if (!(argp = (t_arg_list *)malloc(sizeof(t_arg_list))))
+    if (!(argp = (t_list *)malloc(sizeof(t_list))))
         ft_perror("ft_arg_create() malloc: ", NULL);
-    ft_arg_null(argp);
-    if(lstat(way, &argp->stat) < 0)
+    ft_null(argp);
+    data->arg++;
+    if (data->arg > 1)
+        data->flags |= FLAG_ARG;
+    if(lstat(data->way, &argp->stat) < 0)
         ft_perror("ft_arg_create() lstat: ", NULL);
-    argp->name = ft_findlastname(way);
-    argp->path = ft_strdup(way);
+    argp->name = ft_findlastname(data->way);
+    argp->path = ft_strdup(data->way);
     argp->next = NULL;
     return(argp);
 }
 
-t_fail_list     *ft_fail_create(char *way, t_fail_list *failp)
+t_list     *ft_fail_create(t_crutch *data, t_list *failp, t_head *head)
 {
-    if (!(failp = (t_fail_list *)malloc(sizeof(t_fail_list))))
+    if (!(failp = (t_list *)malloc(sizeof(t_list))))
         ft_perror("ft_fail_create() malloc: ", NULL);
-    ft_fail_null(failp);
-    failp->name = ft_findlastname(way);
-    failp->path = ft_strdup(way);
+    ft_null(failp);
+    data->fail++;
+    failp->name = ft_findlastname(data->way);
+    failp->path = ft_strdup(data->way);
     failp->next = NULL;
     return(failp);
 }

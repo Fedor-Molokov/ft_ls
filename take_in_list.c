@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 16:46:39 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 17:11:40 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,13 +138,11 @@ int     main(int argc, char **argv)
 {
     t_head          head;
     t_crutch        data;
-    t_arg_list      *argp;
-    t_fail_list     *failp;
+    t_list          *argp;
+    t_list          *failp;
     
-    argp = NULL;
-    failp = NULL;
-    head.arg_start = argp;
-    head.fail_start = failp;
+    data.arg = 0;
+    data.arg = 0;
     data.flags = 0;
     data.count = 1;
     if (argc == 1)
@@ -158,12 +156,12 @@ int     main(int argc, char **argv)
         data.way = ft_parsing(argv, data.way, &data.flags, &data.count);
         if (lstat(data.way, &head.stat) < 0)
         {
-            failp = ft_fail_create(data.way, failp);
+            failp = ft_fail_create(&data, failp, &head);
             failp = failp->next;
         }
         else
         {
-            argp = ft_arg_create(data.way, argp);
+            argp = ft_arg_create(&data, argp, &head);
             argp = argp->next;
         }
         // if (!(ft_start(data.flags, data.way)))
