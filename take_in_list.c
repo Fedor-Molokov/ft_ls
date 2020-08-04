@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 21:47:57 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 21:51:04 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void        process(t_list *cur, char *name, char *way)
 {
     cur->name = ft_strdup(name);
     cur->path = slash_strjoin(way, cur->name);
-    cur->dir = get_name(way);
+    cur->dir = ft_strdup(way);
     if(lstat(cur->path, &cur->stat) < 0)
         ft_perror("process() lstat: ", cur);
     if((ft_strcmp(cur->name, ".") != 0 ) && (ft_strcmp(cur->name, "..") != 0))
