@@ -1,5 +1,13 @@
 #include "ft_ls.h"
 
+void        read_link(t_list *nm)
+{
+    struct stat *buf;
+
+    buf = stat(nm->name);
+
+}
+
 void        file_mode(int mode)
 {
     char    str[10];
@@ -24,28 +32,45 @@ void        file_mode(int mode)
     write(1, " ", 1);
 }
 
-void        type_file(int mode)
+void        type_file(int mode, t_list *nm)
 {
     if (S_ISREG(mode))
-        ft_putstr("-");
+        ft_putchar('-');
     if (S_ISDIR(mode))
-        ft_putstr("d");
+        ft_putchar('d');
     if (S_ISLNK(mode))
-        ft_putstr("l");
+    {
+        ft_putchar('l');
+        read_link(nm);
+    }
     if (S_ISBLK(mode))
-        ft_putstr("b");
+        ft_putchar('b');
     if (S_ISCHR(mode))
-        ft_putstr("c");
+        ft_putchar('c');
     if (S_ISFIFO(mode))
-        ft_putstr("p");
+        ft_putchar('p');
     if (S_ISSOCK(mode))
-        ft_putstr("s");
+        ft_putchar('s');
   /* if (S_ISWHT(mode))
         ft_putstr("w ");*/
 }
 
+
+void        user_and_group(t_list *nm)
+{
+    struct passwd   *pwd;
+    struct group    *grp;
+
+    pwd = getpwuid(nm->stat.st_uid);
+    ft_putstr(pwd->pw_name);
+    ft_putchar(' ');
+    grp = getgrgid(nm->stat.st_gid);
+    ft_putstr(grp->gr_name);
+    ft_putchar(' ');
+}
 void        about_file(t_list *nm)
 {
     type_file(nm->stat.st_mode);
-    file_mode(nm->stat.st_mode);
+    file_mode(nm->stat.st_mode, nm->link);
+    user_and_group(nm);
 }

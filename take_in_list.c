@@ -21,6 +21,7 @@ int            print(t_list *nm)
     cur = nm;
     while(cur)
     {
+        about_file(cur);
         while (cur->name[i])
         {
             write(1, &cur->name[i], 1);

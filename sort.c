@@ -6,6 +6,7 @@ void        copy(t_list *p1, t_list *p2)
     p1->path = p2->path;
     p1->stat = p2->stat;
     p1->child = p2->child;
+    p1->link = p2->link;
 }
 
 
