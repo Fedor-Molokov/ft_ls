@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 21:51:04 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 22:48:45 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,18 @@ int            print(t_list *nm)
     int     i;
     t_list  *cur;
 
+    if (nm == NULL)
+        return (1);
     i = 0;
     cur = nm;
-    ft_printf("%s:\n", nm->dir);
+    if (lstat(cur->path, &cur->stat) < 0)
+        return (ft_printf_exit(cur->name, cur));
+    else
+        ft_printf("%s:\n", nm->dir);
     while(cur)
     {
         about_file(cur);
         ft_putstr(cur->name);
-//         if (lstat(cur->path, &cur->stat) < 0)
-//             ft_printf_exit(cur->name, cur);
-//         while (cur->name[i])
-//         {
-//             write(1, &cur->name[i], 1);
-//             i++;
-//         }
-// >>>>>>> fedor
         write(1, "\n", 1);
         cur = cur->next;
         i = 0;
@@ -200,7 +197,11 @@ int     main(int argc, char **argv)
     }
     ft_prestart(&head, argv, &data);
     failp = sorting(head.fail_start, data.flags);
-    print(failp);
+    while(failp)
+    {
+        print(failp);
+        failp = failp->next;
+    }
     argp = sorting(head.arg_start, data.flags);
     while(argp)
     {

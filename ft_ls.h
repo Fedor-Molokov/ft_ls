@@ -56,7 +56,7 @@ char		*slash_strjoin(char const *s1, char const *s2);
 t_list    	*ft_arg_create(t_crutch *data, t_list *argp);
 void        process(t_list *cur, char *name,char *way);
 int			ft_strcmp(const char *s1, const char *s2);
-void		ft_printf_exit(char *str, t_list *list);
+int			ft_printf_exit(char *str, t_list *list);
 t_list    	*ft_start_file(char *way, t_list *names);
 int        	conditions(t_list *a, t_list *b, int i);
 t_list     	*in_directory(char *way, t_list *names);
@@ -70,15 +70,15 @@ t_list      *sort_list(t_list *lst, int i);
 void        copy(t_list *p1, t_list *p2);
 t_list      *sorting(t_list *nm, int i);
 void        swap(t_list *a, t_list *b);
+void        user_and_group(t_list *nm);
 int         are_you_dir(t_list *cur);
 size_t		ft_strlen(const char *s);
 char		*ft_strnew(size_t size);
 void        about_file(t_list *nm);
 void		ft_null(t_list *list);
+void        read_link(char *path);
 void        type_file(int mode);
 void        file_mode(int mode);
-void        user_and_group(t_list *nm);
-void        read_link(char *path);
 void        hardlink(int link);
 
 #endif
