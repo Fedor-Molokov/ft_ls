@@ -6,18 +6,17 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 02:24:15 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 04:47:48 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 21:35:30 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_list		*ft_printf_exit(char *str, t_list *list)
+void		ft_printf_exit(char *str, t_list *list)
 {
 	ft_printf("./ft_ls: %s: No such file or directory", str);
 	free(list->name);
 	free(list->path);
-    return (NULL);
 }
 
 void        ft_perror(char *str, t_list *list)

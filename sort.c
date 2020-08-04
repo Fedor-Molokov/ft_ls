@@ -23,15 +23,14 @@ int        is_it_sorted(t_list *nm, int flags)
 {
     while (nm->next)
     {
-        if (/*flags == 2*/ flags == (FLAG_R | FLAG_A | FLAG_MIN_R) && ft_strcmp(nm->name, nm->next->name) < 0)
+        if (flags == (FLAG_R | FLAG_A | FLAG_MIN_R) 
+        && ft_strcmp(nm->name, nm->next->name) < 0)
             return (0);
-        if (/*flags == 1*/ flags == (FLAG_R | FLAG_A) && ft_strcmp(nm->name, nm->next->name) > 0)
+        if (flags == (FLAG_R | FLAG_A) && ft_strcmp(nm->name, nm->next->name) > 0)
             return (0);
-        // if (flags == 3)
         if (flags == (FLAG_R | FLAG_A | FLAG_T))
             if (time_sort(nm, nm->next))
                 return (0);
-        // if (flags == 4)
         if (flags == (FLAG_R | FLAG_A | FLAG_T | FLAG_MIN_R))
             if (time_rev_sort(nm, nm->next))
                 return(0);
@@ -40,26 +39,17 @@ int        is_it_sorted(t_list *nm, int flags)
     return (1);
 }
 
-    // 1 - Ra
-    // 2 - Rar
-    // 3 - Rat
-    // 4 - Ratr
-
 int      conditions(t_list *a, t_list *b, int flags)
 {
-    // if (flags == 2)
     if (flags == (FLAG_R | FLAG_A | FLAG_MIN_R))
         if (ft_strcmp(a->name, b->name) < 0)
             return (1);
-    // if (flags == 1)
     if (flags == (FLAG_R | FLAG_A))
         if (ft_strcmp(a->name, b->name) > 0)
             return (1);
-    // if (flags == 3)
     if (flags == (FLAG_R | FLAG_A | FLAG_T))
         if (time_sort(a, b))
             return (1);
-    // if (flags == 4)
     if (flags == (FLAG_R | FLAG_A | FLAG_T | FLAG_MIN_R))
         if (time_rev_sort(a, b))
             return (1);
