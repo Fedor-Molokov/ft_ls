@@ -6,11 +6,35 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 01:54:40 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 02:23:07 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 16:50:29 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+t_arg_list    *ft_arg_create(char *way, t_arg_list *argp)
+{
+    if (!(argp = (t_arg_list *)malloc(sizeof(t_arg_list))))
+        ft_perror("ft_arg_create() malloc: ", NULL);
+    ft_arg_null(argp);
+    if(lstat(way, &argp->stat) < 0)
+        ft_perror("ft_arg_create() lstat: ", NULL);
+    argp->name = ft_findlastname(way);
+    argp->path = ft_strdup(way);
+    argp->next = NULL;
+    return(argp);
+}
+
+t_fail_list     *ft_fail_create(char *way, t_fail_list *failp)
+{
+    if (!(failp = (t_fail_list *)malloc(sizeof(t_fail_list))))
+        ft_perror("ft_fail_create() malloc: ", NULL);
+    ft_fail_null(failp);
+    failp->name = ft_findlastname(way);
+    failp->path = ft_strdup(way);
+    failp->next = NULL;
+    return(failp);
+}
 
 char    *ft_fillname(char *newname, int i, int j, const char *path)
 {

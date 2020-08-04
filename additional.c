@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 02:24:15 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 04:47:48 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 16:45:00 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,20 @@ void        ft_perror(char *str, t_list *list)
     perror(str);
 	ft_printf("%s\n", list->path);
     exit(EXIT_FAILURE);
+}
+
+void		ft_arg_null(t_arg_list *list)
+{
+	list->name = NULL;
+	list->next = NULL;
+	list->path = NULL;
+}
+
+void		ft_fail_null(t_fail_list *list)
+{
+	list->name = NULL;
+	list->next = NULL;
+	list->path = NULL;
 }
 
 void		ft_null(t_list *list)

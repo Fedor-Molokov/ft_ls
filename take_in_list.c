@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 04:07:46 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 16:46:39 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,23 +136,38 @@ int    ft_start(int flags, char *way)
 
 int     main(int argc, char **argv)
 {
-    char    *way;
-    int     flags;
-    int     count;
-      
-    flags = 0;
-    count = 1;
+    t_head          head;
+    t_crutch        data;
+    t_arg_list      *argp;
+    t_fail_list     *failp;
+    
+    argp = NULL;
+    failp = NULL;
+    head.arg_start = argp;
+    head.fail_start = failp;
+    data.flags = 0;
+    data.count = 1;
     if (argc == 1)
     {
-        way = "./";
-        flags = FLAG_NON;
-        ft_start(flags, way);
+        data.way = "./";
+        data.flags = FLAG_NON;
+        ft_start(data.flags, data.way);
     }
-    while(argv[count])
+    while(argv[data.count])
     {
-        way = ft_parsing(argv, way, &flags, &count);
-        if (!(ft_start(flags, way)))
-            continue;
+        data.way = ft_parsing(argv, data.way, &data.flags, &data.count);
+        if (lstat(data.way, &head.stat) < 0)
+        {
+            failp = ft_fail_create(data.way, failp);
+            failp = failp->next;
+        }
+        else
+        {
+            argp = ft_arg_create(data.way, argp);
+            argp = argp->next;
+        }
+        // if (!(ft_start(data.flags, data.way)))
+        //     continue;
     }
     return (0);
 }
