@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 08:51:09 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 11:21:20 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int            print(t_list *nm)
     return (0);
 }
 
-char            *get_name(char *obj)
+char            *get_name(char *obj)                            // ft_strdup() ??
 {
     int     l;
     int     i;
@@ -78,6 +78,21 @@ int         are_you_dir(t_list *dir)
     }
     dir->child = NULL;
     return (0);
+}
+
+t_list     *process_arg(t_list *cur, char *way)
+// void    process_arg(t_list *cur, char *way)
+{
+    cur->name = ft_findlastname(way);
+    cur->path = ft_strdup(way);
+    if(lstat(cur->path, &cur->stat) < 0)
+        ft_perror("process() lstat: ", cur);
+    if((ft_strcmp(cur->name, ".") != 0 ) && (ft_strcmp(cur->name, "..") != 0))
+    {
+        if (are_you_dir(cur))
+            cur->child = in_directory(cur->path, cur->child);
+    }
+    return (cur);
 }
 
 void        process(t_list *cur, char *name, char *way)
@@ -146,8 +161,9 @@ int     main(int argc, char **argv)
     while(argv[count])
     {
         way = ft_parsing(argv, way, &flags, &count);
-        cur = in_directory(way, cur);
-        if (way[0] != '.' && way[1] != '/' && way[2] != '\0')
+        cur = process_arg(cur, way);                        
+        // cur = in_directory(way, cur);                                       // precessing(); lstat()
+        if (ft_strcmp(way, "./") != 0)
         {
             if (!(cur->next = (t_list *)malloc(sizeof(t_list))))
                 ft_perror("ft_yep() malloc: ", cur->next);
@@ -155,6 +171,7 @@ int     main(int argc, char **argv)
             cur = cur->next;
         }
     }
+    cur->next = NULL;
     cur = sorting(names, flags);
     return (print(cur));
 }
@@ -196,9 +213,9 @@ int     main(int argc, char **argv)
     
 //     if (way == NULL)
 //         return (-1);
-    // if (!(names = (t_list *)malloc(sizeof(t_list))))
-    //     ft_perror("ft_start() malloc: ", names);
-    // ft_null(names);
+//     if (!(names = (t_list *)malloc(sizeof(t_list))))
+//         ft_perror("ft_start() malloc: ", names);
+//     ft_null(names);
 //     go = in_directory(way, names);
 //     go = sorting(go, flags);
 //     return (print(go));

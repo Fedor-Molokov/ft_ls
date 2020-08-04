@@ -42,6 +42,7 @@ int        	conditions(t_list *a, t_list *b, int i);
 t_list     	*in_directory(char *way, t_list *names);
 int     	time_rev_sort(t_list *a, t_list *b);
 void        ft_perror(char *str, t_list *list);
+char   		*ft_findlastname(const char *path);
 int     	time_sort(t_list *a, t_list *b);
 int        	is_it_sorted(t_list *nm, int i);
 t_list      *sort_list(t_list *lst, int i);
