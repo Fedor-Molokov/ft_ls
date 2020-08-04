@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 02:31:51 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/04 04:07:46 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int         are_you_dir(t_list *dir)
     {
         if (!(new_dir = (t_list *)malloc(sizeof(t_list))))
             ft_perror("are_you_dir() malloc: ", dir);
+        ft_null(new_dir);
         dir->child = new_dir;
         new_dir->path = dir->path;
         return (1);
@@ -123,6 +124,8 @@ int    ft_start(int flags, char *way)
     t_list  *names;
     t_list  *go;
     
+    if (way == NULL)
+        return (-1);
     if (!(names = (t_list *)malloc(sizeof(t_list))))
         ft_perror("ft_start() malloc: ", names);
     ft_null(names);
