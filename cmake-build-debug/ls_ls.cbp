@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="ls_ls"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/cassunta/ls_ls/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/cassunta/ls_ls/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/cassunta/ls_ls/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ls_ls">
+				<Option output="/Users/cassunta/ls_ls/cmake-build-debug/ls_ls" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/cassunta/ls_ls/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/cassunta/ls_ls/."/>
+					<Add directory="/Users/cassunta/ls_ls/libft"/>
+					<Add directory="/Users/cassunta/ls_ls/libft/ft_printf"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 ls_ls"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ls_ls/fast">
+				<Option output="/Users/cassunta/ls_ls/cmake-build-debug/ls_ls" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/cassunta/ls_ls/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/cassunta/ls_ls/."/>
+					<Add directory="/Users/cassunta/ls_ls/libft"/>
+					<Add directory="/Users/cassunta/ls_ls/libft/ft_printf"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 ls_ls/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/cassunta/ls_ls/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/cassunta/ls_ls/additional.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/file_info.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/format_date.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/ft_ls.h">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_atoi.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_bzero.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_isalnum.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_isalpha.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_isascii.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_isdigit.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_isprint.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_itoa.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_memalloc.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_memccpy.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_memchr.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_memcmp.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_memcpy.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_memdel.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_memmove.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_memset.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/additional.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/additional_next.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/begin.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/calc_float.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/calc_float_next.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/char.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/char_next.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/count_decimal.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/count_decimal_next.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/count_decimal_next_n.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/ft_printf.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/ft_printf.h">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/make_flags.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/make_flags_2.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/o_x.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/o_x_l.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/print_addres.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/print_decimal.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/print_decimal_next.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/print_float.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/printing_nums.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_printf/printing_nums_next.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_putchar.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_putchar_fd.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_putendl.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_putendl_fd.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_putnbr.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_putnbr_fd.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_putstr.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_putstr_fd.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strcat.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strchr.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strclr.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strcmp.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strcpy.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strdel.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strdup.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strequ.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_striter.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_striteri.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strjoin.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strlcat.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strlen.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strmap.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strmapi.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strncat.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strncmp.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strncpy.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strnequ.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strnew.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strnstr.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strrchr.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strsplit.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strstr.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strsub.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_strtrim.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_tolower.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/ft_toupper.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/libft/libft.h">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/parse_big.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/parsing.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/slash_strjoin.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/sort.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/start_file.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/take_in_list.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/time_sort.c">
+			<Option target="ls_ls"/>
+		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

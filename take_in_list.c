@@ -28,15 +28,19 @@ void            ft_total(t_list *nm)
 void           big_str(t_list *nm)
 {
     t_opt       *lst;
-
     lst = parse_big(nm);
     about_file(nm);
     while(nm)
     {
         type_file(nm->stat.st_mode);
         file_mode(nm->stat.st_mode);
-        format_link(nm->stat.st_nlink, lst->olink);
+        format_num(nm->stat.st_nlink, lst->olink);
+        format_str(nm->pwd, lst->opwd);
+        format_str(nm->grp, lst->ogrp);
+        format_num(nm->stat.st_size, lst->osize);
+        format_time(nm->stat.st_mtimespec.tv_sec);
         ft_putstr(nm->name);
+        soft_link(nm->path);
         write(1, "\n", 1);
         nm = nm->next;
     }

@@ -40,10 +40,10 @@ typedef struct		s_head
 
 typedef struct		s_opt
 {
-    int             olink;
-    int             osize;
-    int             pwd;
-    int             grp;
+    size_t             olink;
+    size_t             osize;
+    size_t             opwd;
+    size_t             ogrp;
 }                   t_opt;
 
 typedef struct		s_list
@@ -95,9 +95,15 @@ void           big_str(t_list *nm);
 void            ft_total(t_list *nm);
 
 
-void            format_link(int date, int big);
-int             len_num(int src);
-int             len_link(t_list *nm);
+void            format_num(int date, int big);
+size_t             len_num(int src);
+size_t             len_link(t_list *nm);
 t_opt           *parse_big(t_list *nm);
+size_t             len_pwd(t_list *nm);
+void            format_str(char *src, int big);
+
+void            soft_link(char *way);
+
+void            format_time(time_t date);
 
 #endif

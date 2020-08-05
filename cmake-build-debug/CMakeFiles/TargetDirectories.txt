@@ -1,0 +1,3 @@
+/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir

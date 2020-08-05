@@ -3,4 +3,5 @@
 obj_*
 ft_ls
 CMakeLists.txt
-cmake-build-debug
+cmake-build-debu
+.idea

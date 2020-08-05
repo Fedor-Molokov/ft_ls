@@ -6,7 +6,7 @@
 #    By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/24 22:57:41 by dmarsell          #+#    #+#              #
-#    Updated: 2020/08/04 14:10:13 by cassunta         ###   ########.fr        #
+#    Updated: 2020/08/05 16:13:50 by cassunta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,9 @@ SRC = file_info.c \
 		time_sort.c		\
 		parsing.c		\
 		start_file.c	\
-		additional.c
+		additional.c    \
+		parse_big.c     \
+        format_date.c
 all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJ)
