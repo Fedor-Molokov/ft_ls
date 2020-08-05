@@ -27,9 +27,15 @@ void            ft_total(t_list *nm)
 
 void           big_str(t_list *nm)
 {
+    t_opt       *lst;
+
+    lst = parse_big(nm);
+    about_file(nm);
     while(nm)
     {
-        about_file(nm);
+        type_file(nm->stat.st_mode);
+        file_mode(nm->stat.st_mode);
+        format_link(nm->stat.st_nlink, lst->olink);
         ft_putstr(nm->name);
         write(1, "\n", 1);
         nm = nm->next;

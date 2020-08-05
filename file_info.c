@@ -1,13 +1,5 @@
 #include "ft_ls.h"
 
-/*void        read_link(char *path)
-{
-    struct stat buf;
-
-    stat(path, &buf);
-    ft_putstr(buf->)
-}*/
-
 void        file_mode(int mode)
 {
     char    str[10];
@@ -39,10 +31,7 @@ void        type_file(int mode)
     if (S_ISDIR(mode))
         ft_putchar('d');
     if (S_ISLNK(mode))
-    {
         ft_putchar('l');
-        //read_link(path);
-    }
     if (S_ISBLK(mode))
         ft_putchar('b');
     if (S_ISCHR(mode))
@@ -51,16 +40,16 @@ void        type_file(int mode)
         ft_putchar('p');
     if (S_ISSOCK(mode))
         ft_putchar('s');
-  /* if (S_ISWHT(mode))
-        ft_putstr("w ");*/
+    if (S_ISWHT(mode))
+        ft_putstr("w ");
 }
-void        hardlink(int link)
+/*void        hardlink(int link)
 {
     ft_putnbr(link);
     ft_putstr("  ");
-}
+}*/
 
-void        user_and_group(t_list *nm)
+/*void        user_and_group(t_list *nm)
 {
     struct passwd   *pwd;
     struct group    *grp;
@@ -71,11 +60,38 @@ void        user_and_group(t_list *nm)
     grp = getgrgid(nm->stat.st_gid);
     ft_putstr(grp->gr_name);
     ft_putchar(' ');
+}*/
+
+char        *get_pwd(int src)
+{
+    struct passwd   *pwd;
+    char            *res;
+
+    pwd = getpwuid(src);
+    res = ft_strdup(pwd->pw_name);
+    return (res);
 }
+
+char        *get_grp(int src)
+{
+    struct group    *grp;
+    char            *res;
+
+    grp = getgrgid(src);
+    res = ft_strdup(grp->gr_name);
+    return (res);
+}
+
 void        about_file(t_list *nm)
 {
-    type_file(nm->stat.st_mode);
-    file_mode(nm->stat.st_mode);
-    hardlink(nm->stat.st_nlink);
-    user_and_group(nm);
+    //type_file(nm->stat.st_mode);
+    //file_mode(nm->stat.st_mode);
+    //hardlink(nm->stat.st_nlink);
+    //user_and_group(nm);
+    while (nm)
+    {
+        nm->pwd = get_pwd(nm->stat.st_uid);
+        nm-> grp = get_grp(nm->stat.st_gid);
+        nm = nm->next;
+    }
 }

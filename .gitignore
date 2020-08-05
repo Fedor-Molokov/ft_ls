@@ -2,3 +2,5 @@
 *.a
 obj_*
 ft_ls
+CMakeLists.txt
+cmake-build-debug

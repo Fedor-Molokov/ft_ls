@@ -38,6 +38,14 @@ typedef struct		s_head
 	struct	s_list		*fail_start;
 }                   t_head;
 
+typedef struct		s_opt
+{
+    int             olink;
+    int             osize;
+    int             pwd;
+    int             grp;
+}                   t_opt;
+
 typedef struct		s_list
 {
     char                *dir;
@@ -46,6 +54,8 @@ typedef struct		s_list
 	struct s_list   	*child;
 	struct stat     	stat;
 	char                *link;
+	char                *pwd;
+	char                *grp;
 
 	struct	s_list		*next;
 }                   t_list;
@@ -83,5 +93,11 @@ void        hardlink(int link);
 int            print(t_list *nm);
 void           big_str(t_list *nm);
 void            ft_total(t_list *nm);
+
+
+void            format_link(int date, int big);
+int             len_num(int src);
+int             len_link(t_list *nm);
+t_opt           *parse_big(t_list *nm);
 
 #endif
