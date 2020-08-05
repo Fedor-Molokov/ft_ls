@@ -1,5 +1,42 @@
 #include "ft_ls.h"
 
+
+void            format_maj_size(t_list *nm, t_opt *lst)
+{
+    size_t         big;
+
+    big = ((lst->osize > lst->r_maj) ? lst->osize : lst->r_maj);
+    if (nm->format == 1)
+        format_num(lst->r_maj, big);
+    if (nm->format == 0)
+        format_num(nm->stat.st_size, big);
+}
+
+/*void            format_min_size(t_list *nm, t_opt *lst)
+{
+    int         diff;
+
+    if (nm->format == 1)
+    {
+        diff = (int )lst->r_min - len_num(nm->rdev_min);
+        while (diff > 0)
+        {
+            write(1, "1", 1);
+            diff--;
+        }
+        ft_printf("%d,  ");
+    }
+    if (nm->format == 0)
+    {
+        diff = lst->r_min + 3;
+        while (diff > 0)
+        {
+            write(1, "1", 1);
+            diff--;
+        }
+    }
+}*/
+
 void            format_time(time_t date)
 {
     char        *buf;
@@ -35,17 +72,20 @@ void            soft_link(char *way)
 void            format_str(char *date, size_t big)
 {
     int         diff;
+    int         t;
 
-    if (ft_strlen(date) < big)
+    t = ft_strlen(date);
+    ft_printf("%s", date);
+    if (t < big)
     {
-        diff = big - ft_strlen(date);
+        diff = big - t;
         while (diff > 0)
         {
-            write(1, " ", 1);
+            ft_putchar(' ');
             diff--;
         }
     }
-    ft_printf("%s  ", date);
+    ft_printf("  ");
 }
 
 void            format_num(int date, size_t big)

@@ -29,4 +29,7 @@ void		ft_null(t_list *list)
 	list->pwd = NULL;
 	list->grp = NULL;
 	list->link = NULL;
+    list->rdev_maj = 0;
+    list->rdev_min = 0;
+    list->format = 0;
 }

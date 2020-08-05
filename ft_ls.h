@@ -47,6 +47,8 @@ typedef struct		s_opt
     size_t             osize;
     size_t             opwd;
     size_t             ogrp;
+    int                r_maj;
+    int                r_min;
 }                   t_opt;
 
 typedef struct		s_list
@@ -59,6 +61,9 @@ typedef struct		s_list
 	char                *link;
 	char                *pwd;
 	char                *grp;
+	int                 rdev_maj;
+	int                 rdev_min;
+	int                 format;
 
 	struct	s_list		*next;
 }                   t_list;
@@ -104,5 +109,28 @@ void        big_str(t_list *nm);
 void        hardlink(int link);
 int        	print(t_list *nm);
 size_t      len_num(int src);
+void        type_file(t_list *nm);
+void        file_mode(int mode);
+int         print(t_list *nm);
+void        big_str(t_list *nm);
+void        ft_total(t_list *nm);
+
+
+void            format_num(int date, int big);
+size_t             len_num(int src);
+size_t             len_link(t_list *nm);
+t_opt           *parse_big(t_list *nm);
+size_t             len_pwd(t_list *nm);
+void            format_str(char *src, size_t big);
+
+void            soft_link(char *way);
+
+void            format_time(time_t date);
+
+int             len_min(t_list *nm);
+int             len_maj(t_list *nm);
+
+void            format_maj_size(t_list *nm, t_opt *lst);
+void            format_min_size(t_list *nm, t_opt *lst);
 
 #endif

@@ -24,7 +24,6 @@ size_t             len_grp(t_list *nm)
             res = ft_strlen(nm->grp);
         nm = nm->next;
     }
-    res = len_num(res);
     return (res);
 }
 
@@ -39,7 +38,6 @@ size_t            len_pwd(t_list *nm)
             res = ft_strlen(nm->pwd);
         nm = nm->next;
     }
-    res = len_num(res);
     return (res);
 }
 
@@ -73,15 +71,47 @@ size_t             len_link(t_list *nm)
     return (res);
 }
 
+int             len_maj(t_list *nm)
+{
+    int         tmp;
+    int         res;
+
+    tmp = nm->rdev_maj;
+    while (nm)
+    {
+        if (tmp < nm->rdev_maj)
+            tmp = nm->rdev_maj;
+        nm = nm->next;
+    }
+    res = len_num(tmp);
+    return (res);
+}
+
+int             len_min(t_list *nm)
+{
+    int         tmp;
+    int         res;
+
+    while(nm)
+    {
+        if (tmp < nm->rdev_min)
+            tmp = nm->rdev_min;
+        nm = nm->next;
+    }
+    res = len_num(res);
+    return (res);
+}
+
 t_opt           *parse_big(t_list *nm)
 {
     t_opt       *lst;
 
     lst = (t_opt *)malloc(sizeof(t_opt));
-
     lst->osize = len_size(nm);
     lst->olink = len_link(nm);
     lst->opwd = len_pwd(nm);
     lst->ogrp = len_grp(nm);
-        return (lst);
+    lst->r_min = len_min(nm);
+    lst->r_maj = len_maj(nm);
+    return (lst);
 }

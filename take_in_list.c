@@ -47,16 +47,18 @@ void            ft_total(t_list *nm)
 void           big_str(t_list *nm)
 {
     t_opt       *lst;
-    lst = parse_big(nm);
+
     about_file(nm);
+    lst = parse_big(nm);
     while(nm)
     {
-        type_file(nm->stat.st_mode);
+        type_file(nm);
         file_mode(nm->stat.st_mode);
         format_num(nm->stat.st_nlink, lst->olink);
         format_str(nm->pwd, lst->opwd);
         format_str(nm->grp, lst->ogrp);
-        format_num(nm->stat.st_size, lst->osize);
+        //format_min_size(nm, lst);
+        format_maj_size(nm, lst);
         format_time(nm->stat.st_mtimespec.tv_sec);
         ft_putstr(nm->name);
         soft_link(nm->path);

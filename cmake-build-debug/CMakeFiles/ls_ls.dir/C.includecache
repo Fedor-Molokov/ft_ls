@@ -64,3 +64,7 @@ sys/stat.h
 sys/types.h
 -
 
+/Users/cassunta/ls_ls/take_in_list.c
+ft_ls.h
+/Users/cassunta/ls_ls/ft_ls.h
+

@@ -24,43 +24,30 @@ void        file_mode(int mode)
     write(1, " ", 1);
 }
 
-void        type_file(int mode)
-{
-    if (S_ISREG(mode))
+void        type_file(t_list *nm) {
+    if (S_ISREG(nm->stat.st_mode))
         ft_putchar('-');
-    if (S_ISDIR(mode))
+    if (S_ISDIR(nm->stat.st_mode))
         ft_putchar('d');
-    if (S_ISLNK(mode))
+    if (S_ISLNK(nm->stat.st_mode))
         ft_putchar('l');
-    if (S_ISBLK(mode))
+    if (S_ISBLK(nm->stat.st_mode))
+    {
         ft_putchar('b');
-    if (S_ISCHR(mode))
+        nm->format = 1;
+    }
+    if (S_ISCHR(nm->stat.st_mode))
+    {
         ft_putchar('c');
-    if (S_ISFIFO(mode))
+        nm->format = 1;
+    }
+    if (S_ISFIFO(nm->stat.st_mode))
         ft_putchar('p');
-    if (S_ISSOCK(mode))
+    if (S_ISSOCK(nm->stat.st_mode))
         ft_putchar('s');
-    if (S_ISWHT(mode))
+    if (S_ISWHT(nm->stat.st_mode))
         ft_putstr("w ");
 }
-/*void        hardlink(int link)
-{
-    ft_putnbr(link);
-    ft_putstr("  ");
-}*/
-
-/*void        user_and_group(t_list *nm)
-{
-    struct passwd   *pwd;
-    struct group    *grp;
-
-    pwd = getpwuid(nm->stat.st_uid);
-    ft_putstr(pwd->pw_name);
-    ft_putchar(' ');
-    grp = getgrgid(nm->stat.st_gid);
-    ft_putstr(grp->gr_name);
-    ft_putchar(' ');
-}*/
 
 char        *get_pwd(int src)
 {
@@ -84,14 +71,12 @@ char        *get_grp(int src)
 
 void        about_file(t_list *nm)
 {
-    //type_file(nm->stat.st_mode);
-    //file_mode(nm->stat.st_mode);
-    //hardlink(nm->stat.st_nlink);
-    //user_and_group(nm);
     while (nm)
     {
         nm->pwd = get_pwd(nm->stat.st_uid);
-        nm-> grp = get_grp(nm->stat.st_gid);
+        nm->grp = get_grp(nm->stat.st_gid);
+        nm->rdev_min = minor(nm->stat.st_rdev);
+        nm->rdev_maj = major(nm->stat.st_rdev);
         nm = nm->next;
     }
 }
