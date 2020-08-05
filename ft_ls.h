@@ -80,5 +80,8 @@ void        read_link(char *path);
 void        type_file(int mode);
 void        file_mode(int mode);
 void        hardlink(int link);
+int            print(t_list *nm);
+void           big_str(t_list *nm);
+void            ft_total(t_list *nm);
 
 #endif

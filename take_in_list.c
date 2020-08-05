@@ -12,6 +12,31 @@
 
 #include "ft_ls.h"
 
+void            ft_total(t_list *nm)
+{
+    unsigned int res;
+
+    res = 0;
+    while(nm)
+    {
+        res += nm->stat.st_blocks;
+        nm = nm->next;
+    }
+    ft_printf("total %u\n", res);
+}
+
+void           big_str(t_list *nm)
+{
+    while(nm)
+    {
+        about_file(nm);
+        ft_putstr(nm->name);
+        write(1, "\n", 1);
+        nm = nm->next;
+    }
+    write(1, "\n", 1);
+}
+
 int            print(t_list *nm)
 {
     int     i;
@@ -25,15 +50,8 @@ int            print(t_list *nm)
         return (ft_printf_exit(cur->name, cur));
     else
         ft_printf("%s:\n", nm->dir);
-    while(cur)
-    {
-        about_file(cur);
-        ft_putstr(cur->name);
-        write(1, "\n", 1);
-        cur = cur->next;
-        i = 0;
-    }
-    write(1, "\n", 1);
+    ft_total(cur);
+    big_str(cur);
     while(nm)
     {
         if(nm->child)
