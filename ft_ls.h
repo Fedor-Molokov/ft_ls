@@ -103,21 +103,18 @@ void   	    ft_total(t_list *nm);
 size_t      len_link(t_list *nm);
 void       	soft_link(char *way);
 size_t      len_pwd(t_list *nm);
-void        type_file(int mode);
 void        file_mode(int mode);
 void        big_str(t_list *nm);
 void        hardlink(int link);
 int        	print(t_list *nm);
 size_t      len_num(int src);
-void        type_file(t_list *nm);
+void        type_file(t_list *mode);
 void        file_mode(int mode);
 int         print(t_list *nm);
 void        big_str(t_list *nm);
 void        ft_total(t_list *nm);
 
 
-void            format_num(int date, int big);
-size_t             len_num(int src);
 size_t             len_link(t_list *nm);
 t_opt           *parse_big(t_list *nm);
 size_t             len_pwd(t_list *nm);

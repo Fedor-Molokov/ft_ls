@@ -92,6 +92,7 @@ int             len_min(t_list *nm)
     int         tmp;
     int         res;
 
+    res = 0;
     while(nm)
     {
         if (tmp < nm->rdev_min)
