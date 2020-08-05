@@ -6,11 +6,30 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 22:48:45 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/05 19:46:17 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void    ft_free(t_list *nm)
+{
+    t_list  *head;
+
+    while (nm)
+    {
+        nm->child ? ft_free(nm->child) : 1;
+        nm->dir ? free(nm->dir) : 1;
+        nm->name ? free(nm->name) : 1;
+        nm->path ? free(nm->path) : 1;
+        nm->link ? free(nm->link) : 1;
+        nm->pwd ? free(nm->pwd) : 1;
+        nm->grp ? free(nm->grp) : 1;
+        head = nm;
+        nm = nm->next;
+        free(head);
+    }
+}
 
 void            ft_total(t_list *nm)
 {
@@ -142,12 +161,14 @@ int    ft_start(int flags, char *way)
     ft_null(names);
     go = in_directory(way, names);
     go = sorting(go, flags);
-    return (print(go));
+    print(go);
+    ft_free(go);
+    return (0);
 }
 
-void    ft_init(t_head *head, t_crutch *data, int i)
+void    ft_init(t_head *head, t_crutch *data, int file)
 {
-    if (i == 1)
+    if (file == EXIST_FILE)
     {
         if (!(head->arg_start = (t_list *)malloc(sizeof(t_list))))
             ft_perror("ft_init() malloc: ", NULL);
@@ -155,7 +176,7 @@ void    ft_init(t_head *head, t_crutch *data, int i)
         head->arg_start->name = ft_findlastname(data->way);
         head->arg_start->path = ft_strdup(data->way);
     }
-    else if (i == 2)
+    else if (file == FAIL_FILE)
     {
         if (!(head->fail_start = (t_list *)malloc(sizeof(t_list))))
             ft_perror("ft_init() malloc: ", NULL);
@@ -181,7 +202,7 @@ void    ft_prestart(t_head *head, char **argv, t_crutch *data)
         {
             if (notfile == 0)
             { 
-                ft_init(head, data, 2);
+                ft_init(head, data, FAIL_FILE);
                 failp = head->fail_start;
                 notfile++;
                 continue ;
@@ -192,7 +213,7 @@ void    ft_prestart(t_head *head, char **argv, t_crutch *data)
         {
             if (argument == 0)
             {
-                ft_init(head, data, 1);
+                ft_init(head, data, EXIST_FILE);
                 argp = head->arg_start;
                 argument++;
                 continue ;
@@ -229,12 +250,14 @@ int     main(int argc, char **argv)
     {
         print(failp);
         failp = failp->next;
+        // ft_free(head.fail_start);
     }
     argp = sorting(head.arg_start, data.flags);
     while(argp)
     {
         ft_start(data.flags, argp->path);
         argp = argp->next;
+        // ft_free(head.arg_start);
     }
     return (0);
 }

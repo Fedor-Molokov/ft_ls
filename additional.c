@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 02:24:15 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/04 22:41:22 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/05 19:36:48 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int		ft_printf_exit(char *str, t_list *list)
 	ft_printf("./ft_ls: %s: No such file or directory\n", str);
 	free(list->name);
 	free(list->path);
+	// free(list);
 	return (1);
 }
 
@@ -34,5 +35,7 @@ void		ft_null(t_list *list)
 	list->child = NULL;
 	list->next = NULL;
 	list->path = NULL;
+	list->pwd = NULL;
+	list->grp = NULL;
 	list->link = NULL;
 }

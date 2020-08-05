@@ -14,6 +14,9 @@
 # include <fcntl.h>
 # include "libft/ft_printf/ft_printf.h"
 
+# define FAIL_FILE	0
+# define EXIST_FILE	1
+
 # define FLAG_NON	0x0			// without flags
 # define FLAG_L		0x1			// -l
 # define FLAG_A		0x2			// -a
