@@ -74,6 +74,8 @@ t_list     	*process_arg(t_list *cur, char *way);
 int     	time_rev_sort(t_list *a, t_list *b);
 void        ft_perror(char *str, t_list *list);
 char    	*ft_findlastname(const char *path);
+void        format_str(char *src, size_t big);
+void        format_num(int date, size_t big);
 int     	time_sort(t_list *a, t_list *b);
 int        	is_it_sorted(t_list *nm, int i);
 t_list      *sort_list(t_list *lst, int i);
@@ -83,27 +85,21 @@ void        swap(t_list *a, t_list *b);
 void        user_and_group(t_list *nm);
 int         are_you_dir(t_list *cur);
 size_t		ft_strlen(const char *s);
+void   	    format_time(time_t date);
 char		*ft_strnew(size_t size);
 void        about_file(t_list *nm);
+t_opt       *parse_big(t_list *nm);
 void		ft_null(t_list *list);
 void        read_link(char *path);
+void   	    ft_total(t_list *nm);
+size_t      len_link(t_list *nm);
+void       	soft_link(char *way);
+size_t      len_pwd(t_list *nm);
 void        type_file(int mode);
 void        file_mode(int mode);
+void        big_str(t_list *nm);
 void        hardlink(int link);
-int            print(t_list *nm);
-void           big_str(t_list *nm);
-void            ft_total(t_list *nm);
-
-
-void            format_num(int date, int big);
-size_t             len_num(int src);
-size_t             len_link(t_list *nm);
-t_opt           *parse_big(t_list *nm);
-size_t             len_pwd(t_list *nm);
-void            format_str(char *src, int big);
-
-void            soft_link(char *way);
-
-void            format_time(time_t date);
+int        	print(t_list *nm);
+size_t      len_num(int src);
 
 #endif

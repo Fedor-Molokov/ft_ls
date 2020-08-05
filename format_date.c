@@ -32,7 +32,7 @@ void            soft_link(char *way)
     }
 }
 
-void            format_str(char *date, int big)
+void            format_str(char *date, size_t big)
 {
     int         diff;
 
@@ -48,7 +48,7 @@ void            format_str(char *date, int big)
     ft_printf("%s  ", date);
 }
 
-void            format_num(int date, int big)
+void            format_num(int date, size_t big)
 {
     int         diff;
 

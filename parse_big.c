@@ -30,7 +30,7 @@ size_t             len_grp(t_list *nm)
 
 size_t            len_pwd(t_list *nm)
 {
-    int         res;
+    size_t         res;
 
     res = ft_strlen(nm->pwd);
     while (nm)
