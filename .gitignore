@@ -1,8 +1,8 @@
 *.o
 *.a
+*.dSYM
 obj_*
 ft_ls
 CMakeLists.txt
 cmake-build-debu
 .idea
-.dSYM

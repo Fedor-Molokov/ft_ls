@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/05 19:55:35 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/05 20:43:24 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void           big_str(t_list *nm)
         nm = nm->next;
     }
     write(1, "\n", 1);
+    free(lst);
 }
 
 int            print(t_list *nm)
