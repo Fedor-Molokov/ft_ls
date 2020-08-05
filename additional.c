@@ -35,4 +35,7 @@ void		ft_null(t_list *list)
 	list->next = NULL;
 	list->path = NULL;
 	list->link = NULL;
+    list->rdev_maj = 0;
+    list->rdev_min = 0;
+    list->format = 0;
 }
