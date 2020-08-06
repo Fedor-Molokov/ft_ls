@@ -6,11 +6,18 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 22:37:52 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/06 16:36:31 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 22:54:13 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_ls.h"
+
+void    ft_usage(char c)
+{
+    ft_printf("./ft_ls: illegal option -- %c\n", c);
+    ft_putstr("usage: ls [-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1] [file ...]\n");
+    exit(0);
+}
 
 void    ft_flags(char **argv, int *flags, int *i, int *j)
 {
@@ -23,7 +30,23 @@ void    ft_flags(char **argv, int *flags, int *i, int *j)
     if (argv[*j][*i] == 'R')
         *flags |= FLAG_R;
     if (argv[*j][*i] == 'r')
-        *flags |= FLAG_MIN_R;    
+        *flags |= FLAG_MIN_R;
+    if (argv[*j][*i] < 49)
+        ft_usage(argv[*j][*i]);
+    if (argv[*j][*i] > 49 || argv[*j][*i] < 65)
+        ft_usage(argv[*j][*i]);
+    if (argv[*j][*i] > 87 || argv[*j][*i] < 97)
+        ft_usage(argv[*j][*i]);
+    if (argv[*j][*i] > 120)
+        ft_usage(argv[*j][*i]);
+    // && argv[*j][*i] > 87 \
+    // && argv[*j][*i] < 97 \
+    // && argv[*j][*i] > 120)
+    // {
+    //     ft_printf("ls: illegal option -- %c\n", argv[*j][*i]);
+    //     ft_putstr("usage: ls [-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1] [file ...]\n");
+    //     exit(0);
+    // }   
     (*i)++; 
 }
 
@@ -68,6 +91,5 @@ char    *ft_parsing(char **argv, char *way, int *flags, int *count)
         return(ft_parsing_next(argv, way, flags, count));
     if (*count > 1)
         way = argv[(*count)++];
-    // *count == 
     return (way);
 }
