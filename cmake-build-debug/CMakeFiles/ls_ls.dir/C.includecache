@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/cassunta/ls_ls/format_date.c
-ft_ls.h
-/Users/cassunta/ls_ls/ft_ls.h
-
 /Users/cassunta/ls_ls/ft_ls.h
 unistd.h
 -

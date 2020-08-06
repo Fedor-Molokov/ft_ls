@@ -108,7 +108,7 @@ void        big_str(t_list *nm);
 void        hardlink(int link);
 int        	print(t_list *nm);
 size_t      len_num(int src);
-void        type_file(t_list *mode);
+int         type_file(t_list *nm);
 void        file_mode(int mode);
 int         print(t_list *nm);
 void        big_str(t_list *nm);

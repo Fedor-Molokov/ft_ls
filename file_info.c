@@ -24,7 +24,8 @@ void        file_mode(int mode)
     write(1, " ", 1);
 }
 
-void        type_file(t_list *nm) {
+int        type_file(t_list *nm)
+{
     if (S_ISREG(nm->stat.st_mode))
         ft_putchar('-');
     if (S_ISDIR(nm->stat.st_mode))
@@ -34,12 +35,12 @@ void        type_file(t_list *nm) {
     if (S_ISBLK(nm->stat.st_mode))
     {
         ft_putchar('b');
-        nm->format = 1;
+        return (1);
     }
     if (S_ISCHR(nm->stat.st_mode))
     {
         ft_putchar('c');
-        nm->format = 1;
+        return (1);
     }
     if (S_ISFIFO(nm->stat.st_mode))
         ft_putchar('p');
@@ -47,6 +48,7 @@ void        type_file(t_list *nm) {
         ft_putchar('s');
     if (S_ISWHT(nm->stat.st_mode))
         ft_putstr("w ");
+    return (0);
 }
 
 char        *get_pwd(int src)

@@ -92,6 +92,7 @@ int             len_min(t_list *nm)
     int         tmp;
     int         res;
 
+    tmp = 0;
     res = 0;
     while(nm)
     {
@@ -99,7 +100,7 @@ int             len_min(t_list *nm)
             tmp = nm->rdev_min;
         nm = nm->next;
     }
-    res = len_num(res);
+    res = len_num(tmp);
     return (res);
 }
 
