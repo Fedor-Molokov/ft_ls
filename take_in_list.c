@@ -78,7 +78,7 @@ void           big_str(t_list *nm, int flags)
 			file_mode(nm->stat.st_mode);
 			format_num(nm->stat.st_nlink, lst->olink);
 			format_str(nm->pwd, lst->opwd);
-            write(1, " ", 1);
+            write(1, "  ", 2);
 			format_str(nm->grp, lst->ogrp);
 			format_min_size(nm, lst);
 			format_maj_size(nm, lst);
@@ -89,7 +89,7 @@ void           big_str(t_list *nm, int flags)
 			nm = nm->next;
 		}
     }
-    write(1, "\n", 1);
+    //write(1, "\n", 1);
     free(lst);
 }
 
@@ -161,7 +161,6 @@ void        process(t_list *cur, char *name, char *way, int flags)
     if(lstat(cur->path, &cur->stat) < 0)
         ft_perror("process() lstat: ", cur);
     if ((flags & FLAG_R) && (ft_strcmp(cur->name, ".") != 0 ) && (ft_strcmp(cur->name, "..") != 0))
-    //if((ft_strcmp(cur->name, ".") != 0 ) && (ft_strcmp(cur->name, "..") != 0))
     {
         if (are_you_dir(cur))
             cur->child = in_directory(cur->path, cur->child, flags);
