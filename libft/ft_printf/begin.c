@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 13:31:35 by cassunta          #+#    #+#             */
-/*   Updated: 2020/07/16 11:36:30 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 10:40:32 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		if_percent(const char *ft, int i)
 	return (i);
 }
 
-void	put_zero(int s, int p, flags *f)
+void	put_zero(int s, int p, t_flags *f)
 {
 	int		delta;
 

@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 01:18:51 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/07/07 22:14:21 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 11:42:36 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_itoa_base(long long int value, int base)
 		return ((void *)0);
 	sign = value < 0 && base == 10 ? 1 : 0;
 	uvalue = value < 0 ? -value : value;
-	rezult_size = rn(uvalue, base);
+	rezult_size = ft_div_base(uvalue, base);
 	rezult_size += sign;
 	if (!(rezult = (char *)malloc(sizeof(char) * (rezult_size + 1))))
 		return ((void *)0);
@@ -61,21 +61,21 @@ int		ft_fract(char (*bufer)[70], long double n, int p)
 	}
 	if (i > p)
 	{
-		hd = ft_round(bufer, p);
-		ft_to_string(bufer, p);
+		hd = ft_circ(bufer, p);
+		ft_to_str(bufer, p);
 	}
 	else
-		ft_to_string(bufer, i);
+		ft_to_str(bufer, i);
 	return (hd);
 }
 
-int		ft_precision(int p, flags *f)
+int		ft_precision(int p, t_flags *f)
 {
 	p == 0 && !(f->dot) ? p = 6 : 1;
 	return (p);
 }
 
-char	*ft_ftoa(long double n, int p, flags *f)
+char	*ft_ftoa(long double n, int p, t_flags *f)
 {
 	char	*sign;
 	char	*entire;
@@ -90,15 +90,15 @@ char	*ft_ftoa(long double n, int p, flags *f)
 	hd = ft_fract(&bufer, n - (long int)n, p);
 	if (!(entire = ft_itoa_base((long int)n + hd, 10)))
 		return (0);
-	if (!(rezult = ft_str_combain(entire, bufer, sign, p)))
+	if (!(rezult = ft_str_connect(entire, bufer, sign, p)))
 		return (0);
 	free(entire);
 	return (rezult);
 }
 
-int		calc_float(flags *f, va_list ap, char *buff, char *str)
+int		calc_float(t_flags *f, va_list ap, char *buff, char *str)
 {
-	union longint_double	val;
+	union u_longint_double	val;
 	int						res;
 
 	res = 0;

@@ -6,13 +6,13 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 15:22:59 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/07/06 18:20:16 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 10:47:06 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char		do_16_abc(int t, flags *f)
+char		do_16_abc(int t, t_flags *f)
 {
 	char	ab;
 	int		i;
@@ -27,7 +27,7 @@ char		do_16_abc(int t, flags *f)
 	return (ab);
 }
 
-char		*fill_l_next(char *dst, int *p, flags *f, unsigned int tmp)
+char		*fill_l_next(char *dst, int *p, t_flags *f, unsigned int tmp)
 {
 	if (f->dot && tmp == 0 && f->hash == 0)
 		return (dst);
@@ -45,7 +45,7 @@ char		*fill_l_next(char *dst, int *p, flags *f, unsigned int tmp)
 	return (dst);
 }
 
-char		*fill_l(char *dst, int c, flags *f, unsigned long tmp)
+char		*fill_l(char *dst, int c, t_flags *f, unsigned long tmp)
 {
 	char	t;
 	int		p;
@@ -68,7 +68,7 @@ char		*fill_l(char *dst, int c, flags *f, unsigned long tmp)
 	return (dst);
 }
 
-char		*l_to_s(unsigned long tmp, flags *f)
+char		*l_to_s(unsigned long tmp, t_flags *f)
 {
 	int		c;
 	char	*dst;
@@ -88,12 +88,13 @@ char		*l_to_s(unsigned long tmp, flags *f)
 		f->div = 8;
 	}
 	c = how_much_l(tmp, f) + h;
-	dst = (char *)malloc(sizeof(char) * c);
+	dst = (char *)malloc(sizeof(char) * (c + 1));
+	ft_bzero(dst, c + 1);
 	dst = fill_l(dst, c, f, tmp);
 	return (dst);
 }
 
-int			convert_to_l(unsigned long src, flags *f)
+int			convert_to_l(unsigned long src, t_flags *f)
 {
 	int		res;
 	char	*rlt;

@@ -6,13 +6,13 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 11:03:56 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/07/16 11:20:43 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 11:42:47 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		print_str_decimal_next(char *ap, int *len, flags *f, int i)
+void		print_str_decimal_next(char *ap, int *len, t_flags *f, int i)
 {
 	if (!(f->precision) && f->plus && ap[i] != '-' && ap[0] != '0')
 	{
@@ -31,7 +31,7 @@ void		print_str_decimal_next(char *ap, int *len, flags *f, int i)
 	}
 }
 
-void		print_str_decimal(char *ap, int *len, flags *f)
+void		print_str_decimal(char *ap, int *len, t_flags *f)
 {
 	int		i;
 
@@ -54,7 +54,7 @@ void		print_str_decimal(char *ap, int *len, flags *f)
 	print_str_decimal_next(ap, len, f, i);
 }
 
-int			print_char_decimal_next_n(flags *f, char *ap, print_d *data)
+int			print_char_decimal_next_n(t_flags *f, char *ap, t_print_d *data)
 {
 	if (f->minus)
 	{
@@ -65,12 +65,12 @@ int			print_char_decimal_next_n(flags *f, char *ap, print_d *data)
 		data->len <= f->precision ? \
 		print_zero_decimal(ap, &data->weidth, f) : 1;
 		print_str_decimal(ap, &data->len, f);
-		print_space_decimal(ap, &data->precision, data->len, f);
+		print_space_dec(ap, &data->precision, data->len, f);
 		return (f->weidth - 1);
 	}
 	f->plus && ap[0] != '-' ? data->precision-- : 1;
 	!(f->zero && ap[0] == '-' && (data->weidth - 1) == data->len) ? \
-	print_space_decimal(ap, &data->precision, data->len, f) : 1;
+	print_space_dec(ap, &data->precision, data->len, f) : 1;
 	f->plus && ap[0] != '-' ? data->precision++ : 1;
 	if (data->precision < data->len)
 		data->precision = data->weidth - data->precision;
@@ -83,7 +83,7 @@ int			print_char_decimal_next_n(flags *f, char *ap, print_d *data)
 	return (f->weidth - 1);
 }
 
-int			print_char_decimal_next(flags *f, char *ap, print_d *data)
+int			print_char_decimal_next(t_flags *f, char *ap, t_print_d *data)
 {
 	if (data->len >= data->precision && data->len >= data->weidth)
 	{
@@ -105,9 +105,9 @@ int			print_char_decimal_next(flags *f, char *ap, print_d *data)
 	return (0);
 }
 
-int			print_char_decimal(flags *f, char *ap)
+int			print_char_decimal(t_flags *f, char *ap)
 {
-	print_d		data;
+	t_print_d		data;
 
 	data.weidth = f->weidth;
 	data.precision = f->precision;
@@ -117,7 +117,7 @@ int			print_char_decimal(flags *f, char *ap)
 		return (print_char_decimal_next(f, ap, &data));
 	else
 	{
-		data.len = to_weidth_decimal(ap, data.precision, &data.len, f);
+		data.len = to_weidth_dec(ap, data.precision, &data.len, f);
 		return (data.len - 1);
 	}
 	return (0);

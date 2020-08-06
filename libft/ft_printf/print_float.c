@@ -6,13 +6,13 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 22:16:56 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/07/16 11:20:54 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 10:49:30 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		print_plus_float(use *box, flags *f)
+void		print_plus_float(t_use *box, t_flags *f)
 {
 	if (f->plus && !(box->plus) && !(box->decminus))
 	{
@@ -27,7 +27,7 @@ void		print_plus_float(use *box, flags *f)
 	}
 }
 
-void		print_sym_float(use *box, flags *f)
+void		print_sym_float(t_use *box, t_flags *f)
 {
 	int		i;
 	char	sym;
@@ -43,7 +43,7 @@ void		print_sym_float(use *box, flags *f)
 	}
 }
 
-void		print_str_float(char *str, use *box, int len)
+void		print_str_float(char *str, t_use *box, int len)
 {
 	int		i;
 
@@ -54,7 +54,7 @@ void		print_str_float(char *str, use *box, int len)
 	box->decminus == '2' ? box->decminus = 0 : 1;
 }
 
-void		print_float_next(flags *f, char *buff, use *box)
+void		print_float_next(t_flags *f, char *buff, t_use *box)
 {
 	if (f->minus)
 	{
@@ -74,9 +74,9 @@ void		print_float_next(flags *f, char *buff, use *box)
 	}
 }
 
-int			print_float(flags *f, char *buff)
+int			print_float(t_flags *f, char *buff)
 {
-	use		box;
+	t_use		box;
 
 	box.plus = f->plus ? '+' : '\0';
 	box.space = f->space ? ' ' : '\0';

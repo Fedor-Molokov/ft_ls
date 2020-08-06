@@ -6,13 +6,13 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 15:02:35 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/07/06 18:20:19 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 10:46:36 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char		*fill_s_next(char *dst, int *p, flags *f, unsigned int tmp)
+char		*fill_s_next(char *dst, int *p, t_flags *f, unsigned int tmp)
 {
 	if (f->dot && tmp == 0 && f->hash == 0)
 		return (dst);
@@ -32,7 +32,7 @@ char		*fill_s_next(char *dst, int *p, flags *f, unsigned int tmp)
 	return (dst);
 }
 
-char		*fill_s(char *dst, int c, flags *f, unsigned int tmp)
+char		*fill_s(char *dst, int c, t_flags *f, unsigned int tmp)
 {
 	char	t;
 	int		p;
@@ -55,7 +55,7 @@ char		*fill_s(char *dst, int c, flags *f, unsigned int tmp)
 	return (dst);
 }
 
-char		*to_s(unsigned int tmp, flags *f)
+char		*to_s(unsigned int tmp, t_flags *f)
 {
 	int		c;
 	char	*dst;
@@ -82,7 +82,7 @@ char		*to_s(unsigned int tmp, flags *f)
 	return (dst);
 }
 
-int			convert_to(unsigned int ap, flags *f)
+int			convert_to(unsigned int ap, t_flags *f)
 {
 	int		res;
 	char	*rlt;
@@ -94,7 +94,7 @@ int			convert_to(unsigned int ap, flags *f)
 	return (res);
 }
 
-int			convert(va_list ap, flags *f)
+int			convert(va_list ap, t_flags *f)
 {
 	int		res;
 	int		i;

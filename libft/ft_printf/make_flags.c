@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 17:04:53 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/07/06 18:20:13 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 10:45:24 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int			out_num(const char *format, int size1, int size, int start)
 	return (c);
 }
 
-void		other_spec(const char *ft, flags *f, int i)
+void		other_spec(const char *ft, t_flags *f, int i)
 {
 	if (ft[i] == '-')
 		f->minus = 1;
@@ -41,7 +41,7 @@ void		other_spec(const char *ft, flags *f, int i)
 		f->percent = 1;
 }
 
-void		fill_flag_next(int i, flags *f, const char *fmt, int start)
+void		fill_flag_next(int i, t_flags *f, const char *fmt, int start)
 {
 	if (fmt[i] == '.')
 	{
@@ -63,7 +63,7 @@ int			ft_choice(char c)
 	return (0);
 }
 
-void		fill_flag(const char *fmt, flags *f, int start)
+void		fill_flag(const char *fmt, t_flags *f, int start)
 {
 	int		i;
 

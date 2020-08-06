@@ -6,13 +6,13 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 15:02:03 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/07/16 11:27:53 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 10:47:34 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		print_for_point(int pointlen, char sym, flags *f, int b)
+int		print_for_point(int pointlen, char sym, t_flags *f, int b)
 {
 	int		i;
 	int		res;
@@ -44,7 +44,7 @@ void	find_point_len(long nb, int *pointlen)
 		(*pointlen)++;
 }
 
-int		print_address_next_n(flags *f, int pointlen, long p, int bit)
+int		print_address_next_n(t_flags *f, int pointlen, long p, int bit)
 {
 	if (f->weidth > pointlen && !(f->minus))
 	{
@@ -69,7 +69,7 @@ int		print_address_next_n(flags *f, int pointlen, long p, int bit)
 	return (pointlen);
 }
 
-int		print_address_next(flags *f, int bit)
+int		print_address_next(t_flags *f, int bit)
 {
 	if (f->minus && f->weidth)
 	{
@@ -98,7 +98,7 @@ int		print_address_next(flags *f, int bit)
 	return (3);
 }
 
-int		print_address(flags *f, va_list ap)
+int		print_address(t_flags *f, va_list ap)
 {
 	int		pointlen;
 	int		bit;

@@ -6,13 +6,13 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 21:55:35 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/07/07 22:14:41 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 11:42:36 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_str_combain(char *entire, char *bufer, char *sign, int p)
+char	*ft_str_connect(char *entire, char *bufer, char *sign, int p)
 {
 	int		len;
 	char	*res;
@@ -33,7 +33,7 @@ char	*ft_str_combain(char *entire, char *bufer, char *sign, int p)
 	return (res);
 }
 
-void	ft_to_string(char (*bufer)[70], int n)
+void	ft_to_str(char (*bufer)[70], int n)
 {
 	int i;
 
@@ -46,32 +46,32 @@ void	ft_to_string(char (*bufer)[70], int n)
 	}
 }
 
-int		ft_round(char (*bufer)[70], int p)
+int		ft_circ(char (*bufer)[70], int p)
 {
-	int hd;
+	int num;
 
-	hd = (*bufer)[p] < 5 ? 0 : 1;
+	num = (*bufer)[p] < 5 ? 0 : 1;
 	(*bufer)[p] = 0;
-	while (hd == 1 && p > 0)
+	while (num == 1 && p > 0)
 	{
-		hd = ((*bufer)[p - 1] + 1) / 10;
+		num = ((*bufer)[p - 1] + 1) / 10;
 		(*bufer)[p - 1] = ((*bufer)[p - 1] + 1) % 10;
 		p--;
 	}
-	return (hd);
+	return (num);
 }
 
-int		rn(unsigned long long value, int base)
+int		ft_div_base(unsigned long long value, int base)
 {
-	int rn;
+	int num;
 
-	rn = 0;
+	num = 0;
 	while (value > 0)
 	{
 		value = value / base;
-		rn++;
+		num++;
 	}
-	if (rn == 0)
+	if (num == 0)
 		return (1);
-	return (rn);
+	return (num);
 }

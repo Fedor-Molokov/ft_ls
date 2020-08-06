@@ -6,13 +6,13 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 17:29:46 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/07/06 18:20:32 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 10:51:13 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		l_big_next(char *s, flags *f, int l, int x)
+int		l_big_next(char *s, t_flags *f, int l, int x)
 {
 	if (f->minus == 0)
 	{
@@ -40,7 +40,7 @@ int		l_big_next(char *s, flags *f, int l, int x)
 		return (l + x);
 }
 
-int		l_big(char *s, flags *f, int l)
+int		l_big(char *s, t_flags *f, int l)
 {
 	int		x;
 
@@ -60,7 +60,7 @@ int		l_big(char *s, flags *f, int l)
 	return (0);
 }
 
-void	l_less_next_n(char *s, flags *f, int l, count_d *rx)
+void	l_less_next_n(char *s, t_flags *f, int l, t_count_d *rx)
 {
 	if (f->minus == '\0')
 	{
@@ -86,7 +86,7 @@ void	l_less_next_n(char *s, flags *f, int l, count_d *rx)
 	}
 }
 
-void	l_less_next(char *s, flags *f, int l, count_d *rx)
+void	l_less_next(char *s, t_flags *f, int l, t_count_d *rx)
 {
 	if (f->hash && f->type != 'o')
 	{
@@ -103,9 +103,9 @@ void	l_less_next(char *s, flags *f, int l, count_d *rx)
 		rx->start = f->precision;
 }
 
-int		l_less(char *s, flags *f, int l)
+int		l_less(char *s, t_flags *f, int l)
 {
-	count_d	rx;
+	t_count_d	rx;
 
 	rx.start = 0;
 	rx.space = 0;

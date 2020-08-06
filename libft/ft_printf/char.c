@@ -6,13 +6,13 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 11:55:36 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/07/06 18:19:28 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 10:42:11 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			print_ch_null_next_n(flags *f, int res, char *nu)
+int			print_ch_null_next_n(t_flags *f, int res, char *nu)
 {
 	if (f->minus)
 	{
@@ -29,7 +29,7 @@ int			print_ch_null_next_n(flags *f, int res, char *nu)
 	return (res);
 }
 
-int			print_ch_null_next(flags *f, int res, char *nu)
+int			print_ch_null_next(t_flags *f, int res, char *nu)
 {
 	if ((f->precision < f->weidth)
 	&& f->precision < res && f->precision)
@@ -49,7 +49,7 @@ int			print_ch_null_next(flags *f, int res, char *nu)
 	return (print_ch_null_next_n(f, res, nu));
 }
 
-int			print_ch_null(flags *f)
+int			print_ch_null(t_flags *f)
 {
 	int		res;
 	char	*nu;
@@ -75,7 +75,7 @@ int			print_ch_null(flags *f)
 	return (res);
 }
 
-int			print_ch_next(flags *f, char *v, char len)
+int			print_ch_next(t_flags *f, char *v, int len)
 {
 	int		res;
 
@@ -99,9 +99,9 @@ int			print_ch_next(flags *f, char *v, char len)
 	return (0);
 }
 
-int			print_ch(flags *f, va_list ap)
+int			print_ch(t_flags *f, va_list ap)
 {
-	char	len;
+	int		len;
 	char	*v;
 	char	c;
 

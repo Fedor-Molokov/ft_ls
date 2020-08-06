@@ -6,13 +6,13 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 16:50:14 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/07/16 11:27:44 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 10:44:44 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		print_persent(flags *f)
+int		print_persent(t_flags *f)
 {
 	char	sym;
 	int		res;
@@ -35,7 +35,7 @@ int		print_persent(flags *f)
 	return (1);
 }
 
-int		to_arg(flags *f, va_list ap, char *str)
+int		to_arg(t_flags *f, va_list ap, char *str)
 {
 	int			res;
 	char		buff[73];
@@ -62,7 +62,7 @@ int		to_arg(flags *f, va_list ap, char *str)
 	return (res);
 }
 
-void	to_null(flags *f, const char *ft, int start)
+void	to_null(t_flags *f, const char *ft, int start)
 {
 	f->varsize = '\0';
 	f->minus = '\0';
@@ -98,7 +98,7 @@ int		find_le(const char *ft, int st)
 
 int		all_formats(const char *ft, int i, va_list ap)
 {
-	flags		*f;
+	t_flags		*f;
 	char		*str;
 	int			st;
 	int			res;
@@ -108,7 +108,7 @@ int		all_formats(const char *ft, int i, va_list ap)
 	res = 0;
 	if (ft[i + 1] == '\0')
 		return (0);
-	if (!(f = (flags *)malloc(sizeof(flags))))
+	if (!(f = (t_flags *)malloc(sizeof(t_flags))))
 		return (0);
 	f->size = find_le(ft, st) - i;
 	to_null(f, ft, st);

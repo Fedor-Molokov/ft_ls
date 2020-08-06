@@ -6,13 +6,13 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 03:52:05 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/07/06 18:20:10 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 10:46:05 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		in_precision(const char *ft, flags *f, int i)
+void		in_precision(const char *ft, t_flags *f, int i)
 {
 	char	*r;
 	int		a;
@@ -40,7 +40,7 @@ void		in_precision(const char *ft, flags *f, int i)
 	}
 }
 
-void		out_precision(const char *ft, flags *f, int i)
+void		out_precision(const char *ft, t_flags *f, int i)
 {
 	char	*r;
 	int		a;
@@ -66,7 +66,7 @@ void		out_precision(const char *ft, flags *f, int i)
 	}
 }
 
-void		find_weidth(const char *ft, flags *f, int start)
+void		find_weidth(const char *ft, t_flags *f, int start)
 {
 	int		i;
 
@@ -77,7 +77,7 @@ void		find_weidth(const char *ft, flags *f, int start)
 		in_precision(ft, f, i);
 }
 
-void		fill_len(const char *ft, flags *tm, int c)
+void		fill_len(const char *ft, t_flags *tm, int c)
 {
 	char	comp;
 
@@ -102,7 +102,7 @@ void		fill_len(const char *ft, flags *tm, int c)
 	}
 }
 
-void		fill_type(const char *ft, flags *tmp, int start)
+void		fill_type(const char *ft, t_flags *tmp, int start)
 {
 	int		c;
 	char	a;

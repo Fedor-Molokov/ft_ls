@@ -6,13 +6,13 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 12:27:37 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/07/16 11:27:06 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 10:42:37 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			to_weidth(char *ap, int c, flags *f)
+int			to_weidth(char *ap, int c, t_flags *f)
 {
 	if (c >= f->weidth)
 	{
@@ -61,7 +61,7 @@ void		print_str(char *ap, int l)
 	}
 }
 
-void		print_zero(int c, flags *f)
+void		print_zero(int c, t_flags *f)
 {
 	int		i;
 
@@ -73,7 +73,7 @@ void		print_zero(int c, flags *f)
 	}
 }
 
-void		print_space(int c, flags *f)
+void		print_space(int c, t_flags *f)
 {
 	int		i;
 

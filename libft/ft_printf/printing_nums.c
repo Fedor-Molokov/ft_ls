@@ -6,13 +6,13 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 16:12:39 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/07/06 18:20:34 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 11:50:39 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	only_weidth_next_n_n(char *s, int l, flags *f, count_d *rx)
+void	only_weidth_next_n_n(char *s, int l, t_flags *f, t_count_d *rx)
 {
 	if (f->zero == 1)
 	{
@@ -32,7 +32,7 @@ void	only_weidth_next_n_n(char *s, int l, flags *f, count_d *rx)
 		rx->start = l + rx->space;
 }
 
-void	only_weidth_next_n(char *s, int l, flags *f, count_d *rx)
+void	only_weidth_next_n(char *s, int l, t_flags *f, t_count_d *rx)
 {
 	if (f->zero == 0)
 	{
@@ -47,7 +47,7 @@ void	only_weidth_next_n(char *s, int l, flags *f, count_d *rx)
 	only_weidth_next_n_n(s, l, f, rx);
 }
 
-void	only_weidth_next(char *s, int l, flags *f, count_d *rx)
+void	only_weidth_next(char *s, int l, t_flags *f, t_count_d *rx)
 {
 	if (f->hash && f->type != 'o')
 	{
@@ -62,9 +62,9 @@ void	only_weidth_next(char *s, int l, flags *f, count_d *rx)
 		rx->start = l + rx->space;
 }
 
-int		only_weidth(char *s, int l, flags *f)
+int		only_weidth(char *s, int l, t_flags *f)
 {
-	count_d	rx;
+	t_count_d	rx;
 
 	rx.space = 0;
 	rx.start = 0;
@@ -86,7 +86,7 @@ int		only_weidth(char *s, int l, flags *f)
 	return (rx.start);
 }
 
-int		print_num_str(char *s, flags *f)
+int		print_num_str(char *s, t_flags *f)
 {
 	int		l;
 	int		res;

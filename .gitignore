@@ -6,3 +6,4 @@ ft_ls
 CMakeLists.txt
 cmake-build-debu
 .idea
+.DS_Store

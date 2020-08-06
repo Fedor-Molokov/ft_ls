@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 10:32:05 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/07/06 18:20:01 by dmarsell         ###   ########.fr       */
+/*   Created: 2020/08/06 11:51:35 by dmarsell          #+#    #+#             */
+/*   Updated: 2020/08/06 11:51:36 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_bit_add_zero(char *buff, int *res, flags *f)
+void	ft_bit_add_zero(char *buff, int *res, t_flags *f)
 {
 	char	tmp[73];
 	int		i;
@@ -27,7 +27,7 @@ void	ft_bit_add_zero(char *buff, int *res, flags *f)
 	ft_space_bit(tmp, buff, res, f);
 }
 
-int		count_dec_n_n_n(flags *f, char *buff, unsigned long long i, int *res)
+int		count_dec_n_n_n(t_flags *f, char *buff, unsigned long long i, int *res)
 {
 	if (f->type == 'u')
 		ft_count_num_ui((unsigned int)i, buff, res);
@@ -45,7 +45,7 @@ int		count_dec_n_n_n(flags *f, char *buff, unsigned long long i, int *res)
 	return (*res);
 }
 
-int		count_decimal_n_n(flags *f, char *buff, unsigned long long i, int *res)
+int		count_dec_n_n(t_flags *f, char *buff, unsigned long long i, int *res)
 {
 	if (f->len[0] == 'l' && f->len[1] == 'l')
 	{
@@ -66,7 +66,7 @@ int		count_decimal_n_n(flags *f, char *buff, unsigned long long i, int *res)
 	return (*res);
 }
 
-int		count_decimal_next(flags *f, char *buff, unsigned long long i, int *res)
+int		count_dec_next(t_flags *f, char *buff, unsigned long long i, int *res)
 {
 	if (f->len[0] == 'h' && f->len[1] == 'h')
 	{
@@ -94,7 +94,7 @@ int		count_decimal_next(flags *f, char *buff, unsigned long long i, int *res)
 	return (*res);
 }
 
-int		count_decimal(flags *f, va_list ap, char *buff)
+int		count_decimal(t_flags *f, va_list ap, char *buff)
 {
 	int						res;
 	unsigned long long		i;
@@ -114,8 +114,8 @@ int		count_decimal(flags *f, va_list ap, char *buff)
 		else
 			ft_count_num_i((short)i, buff, &res);
 	}
-	!res ? count_decimal_next(f, buff, i, &res) : res;
-	!res ? count_decimal_n_n(f, buff, i, &res) : res;
+	!res ? count_dec_next(f, buff, i, &res) : res;
+	!res ? count_dec_n_n(f, buff, i, &res) : res;
 	!res ? count_dec_n_n_n(f, buff, i, &res) : res;
 	return (res);
 }

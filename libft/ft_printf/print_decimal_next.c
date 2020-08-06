@@ -6,13 +6,13 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 19:11:14 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/07/16 11:28:01 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 11:42:47 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		print_space_decimal(char *ap, int *precision, int len, flags *f)
+void		print_space_dec(char *ap, int *precision, int len, t_flags *f)
 {
 	int		i;
 
@@ -34,7 +34,7 @@ void		print_space_decimal(char *ap, int *precision, int len, flags *f)
 		f->print ? ft_putchar_fd(' ', FD) : 1;
 }
 
-void		to_weidth_decimal_next_n_n(char *ap, int *len, flags *f)
+void		to_weidth_dec_next_n_n(char *ap, int *len, t_flags *f)
 {
 	if (f->minus == 0 && f->zero == 1)
 	{
@@ -49,11 +49,11 @@ void		to_weidth_decimal_next_n_n(char *ap, int *len, flags *f)
 	}
 }
 
-void		to_weidth_decimal_n_n(char *ap, int precision, int *len, flags *f)
+void		to_weid_dec_n_n(char *ap, int precision, int *len, t_flags *f)
 {
 	if (f->minus == 0 && f->zero == 0)
 	{
-		print_space_decimal(ap, &precision, *len, f);
+		print_space_dec(ap, &precision, *len, f);
 		if ((f->precision && f->plus && ap[0] != '-' && ap[0] != '0')\
 		|| (ap[0] == '0' && f->plus))
 		{
@@ -69,10 +69,10 @@ void		to_weidth_decimal_n_n(char *ap, int precision, int *len, flags *f)
 		}
 		!(f->precision == 0 && f->dot) ? print_str_decimal(ap, len, f) : 1;
 	}
-	to_weidth_decimal_next_n_n(ap, len, f);
+	to_weidth_dec_next_n_n(ap, len, f);
 }
 
-int			to_weidth_decimal_next(char *ap, int *len, flags *f)
+int			to_weidth_dec_next(char *ap, int *len, t_flags *f)
 {
 	if (f->space && (ap[0] != '-' || ap[0] != '0') && \
 	(f->type != 'u' || f->type != 'U') && (f->weidth || f->precision) \
@@ -97,13 +97,13 @@ int			to_weidth_decimal_next(char *ap, int *len, flags *f)
 	return (*len);
 }
 
-int			to_weidth_decimal(char *ap, int precision, int *len, flags *f)
+int			to_weidth_dec(char *ap, int precision, int *len, t_flags *f)
 {
 	if (*len >= f->weidth)
-		return (to_weidth_decimal_next(ap, len, f));
+		return (to_weidth_dec_next(ap, len, f));
 	if (*len < f->weidth)
 	{
-		to_weidth_decimal_n_n(ap, precision, len, f);
+		to_weid_dec_n_n(ap, precision, len, f);
 		if (f->minus == 1)
 		{
 			if (f->plus && ap[0] != '-' && (f->type != 'u' || f->type != 'U'))
@@ -112,7 +112,7 @@ int			to_weidth_decimal(char *ap, int precision, int *len, flags *f)
 				f->plus = 0;
 				f->percent = -2;
 			}
-			to_weidth_decimal_min(ap, precision, len, f);
+			to_weid_dec_min(ap, precision, len, f);
 		}
 	}
 	return (f->weidth);
