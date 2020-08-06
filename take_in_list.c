@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/05 21:04:25 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 16:51:21 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,14 @@ void    ft_init(t_head *head, t_crutch *data, int file)
     }
 }
 
+// int     ft_calc_arg(t_head *head, t_crutch *data)
+// {
+//     if (head->arg_start->next)
+//         data->flags |= FLAG_ARG;
+//         // return(FLAG_ARG);
+//     return()
+// }
+
 void    ft_prestart(t_head *head, char **argv, t_crutch *data)
 {
     t_list          *argp;
@@ -257,6 +265,7 @@ void    ft_prestart(t_head *head, char **argv, t_crutch *data)
         argp->next = NULL;
     if (notfile)
         failp->next = NULL;
+    head->arg_start->next ? data->flags |= FLAG_ARG : 1;
 }
 
 int     main(int argc, char **argv)
