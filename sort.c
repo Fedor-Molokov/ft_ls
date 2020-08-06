@@ -23,16 +23,15 @@ int        is_it_sorted(t_list *nm, int flags)
 {
     while (nm->next)
     {
-        if (flags == (FLAG_MIN_R | !(FLAG_T))
-        && ft_strcmp(nm->name, nm->next->name) < 0)
+        if (((flags & FLAG_MIN_R) && !(flags & FLAG_T)) && ft_strcmp(nm->name, nm->next->name) < 0) // rev-ascii: only -r (without -t)
             return (0);
-        if (flags == (!(FLAG_T) | !(FLAG_MIN_R)) && ft_strcmp(nm->name, nm->next->name) > 0)
+        if ((!(flags & FLAG_T) && !(flags & FLAG_MIN_R)) && ft_strcmp(nm->name, nm->next->name) > 0) // ascii - sort (without sort-flags)
             return (0);
-        if (flags == ((FLAG_T) | !(FLAG_MIN_R)))
+        if (!(flags & FLAG_MIN_R) && (flags & FLAG_T)) // time: only -t (without r)
             if (time_sort(nm, nm->next))
                 return (0);
-        if (flags == (FLAG_T | FLAG_MIN_R)) 
-            if (time_rev_sort(nm, nm->next))
+        if ((flags & FLAG_MIN_R) && (flags & FLAG_T))   // rev-time: -rt
+            if (time_rev_sort(nm, nm->next))            
                 return(0);
         nm = nm->next;
     }
@@ -41,16 +40,16 @@ int        is_it_sorted(t_list *nm, int flags)
 
 int      conditions(t_list *a, t_list *b, int flags)
 {
-    if (flags == (FLAG_MIN_R | !(FLAG_T)))
+    if ((flags & FLAG_MIN_R) && !(flags & FLAG_T))			//rev-ascii: only -r
         if (ft_strcmp(a->name, b->name) < 0)
             return (1);
-    if (flags == (!(FLAG_T) | !(FLAG_MIN_R)))
+    if (!(flags & FLAG_T) && !(flags & FLAG_MIN_R))		// ascii - sort (without sort-flags)
         if (ft_strcmp(a->name, b->name) > 0)
             return (1);
-    if (flags == ((FLAG_T) | !(FLAG_MIN_R)))
+    if (!(flags & FLAG_MIN_R) && (flags & FLAG_T))		// time: only -t (without r)
         if (time_sort(a, b))
             return (1);
-    if (flags == (FLAG_T | FLAG_MIN_R))
+    if ((flags & FLAG_MIN_R) && (flags & FLAG_T))		// rev-time: -rt
         if (time_rev_sort(a, b))
             return (1);
     return (0);
