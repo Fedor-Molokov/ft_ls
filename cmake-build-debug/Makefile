@@ -177,6 +177,33 @@ file_info.c.s:
 	$(MAKE) -f CMakeFiles/ls_ls.dir/build.make CMakeFiles/ls_ls.dir/file_info.c.s
 .PHONY : file_info.c.s
 
+format.o: format.c.o
+
+.PHONY : format.o
+
+# target to build an object file
+format.c.o:
+	$(MAKE) -f CMakeFiles/ls_ls.dir/build.make CMakeFiles/ls_ls.dir/format.c.o
+.PHONY : format.c.o
+
+format.i: format.c.i
+
+.PHONY : format.i
+
+# target to preprocess a source file
+format.c.i:
+	$(MAKE) -f CMakeFiles/ls_ls.dir/build.make CMakeFiles/ls_ls.dir/format.c.i
+.PHONY : format.c.i
+
+format.s: format.c.s
+
+.PHONY : format.s
+
+# target to generate assembly for a file
+format.c.s:
+	$(MAKE) -f CMakeFiles/ls_ls.dir/build.make CMakeFiles/ls_ls.dir/format.c.s
+.PHONY : format.c.s
+
 format_date.o: format_date.c.o
 
 .PHONY : format_date.o
@@ -2379,6 +2406,9 @@ help:
 	@echo "... file_info.o"
 	@echo "... file_info.i"
 	@echo "... file_info.s"
+	@echo "... format.o"
+	@echo "... format.i"
+	@echo "... format.s"
 	@echo "... format_date.o"
 	@echo "... format_date.i"
 	@echo "... format_date.s"

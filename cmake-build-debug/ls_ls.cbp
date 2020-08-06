@@ -90,6 +90,9 @@
 		<Unit filename="/Users/cassunta/ls_ls/file_info.c">
 			<Option target="ls_ls"/>
 		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/format.c">
+			<Option target="ls_ls"/>
+		</Unit>
 		<Unit filename="/Users/cassunta/ls_ls/format_date.c">
 			<Option target="ls_ls"/>
 		</Unit>

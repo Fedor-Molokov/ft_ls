@@ -72,12 +72,12 @@ char    	*ft_parsing(char **argv, char *way, int *flags, int *count);
 t_list     	*ft_fail_create(t_crutch *data, t_list *failp);
 char		*slash_strjoin(char const *s1, char const *s2);
 t_list    	*ft_arg_create(t_crutch *data, t_list *argp);
-void        process(t_list *cur, char *name,char *way);
+void        process(t_list *cur, char *name,char *way, int flags);
 int			ft_strcmp(const char *s1, const char *s2);
 int			ft_printf_exit(char *str, t_list *list);
 t_list    	*ft_start_file(char *way, t_list *names);
 int        	conditions(t_list *a, t_list *b, int i);
-t_list     	*in_directory(char *way, t_list *names);
+t_list     	*in_directory(char *way, t_list *names, int flags);
 t_list     	*process_arg(t_list *cur, char *way);
 int     	time_rev_sort(t_list *a, t_list *b);
 void        ft_perror(char *str, t_list *list);
@@ -90,7 +90,6 @@ t_list      *sort_list(t_list *lst, int i);
 void        copy(t_list *p1, t_list *p2);
 t_list      *sorting(t_list *nm, int i);
 void        swap(t_list *a, t_list *b);
-void        user_and_group(t_list *nm);
 int         are_you_dir(t_list *cur);
 size_t		ft_strlen(const char *s);
 void        format_time(time_t date);
@@ -98,20 +97,16 @@ char		*ft_strnew(size_t size);
 void        about_file(t_list *nm);
 t_opt       *parse_big(t_list *nm);
 void		ft_null(t_list *list);
-void        read_link(char *path);
 void   	    ft_total(t_list *nm);
 size_t      len_link(t_list *nm);
 void       	soft_link(char *way);
 size_t      len_pwd(t_list *nm);
 void        file_mode(int mode);
-void        big_str(t_list *nm);
-void        hardlink(int link);
-int        	print(t_list *nm);
+int        	print(t_list *nm, int flags);
 size_t      len_num(int src);
 int         type_file(t_list *nm);
 void        file_mode(int mode);
-int         print(t_list *nm);
-void        big_str(t_list *nm);
+void        big_str(t_list *nm, int flags);
 void        ft_total(t_list *nm);
 
 
@@ -129,5 +124,6 @@ int             len_maj(t_list *nm);
 
 void            format_maj_size(t_list *nm, t_opt *lst);
 void            format_min_size(t_list *nm, t_opt *lst);
+void 			print_list(t_list *nm, int flags);
 
 #endif

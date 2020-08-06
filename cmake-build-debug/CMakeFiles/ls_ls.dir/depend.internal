@@ -11,6 +11,11 @@ CMakeFiles/ls_ls.dir/file_info.c.o
  /Users/cassunta/ls_ls/ft_ls.h
  /Users/cassunta/ls_ls/libft/ft_printf/ft_printf.h
  /Users/cassunta/ls_ls/libft/libft.h
+CMakeFiles/ls_ls.dir/format.c.o
+ /Users/cassunta/ls_ls/format.c
+ /Users/cassunta/ls_ls/ft_ls.h
+ /Users/cassunta/ls_ls/libft/ft_printf/ft_printf.h
+ /Users/cassunta/ls_ls/libft/libft.h
 CMakeFiles/ls_ls.dir/format_date.c.o
  /Users/cassunta/ls_ls/format_date.c
  /Users/cassunta/ls_ls/ft_ls.h

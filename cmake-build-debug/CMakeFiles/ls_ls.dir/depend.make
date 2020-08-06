@@ -11,6 +11,11 @@ CMakeFiles/ls_ls.dir/file_info.c.o: ../ft_ls.h
 CMakeFiles/ls_ls.dir/file_info.c.o: ../libft/ft_printf/ft_printf.h
 CMakeFiles/ls_ls.dir/file_info.c.o: ../libft/libft.h
 
+CMakeFiles/ls_ls.dir/format.c.o: ../format.c
+CMakeFiles/ls_ls.dir/format.c.o: ../ft_ls.h
+CMakeFiles/ls_ls.dir/format.c.o: ../libft/ft_printf/ft_printf.h
+CMakeFiles/ls_ls.dir/format.c.o: ../libft/libft.h
+
 CMakeFiles/ls_ls.dir/format_date.c.o: ../format_date.c
 CMakeFiles/ls_ls.dir/format_date.c.o: ../ft_ls.h
 CMakeFiles/ls_ls.dir/format_date.c.o: ../libft/ft_printf/ft_printf.h

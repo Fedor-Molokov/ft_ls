@@ -43,8 +43,21 @@ void            ft_total(t_list *nm)
     }
     ft_printf("total %u\n", res);
 }
+void 			print_list(t_list *nm, int flags)
+{
+	while(nm)
+	{
+		if ((flags ^ FLAG_A) && nm->name[0] == '.')
+			nm = nm->next;
+		else
+		{
+			ft_printf("%s\n", nm->name);
+			nm = nm->next;
+		}
+	}
+}
 
-void           big_str(t_list *nm)
+void           big_str(t_list *nm, int flags)
 {
     t_opt       *lst;
 
@@ -52,24 +65,38 @@ void           big_str(t_list *nm)
     lst = parse_big(nm);
     while(nm)
     {
-        nm->format = type_file(nm);
-        file_mode(nm->stat.st_mode);
-        format_num(nm->stat.st_nlink, lst->olink);
-        format_str(nm->pwd, lst->opwd);
-        format_str(nm->grp, lst->ogrp);
-        format_min_size(nm, lst);
-        format_maj_size(nm, lst);
-        format_time(nm->stat.st_mtimespec.tv_sec);
-        ft_putstr(nm->name);
-        soft_link(nm->path);
-        write(1, "\n", 1);
-        nm = nm->next;
+		if ((flags ^ FLAG_A) && nm->name[0] == '.')
+			nm = nm->next;
+		else {
+			nm->format = type_file(nm);
+			file_mode(nm->stat.st_mode);
+			format_num(nm->stat.st_nlink, lst->olink);
+			format_str(nm->pwd, lst->opwd);
+			format_str(nm->grp, lst->ogrp);
+			format_min_size(nm, lst);
+			format_maj_size(nm, lst);
+			format_time(nm->stat.st_mtimespec.tv_sec);
+			ft_putstr(nm->name);
+			soft_link(nm->path);
+			write(1, "\n", 1);
+			nm = nm->next;
+		}
     }
     write(1, "\n", 1);
     free(lst);
 }
 
-int            print(t_list *nm)
+void 			begin_of_list(t_list *nm, int flags)
+{
+	t_list  *cur;
+
+	cur = nm;
+	ft_printf("%s:\n", nm->dir);
+	ft_total(cur);
+}
+
+
+int            print(t_list *nm, int flags)
 {
     int     i;
     t_list  *cur;
@@ -80,14 +107,15 @@ int            print(t_list *nm)
     cur = nm;
     if (lstat(cur->path, &cur->stat) < 0)
         return (ft_printf("./ft_ls: %s: No such file or directory\n", cur->name));
-    else
-        ft_printf("%s:\n", nm->dir);
-    ft_total(cur);
-    big_str(cur);
+    begin_of_list(nm, flags);
+    if (flags & FLAG_L)
+    	big_str(cur, flags);
+	else
+		print_list(nm, flags);
     while(nm)
     {
         if(nm->child)
-            print(nm->child);
+            print(nm->child, flags);
         nm = nm->next;
     }
     return (0);
@@ -110,21 +138,22 @@ int         are_you_dir(t_list *dir)
     return (0);
 }
 
-void        process(t_list *cur, char *name, char *way)
+void        process(t_list *cur, char *name, char *way, int flags)
 {
     cur->name = ft_strdup(name);
     cur->path = slash_strjoin(way, cur->name);
     cur->dir = ft_strdup(way);
     if(lstat(cur->path, &cur->stat) < 0)
         ft_perror("process() lstat: ", cur);
-    if((ft_strcmp(cur->name, ".") != 0 ) && (ft_strcmp(cur->name, "..") != 0))
+    if ((flags & FLAG_R) && (ft_strcmp(cur->name, ".") != 0 ) && (ft_strcmp(cur->name, "..") != 0))
+    //if((ft_strcmp(cur->name, ".") != 0 ) && (ft_strcmp(cur->name, "..") != 0))
     {
         if (are_you_dir(cur))
-            cur->child = in_directory(cur->path, cur->child);
+            cur->child = in_directory(cur->path, cur->child, flags);
     }
 }
 
-t_list     *in_directory(char *way, t_list *names)
+t_list     *in_directory(char *way, t_list *names, int flags)
 {
     struct dirent   *entry;
     DIR             *dirp;
@@ -137,7 +166,7 @@ t_list     *in_directory(char *way, t_list *names)
     cur = names;
     while (entry)
     {
-        process(cur, entry->d_name, way);
+        process(cur, entry->d_name, way, flags);
         if ((entry = readdir(dirp)))
         {
             if (!(cur->next = (t_list *)malloc(sizeof(t_list))))
@@ -162,9 +191,9 @@ int    ft_start(int flags, char *way)
     if (!(names = (t_list *)malloc(sizeof(t_list))))
         ft_perror("ft_start() malloc: ", names);
     ft_null(names);
-    go = in_directory(way, names);
+    go = in_directory(way, names, flags);
     go = sorting(go, flags);
-    print(go);
+    print(go, flags);
     ft_free(go);
     return (0);
 }
@@ -251,7 +280,7 @@ int     main(int argc, char **argv)
     failp = sorting(head.fail_start, data.flags);
     while(failp)
     {
-        print(failp);
+        print(failp, data.flags);
         failp = failp->next;
     }
     ft_free(head.fail_start);

@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/ls_ls.dir/additional.c.o"
   "CMakeFiles/ls_ls.dir/file_info.c.o"
+  "CMakeFiles/ls_ls.dir/format.c.o"
   "CMakeFiles/ls_ls.dir/format_date.c.o"
   "CMakeFiles/ls_ls.dir/libft/ft_atoi.c.o"
   "CMakeFiles/ls_ls.dir/libft/ft_bzero.c.o"

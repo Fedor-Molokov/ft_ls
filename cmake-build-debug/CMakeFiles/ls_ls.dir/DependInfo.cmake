@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_C
   "/Users/cassunta/ls_ls/additional.c" "/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir/additional.c.o"
   "/Users/cassunta/ls_ls/file_info.c" "/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir/file_info.c.o"
+  "/Users/cassunta/ls_ls/format.c" "/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir/format.c.o"
   "/Users/cassunta/ls_ls/format_date.c" "/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir/format_date.c.o"
   "/Users/cassunta/ls_ls/libft/ft_atoi.c" "/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir/libft/ft_atoi.c.o"
   "/Users/cassunta/ls_ls/libft/ft_bzero.c" "/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir/libft/ft_bzero.c.o"

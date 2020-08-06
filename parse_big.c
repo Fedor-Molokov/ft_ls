@@ -1,6 +1,6 @@
 #include "ft_ls.h"
 
-size_t            len_num(int src)
+size_t          len_num(int src)
 {
     int         res;
 
