@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/06 17:19:28 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 17:41:21 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,9 @@ int            print(t_list *nm, int flags)
     cur = nm;
     if (lstat(cur->path, &cur->stat) < 0)
         return (ft_printf("./ft_ls: %s: No such file or directory\n", cur->name));
-    (flags & FLAG_ARG) ? begin_of_list(nm, flags) : 1;
-    ft_total(cur);
+    flags & FLAG_ARG ? begin_of_list(nm, flags) : 1;
+    !(flags & FLAG_ARG) && (flags & FLAG_R) ? flags ^= FLAG_ARG : 1;
+    flags & FLAG_L ? ft_total(cur) : 1;
     if (flags & FLAG_L)
     	big_str(cur, flags);
 	else
