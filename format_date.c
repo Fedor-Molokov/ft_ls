@@ -40,21 +40,18 @@ void            format_min_size(t_list *nm, t_opt *lst)
 
 void            format_time(time_t date)
 {
+    char        **mass;
+    time_t      today;
     char        *buf;
-    int         t;
-    int         i;
 
-
-    i = 0;
+    (void)time(&today);
     buf = ctime(&date);
-    t = ft_strlen(buf) - 1;
-    while (t > 0)
-    {
-        ft_putchar(buf[i]);
-        i++;
-        t--;
-    }
-    ft_printf("  ");
+    mass = ft_strsplit(buf, ' ');
+    if (today - date < 14515200)
+        ft_printf("%s %s %2s %.5s  ", mass[0], mass[1], mass[2], mass[3]);
+    else
+       ft_printf("%s %s %2s %.4s  ", mass[0], mass[1], mass[2], mass[4]);
+    ft_memdel(mass);
 }
 
 void            soft_link(char *way)

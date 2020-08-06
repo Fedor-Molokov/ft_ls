@@ -93,7 +93,7 @@ void        swap(t_list *a, t_list *b);
 void        user_and_group(t_list *nm);
 int         are_you_dir(t_list *cur);
 size_t		ft_strlen(const char *s);
-void   	    format_time(time_t date);
+void        format_time(time_t date);
 char		*ft_strnew(size_t size);
 void        about_file(t_list *nm);
 t_opt       *parse_big(t_list *nm);
@@ -122,7 +122,7 @@ void            format_str(char *src, size_t big);
 
 void            soft_link(char *way);
 
-void            format_time(time_t date);
+
 
 int             len_min(t_list *nm);
 int             len_maj(t_list *nm);
