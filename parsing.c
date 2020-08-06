@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 22:37:52 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/06 23:03:23 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 23:10:09 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,6 @@ void    ft_flags(char **argv, int *flags, int *i, int *j)
         ft_usage(argv[*j][*i]);
     if (argv[*j][*i] > 120)
         ft_usage(argv[*j][*i]);
-    // && argv[*j][*i] > 87 \
-    // && argv[*j][*i] < 97 \
-    // && argv[*j][*i] > 120)
-    // {
-    //     ft_printf("ls: illegal option -- %c\n", argv[*j][*i]);
-    //     ft_putstr("usage: ls [-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1] [file ...]\n");
-    //     exit(0);
-    // }   
     (*i)++; 
 }
 
