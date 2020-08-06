@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 22:37:52 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/06 22:54:13 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 23:03:23 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void    ft_flags(char **argv, int *flags, int *i, int *j)
         *flags |= FLAG_MIN_R;
     if (argv[*j][*i] < 49)
         ft_usage(argv[*j][*i]);
-    if (argv[*j][*i] > 49 || argv[*j][*i] < 65)
+    if (argv[*j][*i] > 49 && argv[*j][*i] < 65)
         ft_usage(argv[*j][*i]);
-    if (argv[*j][*i] > 87 || argv[*j][*i] < 97)
+    if (argv[*j][*i] > 87 && argv[*j][*i] < 97)
         ft_usage(argv[*j][*i]);
     if (argv[*j][*i] > 120)
         ft_usage(argv[*j][*i]);
