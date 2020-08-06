@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/06 21:11:58 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 22:08:02 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void           big_str(t_list *nm, int flags)
 			file_mode(nm->stat.st_mode);
 			format_num(nm->stat.st_nlink, lst->olink);
 			format_str(nm->pwd, lst->opwd);
+            write(1, " ", 1);
 			format_str(nm->grp, lst->ogrp);
 			format_min_size(nm, lst);
 			format_maj_size(nm, lst);

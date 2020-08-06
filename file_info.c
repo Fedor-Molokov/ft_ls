@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_info.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cassunta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 06:03:36 by cassunta          #+#    #+#             */
-/*   Updated: 2020/08/06 06:06:33 by cassunta         ###   ########.fr       */
+/*   Updated: 2020/08/06 22:06:40 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void				file_mode(int mode)
 	if (S_ISVTX & mode)
 		str[8] = str[8] == '-' ? 'T' : 't';
 	ft_putstr(str);
-	write(1, " ", 1);
+	write(1, "  ", 2);
 }
 
 int					type_file(t_list *nm)
