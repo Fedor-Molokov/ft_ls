@@ -31,7 +31,7 @@ int        is_it_sorted(t_list *nm, int flags)
         if (flags == ((FLAG_T) | !(FLAG_MIN_R)))
             if (time_sort(nm, nm->next))
                 return (0);
-        if (flags == (FLAG_T | FLAG_MIN_R))
+        if (flags == (FLAG_T | FLAG_MIN_R)) 
             if (time_rev_sort(nm, nm->next))
                 return(0);
         nm = nm->next;
