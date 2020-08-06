@@ -47,8 +47,8 @@ typedef struct		s_opt
     size_t             osize;
     size_t             opwd;
     size_t             ogrp;
-    int                r_maj;
-    int                r_min;
+    size_t             r_maj;
+    size_t             r_min;
 }                   t_opt;
 
 typedef struct		s_list
@@ -97,7 +97,7 @@ char		*ft_strnew(size_t size);
 void        about_file(t_list *nm);
 t_opt       *parse_big(t_list *nm);
 void		ft_null(t_list *list);
-void   	    ft_total(t_list *nm);
+void   	    ft_total(t_list *nm, int flags);
 size_t      len_link(t_list *nm);
 void       	soft_link(char *way);
 size_t      len_pwd(t_list *nm);
@@ -107,7 +107,6 @@ size_t      len_num(int src);
 int         type_file(t_list *nm);
 void        file_mode(int mode);
 void        big_str(t_list *nm, int flags);
-void        ft_total(t_list *nm);
 
 
 size_t             len_link(t_list *nm);
