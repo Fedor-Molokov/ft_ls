@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/06 16:51:21 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 16:54:32 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void           big_str(t_list *nm, int flags)
     lst = parse_big(nm);
     while(nm)
     {
-		if ((flags ^ FLAG_A) && nm->name[0] == '.')
+		if (!(flags & FLAG_A) && nm->name[0] == '.')
 			nm = nm->next;
 		else {
 			nm->format = type_file(nm);
@@ -217,14 +217,6 @@ void    ft_init(t_head *head, t_crutch *data, int file)
         head->fail_start->path = ft_strdup(data->way);
     }
 }
-
-// int     ft_calc_arg(t_head *head, t_crutch *data)
-// {
-//     if (head->arg_start->next)
-//         data->flags |= FLAG_ARG;
-//         // return(FLAG_ARG);
-//     return()
-// }
 
 void    ft_prestart(t_head *head, char **argv, t_crutch *data)
 {
