@@ -29,8 +29,8 @@ void			format_time(time_t date)
 	buf = ctime(&date);
 	mass = ft_strsplit(buf, ' ');
 	if (today - date < 14515200)
-		ft_printf("%s %2s %.5s  ", mass[1], mass[2], mass[3]);
+		ft_printf("%s %2s %.5s ", mass[1], mass[2], mass[3]);
 	else
-		ft_printf("%s %2s %.4s  ", mass[1], mass[2], mass[4]);
+		ft_printf("%s %2s %.4s ", mass[1], mass[2], mass[4]);
 	ft_memdel((void **)mass);
 }

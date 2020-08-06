@@ -89,7 +89,7 @@ void           big_str(t_list *nm, int flags)
 			nm = nm->next;
 		}
     }
-    write(1, "\n", 1);
+    //write(1, "\n", 1);
     free(lst);
 }
 

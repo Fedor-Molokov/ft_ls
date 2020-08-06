@@ -33,7 +33,7 @@ void				file_mode(int mode)
 	if (S_ISVTX & mode)
 		str[8] = str[8] == '-' ? 'T' : 't';
 	ft_putstr(str);
-	write(1, "  ", 2);
+	write(1, " ", 1);
 }
 
 int					type_file(t_list *nm)
