@@ -64,5 +64,5 @@ void            format_num(int date, size_t big)
             diff--;
         }
     }
-    ft_printf("%d  ", date);
+    ft_printf("%d ", date);
 }
