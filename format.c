@@ -3,7 +3,7 @@
 void			format_str(char *date, size_t big)
 {
 	int			diff;
-	int			t;
+	size_t		t;
 
 	t = ft_strlen(date);
 	ft_printf("%s", date);
@@ -32,5 +32,5 @@ void			format_time(time_t date)
 		ft_printf("%s %s %2s %.5s  ", mass[0], mass[1], mass[2], mass[3]);
 	else
 		ft_printf("%s %s %2s %.4s  ", mass[0], mass[1], mass[2], mass[4]);
-	ft_memdel(mass);
+	ft_memdel((void **)mass);
 }

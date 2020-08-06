@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/06 17:19:28 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/06 21:11:58 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,24 @@ void    ft_free(t_list *nm)
     }
 }
 
-void            ft_total(t_list *nm)
+void            ft_total(t_list *nm, int flags)
 {
     unsigned int res;
 
     res = 0;
     while(nm)
     {
+        if (!(flags & FLAG_A) && nm->name[0] == '.')
+        {
+            nm = nm->next;
+            continue ;
+        }   
         res += nm->stat.st_blocks;
         nm = nm->next;
     }
     ft_printf("total %u\n", res);
 }
+
 void 			print_list(t_list *nm, int flags)
 {
 	while(nm)
@@ -86,7 +92,7 @@ void           big_str(t_list *nm, int flags)
     free(lst);
 }
 
-void 			begin_of_list(t_list *nm, int flags)
+void 			begin_of_list(t_list *nm)
 {
 	t_list  *cur;
 
@@ -106,8 +112,9 @@ int            print(t_list *nm, int flags)
     cur = nm;
     if (lstat(cur->path, &cur->stat) < 0)
         return (ft_printf("./ft_ls: %s: No such file or directory\n", cur->name));
-    (flags & FLAG_ARG) ? begin_of_list(nm, flags) : 1;
-    ft_total(cur);
+    flags & FLAG_ARG ? begin_of_list(nm) : 1;
+    !(flags & FLAG_ARG) && (flags & FLAG_R) ? flags ^= FLAG_ARG : 1;
+    flags & FLAG_L ? ft_total(cur, flags) : 1;
     if (flags & FLAG_L)
     	big_str(cur, flags);
 	else
@@ -115,7 +122,14 @@ int            print(t_list *nm, int flags)
     while(nm)
     {
         if(nm->child)
+        {
+            if (!(flags & FLAG_A) && nm->name[0] == '.')
+            {
+                nm = nm->next;
+                continue ;
+            }   
             print(nm->child, flags);
+        }
         nm = nm->next;
     }
     return (0);
