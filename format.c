@@ -16,7 +16,7 @@ void			format_str(char *date, size_t big)
 			diff--;
 		}
 	}
-	ft_printf(" ");
+	//ft_printf(" ");
 }
 
 void			format_time(time_t date)

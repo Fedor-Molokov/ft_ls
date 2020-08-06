@@ -24,10 +24,9 @@ void            format_min_size(t_list *nm, t_opt *lst)
             ft_putchar(' ');
             diff--;
         }
-        ft_putnbr(nm->rdev_min);
-        ft_putchar(',');
+        ft_printf(" %d,", nm->rdev_min);
     }
-    if (nm->format == 0)
+    if (nm->format == 0 && (lst->r_min > 0))
     {
         diff = lst->r_min + 1;
         while (diff > 0)
