@@ -146,7 +146,6 @@ void        process(t_list *cur, char *name, char *way, int flags)
     if(lstat(cur->path, &cur->stat) < 0)
         ft_perror("process() lstat: ", cur);
     if ((flags & FLAG_R) && (ft_strcmp(cur->name, ".") != 0 ) && (ft_strcmp(cur->name, "..") != 0))
-    //if((ft_strcmp(cur->name, ".") != 0 ) && (ft_strcmp(cur->name, "..") != 0))
     {
         if (are_you_dir(cur))
             cur->child = in_directory(cur->path, cur->child, flags);
