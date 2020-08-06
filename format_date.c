@@ -1,6 +1,5 @@
 #include "ft_ls.h"
 
-
 void            format_maj_size(t_list *nm, t_opt *lst)
 {
     size_t         big;
@@ -12,30 +11,32 @@ void            format_maj_size(t_list *nm, t_opt *lst)
         format_num(nm->stat.st_size, big);
 }
 
-/*void            format_min_size(t_list *nm, t_opt *lst)
+void            format_min_size(t_list *nm, t_opt *lst)
 {
     int         diff;
 
+    diff = 0;
     if (nm->format == 1)
     {
-        diff = (int )lst->r_min - len_num(nm->rdev_min);
+        diff = lst->r_min - len_num(nm->rdev_min);
         while (diff > 0)
         {
-            write(1, "1", 1);
+            ft_putchar(' ');
             diff--;
         }
-        ft_printf("%d,  ");
+        ft_putnbr(nm->rdev_min);
+        ft_putchar(',');
     }
     if (nm->format == 0)
     {
-        diff = lst->r_min + 3;
+        diff = lst->r_min + 1;
         while (diff > 0)
         {
-            write(1, "1", 1);
+            ft_putchar(' ');
             diff--;
         }
     }
-}*/
+}
 
 void            format_time(time_t date)
 {

@@ -33,12 +33,12 @@ void           big_str(t_list *nm)
     lst = parse_big(nm);
     while(nm)
     {
-        type_file(nm);
+        nm->format = type_file(nm);
         file_mode(nm->stat.st_mode);
         format_num(nm->stat.st_nlink, lst->olink);
         format_str(nm->pwd, lst->opwd);
         format_str(nm->grp, lst->ogrp);
-        //format_min_size(nm, lst);
+        format_min_size(nm, lst);
         format_maj_size(nm, lst);
         format_time(nm->stat.st_mtimespec.tv_sec);
         ft_putstr(nm->name);

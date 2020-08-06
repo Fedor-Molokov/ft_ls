@@ -91,7 +91,7 @@ size_t		ft_strlen(const char *s);
 char		*ft_strnew(size_t size);
 void        about_file(t_list *nm);
 void		ft_null(t_list *list);
-void        type_file(t_list *nm);
+int         type_file(t_list *nm);
 void        file_mode(int mode);
 int         print(t_list *nm);
 void        big_str(t_list *nm);
