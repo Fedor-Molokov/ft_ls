@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/06 22:08:02 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 00:24:07 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,7 +271,7 @@ void    ft_prestart(t_head *head, char **argv, t_crutch *data)
         argp->next = NULL;
     if (notfile)
         failp->next = NULL;
-    head->arg_start->next ? data->flags |= FLAG_ARG : 1;
+    argument == 2 ? data->flags |= FLAG_ARG : 1;
 }
 
 int     main(int argc, char **argv)
