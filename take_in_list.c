@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 00:24:07 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 02:30:46 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void           big_str(t_list *nm, int flags)
 			nm = nm->next;
 		}
     }
-    //write(1, "\n", 1);
+    // write(1, "\n", 1);
     free(lst);
 }
 
@@ -129,6 +129,7 @@ int            print(t_list *nm, int flags)
                 nm = nm->next;
                 continue ;
             }   
+            write(1, "\n", 1);
             print(nm->child, flags);
         }
         nm = nm->next;
@@ -265,13 +266,14 @@ void    ft_prestart(t_head *head, char **argv, t_crutch *data)
                 continue ;
             }
             argp = ft_arg_create(data, argp);
+            argument++;
         }
     }
     if (argument)
         argp->next = NULL;
     if (notfile)
         failp->next = NULL;
-    argument == 2 ? data->flags |= FLAG_ARG : 1;
+    argument > 1 ? data->flags |= FLAG_ARG : 1;
 }
 
 int     main(int argc, char **argv)
@@ -304,6 +306,7 @@ int     main(int argc, char **argv)
     while(argp)
     {
         ft_start(data.flags, argp->path);
+        argp->next ? write(1, "\n", 1) : 1;
         argp = argp->next;
     }
     ft_free(head.arg_start);
