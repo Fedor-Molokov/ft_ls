@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 02:24:15 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 07:53:41 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 09:23:48 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ void		ft_null(t_list *list)
     list->rdev_maj = 0;
     list->rdev_min = 0;
     list->format = 0;
-	// list->file = 0;
+	list->file = 0;
 }
