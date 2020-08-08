@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 20:28:11 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 22:09:39 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void 			print_list(t_list *nm, int flags)
 			nm = nm->next;
 		else
 		{
-			ft_printf("%s\n", nm->name);
+			ft_printf("%s\n", nm->path);
 			nm = nm->next;
 		}
 	}
@@ -220,7 +220,9 @@ void			ft_init(t_head *head, t_crutch *data, int file)
 		if (!(head->val_file_start = (t_list *)malloc(sizeof(t_list))))
 			ft_perror("ft_init() malloc: ", NULL);
 		ft_null(head->val_file_start);
-		head->val_file_start->name = ft_findlastname(data->way);
+		// head->val_file_start->name = ft_findlastname(data->way);			
+		// head->val_file_start->path = ft_strdup(data->way);
+		head->val_file_start->name = ft_strdup(data->way);			
 		head->val_file_start->path = ft_strdup(data->way);
 		lstat(head->val_file_start->path, &head->val_file_start->stat);
 		head->val_file_start->file = 1;
