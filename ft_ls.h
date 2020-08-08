@@ -12,6 +12,7 @@
 # include <pwd.h>
 # include <time.h>
 # include <fcntl.h>
+# include <limits.h>
 # include "libft/ft_printf/ft_printf.h"
 
 # define INVALID_ARG	-1			// invalid argument

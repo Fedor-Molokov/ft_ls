@@ -6,11 +6,53 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 09:30:29 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 10:11:57 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+// char    *ft_slashn(char *buf)
+// {
+//     char    *slashn;
+    
+//     slashn = ft_strjoin(buf, "\n");
+//     // free(buf);
+//     return(slashn);
+// }
+
+// void    ft_write(char *str, char *arg, int num, char *slashn)
+// {
+//     char    *number;
+//     char    *buf;
+//     int     len;
+    
+//     if (num != INT_MAX)
+//         number = ft_putnbr_str(num);
+//     if(arg)
+//     {
+//         buf = ft_strjoin(str, arg);
+//         len = ft_strlen(buf);
+//         if (slashn)
+//         {
+//             buf = ft_slashn(buf);
+//             len++;
+//         }
+//         write(1, buf, len);
+//         free(buf);
+//     }
+//     else
+//     {
+//         len = ft_strlen(str);
+//         if (slashn)
+//         {
+//             str = ft_slashn(str);
+//             len++;
+//         }
+//         write(1, str, len);
+//         free(str);
+//     }
+// }
 
 void    ft_free(t_list *nm)
 {
@@ -58,6 +100,7 @@ void 			print_list(t_list *nm, int flags)
 		else
 		{
 			ft_printf("%s\n", nm->name);
+            // ft_write(nm->name, NULL, "\n");
 			nm = nm->next;
 		}
 	}
@@ -340,7 +383,6 @@ int     main(int argc, char **argv)
     while(arg_dir)
     {
         ft_start(data.flags, arg_dir->path);
-        // arg_dir->next ? write(1, "\n", 1) : 1;
         arg_dir = arg_dir->next;
     }
     ft_free(head.val_dir_start);
