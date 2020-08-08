@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 04:51:10 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 05:35:13 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void 			print_list(t_list *nm, int flags)
 {
 	while(nm)
 	{
-		if ((flags ^ FLAG_A) && nm->name[0] == '.')
+		if ((flags ^ FLAG_A) && nm->name[0] == '.' && nm->file == 0)
 			nm = nm->next;
 		else
 		{
@@ -222,6 +222,7 @@ void    ft_init(t_head *head, t_crutch *data, int file)
         ft_null(head->val_file_start);
         head->val_file_start->name = ft_findlastname(data->way);
         head->val_file_start->path = ft_strdup(data->way);
+        head->val_file_start->file = 1;
     }
     else if (file == VALID_ARG_DIR)
     {
@@ -230,6 +231,7 @@ void    ft_init(t_head *head, t_crutch *data, int file)
         ft_null(head->val_dir_start);
         head->val_dir_start->name = ft_findlastname(data->way);
         head->val_dir_start->path = ft_strdup(data->way);
+        head->val_file_start->file = 0;
     }
     else if (file == INVALID_ARG)
     {
@@ -342,11 +344,11 @@ int     main(int argc, char **argv)
     }
     ft_free(head.invalid_start);
     arg_file = sorting(head.val_file_start, data.flags);
-    while(arg_file)
-    {
+    // while(arg_file)
+    // {
         print(arg_file, data.flags);
-        arg_file = arg_file->next;
-    }
+        // arg_file = arg_file->next;
+    // }
     ft_free(head.val_file_start);
     arg_dir = sorting(head.val_dir_start, data.flags);
     while(arg_dir)

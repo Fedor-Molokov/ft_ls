@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 01:54:40 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 04:06:35 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 05:28:08 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ t_list    *ft_file_create(t_crutch *data, t_list *argp)
         ft_perror("ft_file_create() lstat: ", NULL);
     argp = argp->next;
     ft_null(argp);
+    argp->name = ft_strdup(data->way);
     argp->path = ft_strdup(data->way);
+    argp->file = 1;
     data->arg++;
     return(argp);
 }
@@ -37,6 +39,7 @@ t_list    *ft_dir_create(t_crutch *data, t_list *argp)
     ft_null(argp);
     argp->name = ft_findlastname(data->way);
     argp->path = ft_strdup(data->way);
+    argp->file = 0;
     data->arg++;
     return(argp);
 }

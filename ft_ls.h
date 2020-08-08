@@ -67,6 +67,7 @@ typedef struct		s_list
 	int                 rdev_maj;
 	int                 rdev_min;
 	int                 format;
+	int					file;
 
 	struct	s_list		*next;
 }                   t_list;
