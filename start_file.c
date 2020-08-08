@@ -12,22 +12,22 @@
 
 #include "ft_ls.h"
 
-t_list    *ft_file_create(t_crutch *data, t_list *argp)
+t_list			*ft_file_create(t_crutch *data, t_list *argp)
 {
-    if (!(argp->next = (t_list *)malloc(sizeof(t_list))))
-        ft_perror("ft_file_create() malloc: ", NULL);
-    if(lstat(data->way, &argp->stat) < 0)
-        ft_perror("ft_file_create() lstat: ", NULL);
-    argp = argp->next;
-    ft_null(argp);
-    argp->name = ft_strdup(data->way);
-    argp->path = ft_strdup(data->way);
-    argp->file = 1;
-    data->arg++;
-    return(argp);
+	if (!(argp->next = (t_list *)malloc(sizeof(t_list))))
+		ft_perror("ft_file_create() malloc: ", NULL);
+	if(lstat(data->way, &argp->stat) < 0)
+		ft_perror("ft_file_create() lstat: ", NULL);
+	argp = argp->next;
+	ft_null(argp);
+	argp->name = ft_strdup(data->way);
+	argp->path = ft_strdup(data->way);
+	argp->file = 1;
+	data->arg++;
+	return(argp);
 }
 
-t_list    *ft_dir_create(t_crutch *data, t_list *argp)
+t_list		*ft_dir_create(t_crutch *data, t_list *argp)
 {
     if (!(argp->next = (t_list *)malloc(sizeof(t_list))))
         ft_perror("ft_dir_create() malloc: ", NULL);

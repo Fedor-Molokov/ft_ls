@@ -14,9 +14,9 @@ void				format_min_size(t_list *nm, t_opt *lst)
 }
 
 
-void            format_maj_size(t_list *nm, t_opt *lst)
+void				format_maj_size(t_list *nm, t_opt *lst)
 {
-	int         diff;
+	int				diff;
 
 	diff = 0;
 	if (nm->format == 1)
@@ -40,31 +40,31 @@ void            format_maj_size(t_list *nm, t_opt *lst)
 	}
 }
 
-void            soft_link(char *way)
+void			soft_link(char *way)
 {
-	char        buf[1024];
+	char		buf[1024];
 	int			len;
 
 	len = readlink(way, buf, sizeof buf);
 	if (len > 0)
 	{
-	    buf[len] = '\0';
-	    ft_printf(" -> %s", buf);
+		buf[len] = '\0';
+		ft_printf(" -> %s", buf);
 	}
 }
 
-void            format_num(int date, size_t big)
+void			format_num(int date, size_t big)
 {
-    int         diff;
+	int			diff;
 
-    if (len_num(date) < big)
-    {
-        diff = big - len_num(date);
-        while (diff > 0)
-        {
-            write(1, " ", 1);
-            diff--;
-        }
-    }
-    ft_printf("%d ", date);
+	if (len_num(date) < big)
+	{
+		diff = big - len_num(date);
+		while (diff > 0)
+		{
+			write(1, " ", 1);
+			diff--;
+		}
+	}
+	ft_printf("%d ", date);
 }
