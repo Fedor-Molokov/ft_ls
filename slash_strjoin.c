@@ -12,15 +12,15 @@
 
 #include "ft_ls.h"
 
-char	*slash_strjoin(char const *s1, char const *s2)
+char				*slash_strjoin(char const *s1, char const *s2)
 {
 	unsigned int	i;
 	unsigned int	j;
 	char			*str;
-	int             slash;
+	int				slash;
 
 	i = ft_strlen(s1);
-	s1[i - 1] == '/' ? (slash = 0) : (slash = 1);
+	s1[i - 1] == '/' ? '0' : '1';
 	i = 0;
 	j = 0;
 	if (s1 == NULL || s2 == NULL)
@@ -31,7 +31,7 @@ char	*slash_strjoin(char const *s1, char const *s2)
 	while (s1[i])
 		str[j++] = s1[i++];
 	if (slash)
-        str[j++] = '/';
+		str[j++] = '/';
 	i = 0;
 	while (s2[i])
 		str[j++] = s2[i++];

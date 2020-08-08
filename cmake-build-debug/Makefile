@@ -2229,6 +2229,33 @@ parse_big.c.s:
 	$(MAKE) -f CMakeFiles/ls_ls.dir/build.make CMakeFiles/ls_ls.dir/parse_big.c.s
 .PHONY : parse_big.c.s
 
+parse_big2.o: parse_big2.c.o
+
+.PHONY : parse_big2.o
+
+# target to build an object file
+parse_big2.c.o:
+	$(MAKE) -f CMakeFiles/ls_ls.dir/build.make CMakeFiles/ls_ls.dir/parse_big2.c.o
+.PHONY : parse_big2.c.o
+
+parse_big2.i: parse_big2.c.i
+
+.PHONY : parse_big2.i
+
+# target to preprocess a source file
+parse_big2.c.i:
+	$(MAKE) -f CMakeFiles/ls_ls.dir/build.make CMakeFiles/ls_ls.dir/parse_big2.c.i
+.PHONY : parse_big2.c.i
+
+parse_big2.s: parse_big2.c.s
+
+.PHONY : parse_big2.s
+
+# target to generate assembly for a file
+parse_big2.c.s:
+	$(MAKE) -f CMakeFiles/ls_ls.dir/build.make CMakeFiles/ls_ls.dir/parse_big2.c.s
+.PHONY : parse_big2.c.s
+
 parsing.o: parsing.c.o
 
 .PHONY : parsing.o
@@ -2634,6 +2661,9 @@ help:
 	@echo "... parse_big.o"
 	@echo "... parse_big.i"
 	@echo "... parse_big.s"
+	@echo "... parse_big2.o"
+	@echo "... parse_big2.i"
+	@echo "... parse_big2.s"
 	@echo "... parsing.o"
 	@echo "... parsing.i"
 	@echo "... parsing.s"

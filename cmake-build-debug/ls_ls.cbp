@@ -327,6 +327,9 @@
 		<Unit filename="/Users/cassunta/ls_ls/parse_big.c">
 			<Option target="ls_ls"/>
 		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/parse_big2.c">
+			<Option target="ls_ls"/>
+		</Unit>
 		<Unit filename="/Users/cassunta/ls_ls/parsing.c">
 			<Option target="ls_ls"/>
 		</Unit>
