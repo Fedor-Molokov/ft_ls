@@ -266,6 +266,11 @@ CMakeFiles/ls_ls.dir/parse_big.c.o: ../libft/ft_printf/ft_printf.h
 CMakeFiles/ls_ls.dir/parse_big.c.o: ../libft/libft.h
 CMakeFiles/ls_ls.dir/parse_big.c.o: ../parse_big.c
 
+CMakeFiles/ls_ls.dir/parse_big2.c.o: ../ft_ls.h
+CMakeFiles/ls_ls.dir/parse_big2.c.o: ../libft/ft_printf/ft_printf.h
+CMakeFiles/ls_ls.dir/parse_big2.c.o: ../libft/libft.h
+CMakeFiles/ls_ls.dir/parse_big2.c.o: ../parse_big2.c
+
 CMakeFiles/ls_ls.dir/parsing.c.o: ../ft_ls.h
 CMakeFiles/ls_ls.dir/parsing.c.o: ../libft/ft_printf/ft_printf.h
 CMakeFiles/ls_ls.dir/parsing.c.o: ../libft/libft.h

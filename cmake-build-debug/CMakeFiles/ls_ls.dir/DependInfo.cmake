@@ -82,6 +82,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/cassunta/ls_ls/libft/ft_tolower.c" "/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir/libft/ft_tolower.c.o"
   "/Users/cassunta/ls_ls/libft/ft_toupper.c" "/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir/libft/ft_toupper.c.o"
   "/Users/cassunta/ls_ls/parse_big.c" "/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir/parse_big.c.o"
+  "/Users/cassunta/ls_ls/parse_big2.c" "/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir/parse_big2.c.o"
   "/Users/cassunta/ls_ls/parsing.c" "/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir/parsing.c.o"
   "/Users/cassunta/ls_ls/slash_strjoin.c" "/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir/slash_strjoin.c.o"
   "/Users/cassunta/ls_ls/sort.c" "/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir/sort.c.o"

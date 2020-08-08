@@ -77,6 +77,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/ls_ls.dir/libft/ft_tolower.c.o"
   "CMakeFiles/ls_ls.dir/libft/ft_toupper.c.o"
   "CMakeFiles/ls_ls.dir/parse_big.c.o"
+  "CMakeFiles/ls_ls.dir/parse_big2.c.o"
   "CMakeFiles/ls_ls.dir/parsing.c.o"
   "CMakeFiles/ls_ls.dir/slash_strjoin.c.o"
   "CMakeFiles/ls_ls.dir/sort.c.o"

@@ -266,6 +266,11 @@ CMakeFiles/ls_ls.dir/parse_big.c.o
  /Users/cassunta/ls_ls/libft/ft_printf/ft_printf.h
  /Users/cassunta/ls_ls/libft/libft.h
  /Users/cassunta/ls_ls/parse_big.c
+CMakeFiles/ls_ls.dir/parse_big2.c.o
+ /Users/cassunta/ls_ls/ft_ls.h
+ /Users/cassunta/ls_ls/libft/ft_printf/ft_printf.h
+ /Users/cassunta/ls_ls/libft/libft.h
+ /Users/cassunta/ls_ls/parse_big2.c
 CMakeFiles/ls_ls.dir/parsing.c.o
  /Users/cassunta/ls_ls/ft_ls.h
  /Users/cassunta/ls_ls/libft/ft_printf/ft_printf.h
