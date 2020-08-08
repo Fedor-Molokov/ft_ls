@@ -13,6 +13,19 @@ size_t          len_num(int src)
     return (res);
 }
 
+size_t          len_num_o(int src)
+{
+	int         res;
+
+	res = 1;
+	while (src / 16)
+	{
+		res += 1;
+		src = src / 16;
+	}
+	return (res);
+}
+
 size_t             len_grp(t_list *nm)
 {
     size_t         res;

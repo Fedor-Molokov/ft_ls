@@ -1,40 +1,43 @@
 #include "ft_ls.h"
 
-void            format_maj_size(t_list *nm, t_opt *lst)
+void				format_min_size(t_list *nm, t_opt *lst)
 {
-    size_t         big;
+	size_t			big;
 
-    big = ((lst->osize > lst->r_maj) ? lst->osize : lst->r_maj);
-    if (nm->format == 1)
-        format_num(lst->r_maj, big);
-    if (nm->format == 0)
-        format_num(nm->stat.st_size, big);
+	big = ((lst->osize > lst->r_min) ? lst->osize : lst->r_min);
+	if (nm->format == 1 && ft_strcmp(nm->name, "autofs_nowait") == 0)
+		ft_printf(" %0#10x ", nm->rdev_min);
+	if (nm->format == 1 && ft_strcmp(nm->name, "autofs_nowait") != 0)
+		format_num(nm->rdev_min, big);
+	if (nm->format == 0)
+		format_num(nm->stat.st_size, big);
 }
 
-void            format_min_size(t_list *nm, t_opt *lst)
-{
-    int         diff;
 
-    diff = 0;
-    if (nm->format == 1)
-    {
-        diff = lst->r_min - len_num(nm->rdev_min);
-        while (diff > 0)
-        {
-            ft_putchar(' ');
-            diff--;
-        }
-        ft_printf(" %d,", nm->rdev_min);
-    }
-    if (nm->format == 0 && (lst->r_min > 0))
-    {
-        diff = lst->r_min + 1;
-        while (diff > 0)
-        {
-            ft_putchar(' ');
-            diff--;
-        }
-    }
+void            format_maj_size(t_list *nm, t_opt *lst)
+{
+	int         diff;
+
+	diff = 0;
+	if (nm->format == 1)
+	{
+		diff = lst->r_maj - len_num(nm->rdev_maj);
+		while (diff > 0)
+		{
+			ft_putchar(' ');
+			diff--;
+		}
+		ft_printf(" %d,", nm->rdev_maj);
+	}
+	if (nm->format == 0 && (lst->r_maj > 0))
+	{
+		diff = lst->r_maj + 2;
+		while (diff > 0)
+		{
+			ft_putchar(' ');
+			diff--;
+		}
+	}
 }
 
 void            soft_link(char *way)

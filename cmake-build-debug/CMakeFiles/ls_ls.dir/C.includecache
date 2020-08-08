@@ -6,14 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/cassunta/ls_ls/file_info.c
-ft_ls.h
-/Users/cassunta/ls_ls/ft_ls.h
-
-/Users/cassunta/ls_ls/format.c
-ft_ls.h
-/Users/cassunta/ls_ls/ft_ls.h
-
 /Users/cassunta/ls_ls/format_date.c
 ft_ls.h
 /Users/cassunta/ls_ls/ft_ls.h
@@ -40,6 +32,8 @@ pwd.h
 time.h
 -
 fcntl.h
+-
+limits.h
 -
 libft/ft_printf/ft_printf.h
 /Users/cassunta/ls_ls/libft/ft_printf/ft_printf.h
@@ -75,4 +69,6 @@ sys/types.h
 /Users/cassunta/ls_ls/take_in_list.c
 ft_ls.h
 /Users/cassunta/ls_ls/ft_ls.h
+stdio.h
+-
 

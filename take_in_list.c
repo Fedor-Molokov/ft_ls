@@ -11,48 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-// char    *ft_slashn(char *buf)
-// {
-//     char    *slashn;
-    
-//     slashn = ft_strjoin(buf, "\n");
-//     // free(buf);
-//     return(slashn);
-// }
-
-// void    ft_write(char *str, char *arg, int num, char *slashn)
-// {
-//     char    *number;
-//     char    *buf;
-//     int     len;
-    
-//     if (num != INT_MAX)
-//         number = ft_putnbr_str(num);
-//     if(arg)
-//     {
-//         buf = ft_strjoin(str, arg);
-//         len = ft_strlen(buf);
-//         if (slashn)
-//         {
-//             buf = ft_slashn(buf);
-//             len++;
-//         }
-//         write(1, buf, len);
-//         free(buf);
-//     }
-//     else
-//     {
-//         len = ft_strlen(str);
-//         if (slashn)
-//         {
-//             str = ft_slashn(str);
-//             len++;
-//         }
-//         write(1, str, len);
-//         free(str);
-//     }
-// }
+#include <stdio.h>
 
 void    ft_free(t_list *nm)
 {
@@ -124,8 +83,8 @@ void           big_str(t_list *nm, int flags)
 			format_str(nm->pwd, lst->opwd);
             write(1, "  ", 2);
 			format_str(nm->grp, lst->ogrp);
-			format_min_size(nm, lst);
 			format_maj_size(nm, lst);
+			format_min_size(nm, lst);
 			format_time(nm->stat.st_mtimespec.tv_sec);
 			ft_putstr(nm->name);
 			soft_link(nm->path);
@@ -386,5 +345,10 @@ int     main(int argc, char **argv)
         arg_dir = arg_dir->next;
     }
     ft_free(head.val_dir_start);
+    /*int t;
+
+    t = 474;
+    printf("%0#10x\n", t);
+    ft_printf("%0#10x\n", t);*/
     return (0);
 }

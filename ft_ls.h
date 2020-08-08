@@ -133,4 +133,7 @@ void            format_maj_size(t_list *nm, t_opt *lst);
 void            format_min_size(t_list *nm, t_opt *lst);
 void 			print_list(t_list *nm, int flags);
 
+void 			format_num_o(int date, size_t big);
+size_t          len_num_o(int src);
+
 #endif
