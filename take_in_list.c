@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 22:09:39 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 22:22:26 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void 			print_list(t_list *nm, int flags)
 			nm = nm->next;
 		else
 		{
-			ft_printf("%s\n", nm->path);
+			// ft_printf("%s\n", nm->path);
+			ft_printf("%s\n", nm->name);
 			nm = nm->next;
 		}
 	}
