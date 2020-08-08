@@ -6,7 +6,11 @@
 #    By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/24 22:57:41 by dmarsell          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2020/08/08 21:47:22 by dmarsell         ###   ########.fr        #
+=======
+#    Updated: 2020/08/08 23:13:46 by cassunta         ###   ########.fr        #
+>>>>>>> origin/Anna
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +38,7 @@ SRC = file_info.c \
 		additional.c    \
 		parse_big.c     \
 		parse_big2.c	\
+		display.c		\
         format_date.c	\
 		format.c
 all: $(NAME)
