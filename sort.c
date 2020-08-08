@@ -1,38 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cassunta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/08 19:58:37 by cassunta          #+#    #+#             */
+/*   Updated: 2020/08/08 20:00:35 by cassunta         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
-
-void			copy(t_list *p1, t_list *p2)
-{
-	p1->name = p2->name;
-	p1->path = p2->path;
-	p1->stat = p2->stat;
-	p1->child = p2->child;
-	p1->link = p2->link;
-}
-
-
-void			swap(t_list *a, t_list *b)
-{
-	t_list		tmp;
-
-	tmp = *a;
-	copy(a, b);
-	copy(b, &tmp);
-}
 
 int				is_it_sorted(t_list *nm, int flags)
 {
 	while (nm->next)
 	{
-		if (((flags & FLAG_MIN_R) && !(flags & FLAG_T)) && ft_strcmp(nm->name, nm->next->name) < 0) // rev-ascii: only -r (without -t)
+		if (((flags & FLAG_MIN_R) && !(flags & FLAG_T))
+		&& ft_strcmp(nm->name, nm->next->name) < 0)
 			return (0);
-		if ((!(flags & FLAG_T) && !(flags & FLAG_MIN_R)) && ft_strcmp(nm->name, nm->next->name) > 0) // ascii - sort (without sort-flags)
+		if ((!(flags & FLAG_T) && !(flags & FLAG_MIN_R))
+		&& ft_strcmp(nm->name, nm->next->name) > 0)
 			return (0);
-		if (!(flags & FLAG_MIN_R) && (flags & FLAG_T)) // time: only -t (without r)
-				if (time_sort(nm, nm->next))
+		if (!(flags & FLAG_MIN_R) && (flags & FLAG_T))
+			if (time_sort(nm, nm->next))
 				return (0);
-		if ((flags & FLAG_MIN_R) && (flags & FLAG_T))   // rev-time: -rt
-		 	if (time_rev_sort(nm, nm->next))
-		 		return(0);
+		if ((flags & FLAG_MIN_R) && (flags & FLAG_T))
+			if (time_rev_sort(nm, nm->next))
+				return (0);
 		nm = nm->next;
 	}
 	return (1);
@@ -40,26 +35,26 @@ int				is_it_sorted(t_list *nm, int flags)
 
 int				conditions(t_list *a, t_list *b, int flags)
 {
-	if ((flags & FLAG_MIN_R) && !(flags & FLAG_T))			//rev-ascii: only -r
+	if ((flags & FLAG_MIN_R) && !(flags & FLAG_T))
 		if (ft_strcmp(a->name, b->name) < 0)
 			return (1);
-	if (!(flags & FLAG_T) && !(flags & FLAG_MIN_R))		// ascii - sort (without sort-flags)
+	if (!(flags & FLAG_T) && !(flags & FLAG_MIN_R))
 		if (ft_strcmp(a->name, b->name) > 0)
 			return (1);
-	if (!(flags & FLAG_MIN_R) && (flags & FLAG_T))		// time: only -t (without r)
+	if (!(flags & FLAG_MIN_R) && (flags & FLAG_T))
 		if (time_sort(a, b))
 			return (1);
-	if ((flags & FLAG_MIN_R) && (flags & FLAG_T))		// rev-time: -rt
+	if ((flags & FLAG_MIN_R) && (flags & FLAG_T))
 		if (time_rev_sort(a, b))
 			return (1);
 	return (0);
 }
 
-t_list				*sort_list(t_list *lst, int flags)
+t_list			*sort_list(t_list *lst, int flags)
 {
-	t_list			*a;
-	t_list			*b;
-	t_list			*cur;
+	t_list		*a;
+	t_list		*b;
+	t_list		*cur;
 
 	a = lst;
 	b = lst->next;
@@ -76,10 +71,10 @@ t_list				*sort_list(t_list *lst, int flags)
 	return (lst);
 }
 
-t_list				*sorting(t_list *nm, int flags)
+t_list			*sorting(t_list *nm, int flags)
 {
-	t_list  *head;
-	t_list  *cur;
+	t_list		*head;
+	t_list		*cur;
 
 	if (nm == NULL)
 		return (NULL);
@@ -91,7 +86,7 @@ t_list				*sorting(t_list *nm, int flags)
 	cur = head->next;
 	while (cur)
 	{
-		if(cur->child)
+		if (cur->child)
 			sorting(cur->child, flags);
 		cur = cur->next;
 	}

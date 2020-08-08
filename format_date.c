@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   format_date.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cassunta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/08 20:02:17 by cassunta          #+#    #+#             */
+/*   Updated: 2020/08/08 20:04:28 by cassunta         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 void				format_min_size(t_list *nm, t_opt *lst)
@@ -6,12 +18,12 @@ void				format_min_size(t_list *nm, t_opt *lst)
 
 	big = ((lst->osize > lst->r_min) ? lst->osize : lst->r_min);
 	if (nm->format == 1 && ((ft_strcmp(nm->name, "autofs_nowait") == 0 ||
-			ft_strcmp(nm->name, "autofs_notrigger") == 0) || ft_strcmp(nm->name, "autofs_homedirmounter") == 0))
+			ft_strcmp(nm->name, "autofs_notrigger") == 0) ||
+			ft_strcmp(nm->name, "autofs_homedirmounter") == 0))
 		ft_printf(" %0#10x ", nm->rdev_min);
 	if (nm->format == 0)
 		format_num(nm->stat.st_size, big);
 }
-
 
 void				format_maj_size(t_list *nm, t_opt *lst)
 {
@@ -39,12 +51,12 @@ void				format_maj_size(t_list *nm, t_opt *lst)
 	}
 }
 
-void			soft_link(char *way)
+void				soft_link(char *way)
 {
-	char		buf[1024];
-	int			len;
+	char			buf[1024];
+	int				len;
 
-	len = readlink(way, buf, sizeof buf);
+	len = readlink(way, buf, sizeof(buf));
 	if (len > 0)
 	{
 		buf[len] = '\0';
@@ -52,9 +64,9 @@ void			soft_link(char *way)
 	}
 }
 
-void			format_num(int date, size_t big)
+void				format_num(int date, size_t big)
 {
-	int			diff;
+	int				diff;
 
 	if (len_num(date) < big)
 	{
