@@ -69,7 +69,7 @@ void			big_str(t_list *nm, int flags)
 	t_opt		*lst;
 
 	about_file(nm);
-	lst = parse_big(nm);
+	lst = parse_big(nm, flags);
 	while(nm)
 	{
 		if (!(flags & FLAG_A) && nm->name[0] == '.' && nm->file == 0)
@@ -80,10 +80,8 @@ void			big_str(t_list *nm, int flags)
 			file_mode(nm->stat.st_mode);
 			format_num(nm->stat.st_nlink, lst->olink);
 			format_str(nm->pwd, lst->opwd);
-            write(1, "  ", 2);
 			format_str(nm->grp, lst->ogrp);
 			format_maj_size(nm, lst);
-			write(1, "  ", 2);
 			format_min_size(nm, lst);
 			format_time(nm->stat.st_mtimespec.tv_sec);
 			ft_putstr(nm->name);

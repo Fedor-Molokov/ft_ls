@@ -5,10 +5,9 @@ void				format_min_size(t_list *nm, t_opt *lst)
 	size_t			big;
 
 	big = ((lst->osize > lst->r_min) ? lst->osize : lst->r_min);
-	if (nm->format == 1 && ft_strcmp(nm->name, "autofs_nowait") == 0)
+	if (nm->format == 1 && ((ft_strcmp(nm->name, "autofs_nowait") == 0 ||
+			ft_strcmp(nm->name, "autofs_notrigger") == 0) || ft_strcmp(nm->name, "autofs_homedirmounter") == 0))
 		ft_printf(" %0#10x ", nm->rdev_min);
-	if (nm->format == 1 && ft_strcmp(nm->name, "autofs_nowait") != 0)
-		format_num(nm->rdev_min, big);
 	if (nm->format == 0)
 		format_num(nm->stat.st_size, big);
 }

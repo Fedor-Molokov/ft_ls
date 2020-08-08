@@ -32,8 +32,7 @@ void				file_mode(int mode)
 		str[5] = str[5] == '-' ? 'S' : 's';
 	if (S_ISVTX & mode)
 		str[8] = str[8] == '-' ? 'T' : 't';
-	ft_putstr(str);
-	write(1, " ", 1);
+	ft_printf("%s  ", str);
 }
 
 int					type_file(t_list *nm)
@@ -59,7 +58,7 @@ int					type_file(t_list *nm)
 	if (S_ISSOCK(nm->stat.st_mode))
 		ft_putchar('s');
 	if (S_ISWHT(nm->stat.st_mode))
-		ft_putstr("w ");
+		ft_putstr("w");
 	return (0);
 }
 

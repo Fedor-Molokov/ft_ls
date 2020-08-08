@@ -104,12 +104,12 @@ size_t		ft_strlen(const char *s);
 void        format_time(time_t date);
 char		*ft_strnew(size_t size);
 void        about_file(t_list *nm);
-t_opt       *parse_big(t_list *nm);
+t_opt       *parse_big(t_list *nm, int flags);
 void		ft_null(t_list *list);
 void   	    ft_total(t_list *nm, int flags);
-size_t      len_link(t_list *nm);
+size_t      len_link(t_list *nm, int flags);
 void       	soft_link(char *way);
-size_t      len_pwd(t_list *nm);
+size_t      len_pwd(t_list *nm, int flags);
 void        file_mode(int mode);
 int        	print(t_list *nm, int flags);
 size_t      len_num(int src);
@@ -118,24 +118,24 @@ void        file_mode(int mode);
 void        big_str(t_list *nm, int flags);
 
 
-size_t             len_link(t_list *nm);
-t_opt           *parse_big(t_list *nm);
-size_t             len_pwd(t_list *nm);
+size_t             len_link(t_list *nm, int flags);
+t_opt           *parse_big(t_list *nm, int flags);
+size_t             len_pwd(t_list *nm, int flags);
 void            format_str(char *src, size_t big);
 
 void            soft_link(char *way);
 
 
 
-int             len_min(t_list *nm);
-int             len_maj(t_list *nm);
+int             len_min(t_list *nm, int flags);
+int             len_maj(t_list *nm, int flags);
 
 void            format_maj_size(t_list *nm, t_opt *lst);
 void            format_min_size(t_list *nm, t_opt *lst);
 void 			print_list(t_list *nm, int flags);
 
 void 			format_num_o(int date, size_t big);
-size_t          len_num_o(int src);
+size_t          len_num_o(int src, int flags);
 int 		is_spec(t_list *nm);
 
 #endif

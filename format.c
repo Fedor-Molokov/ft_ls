@@ -6,7 +6,7 @@ void			format_str(char *date, size_t big)
 	size_t		t;
 
 	t = ft_strlen(date);
-	ft_printf("%s", date);
+	ft_printf("%s  ", date);
 	if (t < big)
 	{
 		diff = big - t;
