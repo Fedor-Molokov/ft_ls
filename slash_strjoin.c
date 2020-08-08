@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 18:12:00 by cassunta          #+#    #+#             */
-/*   Updated: 2020/08/04 02:25:36 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 21:49:01 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char				*slash_strjoin(char const *s1, char const *s2)
 	int				slash;
 
 	i = ft_strlen(s1);
-	s1[i - 1] == '/' ? '0' : '1';
+	slash = (s1[i - 1] == '/') ? 0 : 1;
 	i = 0;
 	j = 0;
 	if (s1 == NULL || s2 == NULL)
