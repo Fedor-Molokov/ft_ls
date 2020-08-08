@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 17:08:37 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 18:11:06 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,6 +224,7 @@ void			ft_init(t_head *head, t_crutch *data, int file)
 		ft_null(head->val_file_start);
 		head->val_file_start->name = ft_findlastname(data->way);
 		head->val_file_start->path = ft_strdup(data->way);
+		lstat(head->val_file_start->path, &head->val_file_start->stat);
 		head->val_file_start->file = 1;
 		data->flags |= FLAG_ARG;
 	}
@@ -234,6 +235,7 @@ void			ft_init(t_head *head, t_crutch *data, int file)
 		ft_null(head->val_dir_start);
 		head->val_dir_start->name = ft_findlastname(data->way);
 		head->val_dir_start->path = ft_strdup(data->way);
+		lstat(head->val_dir_start->path, &head->val_dir_start->stat);
 		head->val_dir_start->file = 0;
 	}
 	else if (file == INVALID_ARG)
