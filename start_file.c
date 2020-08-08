@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 01:54:40 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 07:39:12 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 19:59:00 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_list			*ft_file_create(t_crutch *data, t_list *argp)
 {
 	if (!(argp->next = (t_list *)malloc(sizeof(t_list))))
 		ft_perror("ft_file_create() malloc: ", NULL);
-	if(lstat(data->way, &argp->stat) < 0)
+	if(lstat(data->way, &argp->next->stat) < 0)
 		ft_perror("ft_file_create() lstat: ", NULL);
 	argp = argp->next;
 	ft_null(argp);
@@ -31,7 +31,7 @@ t_list		*ft_dir_create(t_crutch *data, t_list *argp)
 {
     if (!(argp->next = (t_list *)malloc(sizeof(t_list))))
         ft_perror("ft_dir_create() malloc: ", NULL);
-    if(lstat(data->way, &argp->stat) < 0)
+    if(lstat(data->way, &argp->next->stat) < 0)
         ft_perror("ft_dir_create() lstat: ", NULL);
     argp = argp->next;
     ft_null(argp);
@@ -52,6 +52,7 @@ t_list     *ft_invalid_create(t_crutch *data, t_list *failp)
     ft_null(failp);
     failp->name = ft_findlastname(data->way);
     failp->path = ft_strdup(data->way);
+    failp->file = -1;
     data->fail++;
     return(failp);
 }
