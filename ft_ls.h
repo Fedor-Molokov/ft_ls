@@ -26,6 +26,7 @@
 # define FLAG_T			0x8			// -t
 # define FLAG_MIN_R		0x10		// -r
 # define FLAG_ARG		0x20		// more than one argument
+# define FLAG_NEXT		0x40		// go to next arg
 
 // nm->file == 0 ? about_file(nm) : 1;
 

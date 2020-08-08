@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 22:37:52 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/06 23:10:09 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 21:24:54 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void    ft_usage(char c)
 
 void    ft_flags(char **argv, int *flags, int *i, int *j)
 {
+    if (argv[*j][*i] == '-' && *j == 1)
+        *flags |= FLAG_NEXT;
     if (argv[*j][*i] == 'l')
         *flags |= FLAG_L;
     if (argv[*j][*i] == 'a')
@@ -31,7 +33,7 @@ void    ft_flags(char **argv, int *flags, int *i, int *j)
         *flags |= FLAG_R;
     if (argv[*j][*i] == 'r')
         *flags |= FLAG_MIN_R;
-    if (argv[*j][*i] < 49)
+    if (argv[*j][*i] < 49 && !(*flags & FLAG_NEXT))
         ft_usage(argv[*j][*i]);
     if (argv[*j][*i] > 49 && argv[*j][*i] < 65)
         ft_usage(argv[*j][*i]);
@@ -39,7 +41,7 @@ void    ft_flags(char **argv, int *flags, int *i, int *j)
         ft_usage(argv[*j][*i]);
     if (argv[*j][*i] > 120)
         ft_usage(argv[*j][*i]);
-    (*i)++; 
+    (*i)++;
 }
 
 char    *ft_parsing_next(char **argv, char *way, int *flags, int *count)
@@ -53,6 +55,15 @@ char    *ft_parsing_next(char **argv, char *way, int *flags, int *count)
     {
         while (argv[j][i] && argv[j][0] == '-')
             ft_flags(argv, flags, &i, &j);
+        if (*flags & FLAG_NEXT)
+        {
+            if (argv[2])
+                way = argv[++(*count)];
+            else
+                way = "./";
+            (*count)++;
+            break ;
+        }
         if (argv[j][0] != '-')
         {
             way = argv[j];
@@ -81,7 +92,7 @@ char    *ft_parsing(char **argv, char *way, int *flags, int *count)
     }
     if (*count == 1)
         return(ft_parsing_next(argv, way, flags, count));
-    if (*count > 1)
+    if ((*count > 1))
         way = argv[(*count)++];
     return (way);
 }
