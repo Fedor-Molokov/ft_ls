@@ -14,16 +14,17 @@
 # include <fcntl.h>
 # include "libft/ft_printf/ft_printf.h"
 
-# define FAIL_FILE	0
-# define EXIST_FILE	1
+# define INVALID_ARG	0			// invalid argument
+# define VALID_ARG_DIR	1			// valid argument - directory
+# define VALID_ARG_FILE	2			// valid argument is not a directory
 
-# define FLAG_NON	0x0			// without flags
-# define FLAG_L		0x1			// -l
-# define FLAG_A		0x2			// -a
-# define FLAG_R		0x4			// -R
-# define FLAG_T		0x8			// -t
-# define FLAG_MIN_R	0x10		// -r
-# define FLAG_ARG	0x20		// more than one argument
+# define FLAG_NON		0x0			// without flags
+# define FLAG_L			0x1			// -l
+# define FLAG_A			0x2			// -a
+# define FLAG_R			0x4			// -R
+# define FLAG_T			0x8			// -t
+# define FLAG_MIN_R		0x10		// -r
+# define FLAG_ARG		0x20		// more than one argument
 
 typedef struct		s_crutch
 {
@@ -36,9 +37,11 @@ typedef struct		s_crutch
 
 typedef struct		s_head
 {
+	int					valid;
 	struct	stat     	stat;
-	struct	s_list		*arg_start;
-	struct	s_list		*fail_start;
+	struct	s_list		*val_file_start;
+	struct	s_list		*val_dir_start;
+	struct	s_list		*invalid_start;
 }                   t_head;
 
 typedef struct		s_opt
@@ -69,9 +72,10 @@ typedef struct		s_list
 }                   t_list;
 
 char    	*ft_parsing(char **argv, char *way, int *flags, int *count);
-t_list     	*ft_fail_create(t_crutch *data, t_list *failp);
+t_list     	*ft_invalid_create(t_crutch *data, t_list *failp);
 char		*slash_strjoin(char const *s1, char const *s2);
-t_list    	*ft_arg_create(t_crutch *data, t_list *argp);
+t_list    	*ft_file_create(t_crutch *data, t_list *argp);
+t_list    	*ft_dir_create(t_crutch *data, t_list *argp);
 void        process(t_list *cur, char *name,char *way, int flags);
 int			ft_strcmp(const char *s1, const char *s2);
 int			ft_printf_exit(char *str, t_list *list);
