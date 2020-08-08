@@ -26,6 +26,8 @@
 # define FLAG_MIN_R		0x10		// -r
 # define FLAG_ARG		0x20		// more than one argument
 
+// nm->file == 0 ? about_file(nm) : 1;
+
 typedef struct		s_crutch
 {
     char    			*way;

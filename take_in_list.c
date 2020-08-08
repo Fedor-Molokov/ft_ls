@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 05:35:13 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 06:35:42 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,17 @@ void 			print_list(t_list *nm, int flags)
 void           big_str(t_list *nm, int flags)
 {
     t_opt       *lst;
-
+    
     about_file(nm);
     lst = parse_big(nm);
     while(nm)
     {
-		if (!(flags & FLAG_A) && nm->name[0] == '.')
+		if (!(flags & FLAG_A) && nm->name[0] == '.' && nm->file == 0)
 			nm = nm->next;
-		else {
+		else 
+        {
+            // ft_printf("big_str: %\nb\n", FLAG_L);
+            // ft_printf("big_str: %b\n", flags);
 			nm->format = type_file(nm);
 			file_mode(nm->stat.st_mode);
 			format_num(nm->stat.st_nlink, lst->olink);
@@ -113,9 +116,11 @@ int            print(t_list *nm, int flags)
     cur = nm;
     if (lstat(cur->path, &cur->stat) < 0)
         return (ft_printf("./ft_ls: %s: No such file or directory\n", cur->name));
-    flags & FLAG_ARG ? begin_of_list(nm) : 1;
+    // ft_printf("print: %\nb\n", FLAG_L);
+    // ft_printf("print: %b\n", flags);
+    (flags & FLAG_ARG) && nm->file == 0 ? begin_of_list(nm) : 1;
     !(flags & FLAG_ARG) && (flags & FLAG_R) ? flags ^= FLAG_ARG : 1;
-    flags & FLAG_L ? ft_total(cur, flags) : 1;
+    (flags & FLAG_L) && nm->file == 0 ? ft_total(cur, flags) : 1;
     if (flags & FLAG_L)
     	big_str(cur, flags);
 	else
@@ -223,6 +228,7 @@ void    ft_init(t_head *head, t_crutch *data, int file)
         head->val_file_start->name = ft_findlastname(data->way);
         head->val_file_start->path = ft_strdup(data->way);
         head->val_file_start->file = 1;
+        data->flags |= FLAG_ARG;
     }
     else if (file == VALID_ARG_DIR)
     {
@@ -231,7 +237,7 @@ void    ft_init(t_head *head, t_crutch *data, int file)
         ft_null(head->val_dir_start);
         head->val_dir_start->name = ft_findlastname(data->way);
         head->val_dir_start->path = ft_strdup(data->way);
-        head->val_file_start->file = 0;
+        head->val_dir_start->file = 0;
     }
     else if (file == INVALID_ARG)
     {
