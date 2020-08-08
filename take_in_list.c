@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 23:59:21 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/09 00:38:21 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,8 @@
 void 			print_list(t_list *nm, int flags)
 {
 	while(nm)
-	{
-		// if ((flags & FLAG_A) && nm->name[0] == '.' && nm->file == 1)
-		// {
-		// 	ft_printf("%s\n", nm->name);
-		// 	nm = nm->next;
-		// }
-
-		
-		// if ((flags ^ FLAG_A) && nm->name[0] == '.' && nm->file == 0)
-			// nm = nm->next;
-		if ((flags ^ FLAG_A) && nm->name[0] == '.')
+	{	
+		if (!(flags & FLAG_A) && nm->name[0] == '.' && nm->file == 0)
 			nm = nm->next;
 		else
 		{
@@ -61,11 +52,7 @@ int				print(t_list *nm, int flags)
 	i = 0;
 	cur = nm;
 	if (lstat(cur->path, &cur->stat) < 0)
-		// return (ft_printf("./ft_ls: %s: No such file or directory\n", cur->name));
 		return (crutch(cur));
-	// (flags & FLAG_ARG || (flags & FLAG_R)) && nm->file == 0 ? begin_of_list(nm) : 1;
-	// !(flags & FLAG_ARG) && (flags & FLAG_R) ? flags ^= FLAG_ARG : 1;
-	// (flags & FLAG_L) && nm->file == 0 ? ft_total(cur, flags) : 1;
 	(flags & FLAG_ARG) && nm->file == 0 ? begin_of_list(nm) : 1;
 	!(flags & FLAG_ARG) ? flags ^= FLAG_ARG : 1;
 	(flags & FLAG_L) && nm->file == 0 ? ft_total(cur, flags) : 1;
