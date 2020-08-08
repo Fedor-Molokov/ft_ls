@@ -6,11 +6,53 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/06 22:08:02 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 10:11:57 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+// char    *ft_slashn(char *buf)
+// {
+//     char    *slashn;
+    
+//     slashn = ft_strjoin(buf, "\n");
+//     // free(buf);
+//     return(slashn);
+// }
+
+// void    ft_write(char *str, char *arg, int num, char *slashn)
+// {
+//     char    *number;
+//     char    *buf;
+//     int     len;
+    
+//     if (num != INT_MAX)
+//         number = ft_putnbr_str(num);
+//     if(arg)
+//     {
+//         buf = ft_strjoin(str, arg);
+//         len = ft_strlen(buf);
+//         if (slashn)
+//         {
+//             buf = ft_slashn(buf);
+//             len++;
+//         }
+//         write(1, buf, len);
+//         free(buf);
+//     }
+//     else
+//     {
+//         len = ft_strlen(str);
+//         if (slashn)
+//         {
+//             str = ft_slashn(str);
+//             len++;
+//         }
+//         write(1, str, len);
+//         free(str);
+//     }
+// }
 
 void    ft_free(t_list *nm)
 {
@@ -53,11 +95,12 @@ void 			print_list(t_list *nm, int flags)
 {
 	while(nm)
 	{
-		if ((flags ^ FLAG_A) && nm->name[0] == '.')
+		if ((flags ^ FLAG_A) && nm->name[0] == '.' && nm->file == 0)
 			nm = nm->next;
 		else
 		{
 			ft_printf("%s\n", nm->name);
+            // ft_write(nm->name, NULL, "\n");
 			nm = nm->next;
 		}
 	}
@@ -66,14 +109,15 @@ void 			print_list(t_list *nm, int flags)
 void           big_str(t_list *nm, int flags)
 {
     t_opt       *lst;
-
+    
     about_file(nm);
     lst = parse_big(nm);
     while(nm)
     {
-		if (!(flags & FLAG_A) && nm->name[0] == '.')
+		if (!(flags & FLAG_A) && nm->name[0] == '.' && nm->file == 0)
 			nm = nm->next;
-		else {
+		else 
+        {
 			nm->format = type_file(nm);
 			file_mode(nm->stat.st_mode);
 			format_num(nm->stat.st_nlink, lst->olink);
@@ -89,7 +133,7 @@ void           big_str(t_list *nm, int flags)
 			nm = nm->next;
 		}
     }
-    //write(1, "\n", 1);
+    // write(1, "\n", 1);
     free(lst);
 }
 
@@ -113,9 +157,9 @@ int            print(t_list *nm, int flags)
     cur = nm;
     if (lstat(cur->path, &cur->stat) < 0)
         return (ft_printf("./ft_ls: %s: No such file or directory\n", cur->name));
-    flags & FLAG_ARG ? begin_of_list(nm) : 1;
+    (flags & FLAG_ARG) && nm->file == 0 ? begin_of_list(nm) : 1;
     !(flags & FLAG_ARG) && (flags & FLAG_R) ? flags ^= FLAG_ARG : 1;
-    flags & FLAG_L ? ft_total(cur, flags) : 1;
+    (flags & FLAG_L) && nm->file == 0 ? ft_total(cur, flags) : 1;
     if (flags & FLAG_L)
     	big_str(cur, flags);
 	else
@@ -129,6 +173,7 @@ int            print(t_list *nm, int flags)
                 nm = nm->next;
                 continue ;
             }   
+            write(1, "\n", 1);
             print(nm->child, flags);
         }
         nm = nm->next;
@@ -214,72 +259,102 @@ int    ft_start(int flags, char *way)
 
 void    ft_init(t_head *head, t_crutch *data, int file)
 {
-    if (file == EXIST_FILE)
+    if (file == VALID_ARG_FILE)
     {
-        if (!(head->arg_start = (t_list *)malloc(sizeof(t_list))))
+        if (!(head->val_file_start = (t_list *)malloc(sizeof(t_list))))
             ft_perror("ft_init() malloc: ", NULL);
-        ft_null(head->arg_start);
-        head->arg_start->name = ft_findlastname(data->way);
-        head->arg_start->path = ft_strdup(data->way);
+        ft_null(head->val_file_start);
+        head->val_file_start->name = ft_findlastname(data->way);
+        head->val_file_start->path = ft_strdup(data->way);
+        head->val_file_start->file = 1;
+        data->flags |= FLAG_ARG;
     }
-    else if (file == FAIL_FILE)
+    else if (file == VALID_ARG_DIR)
     {
-        if (!(head->fail_start = (t_list *)malloc(sizeof(t_list))))
+        if (!(head->val_dir_start = (t_list *)malloc(sizeof(t_list))))
             ft_perror("ft_init() malloc: ", NULL);
-        ft_null(head->fail_start);
-        head->fail_start->name = ft_findlastname(data->way);
-        head->fail_start->path = ft_strdup(data->way);
+        ft_null(head->val_dir_start);
+        head->val_dir_start->name = ft_findlastname(data->way);
+        head->val_dir_start->path = ft_strdup(data->way);
+        head->val_dir_start->file = 0;
+    }
+    else if (file == INVALID_ARG)
+    {
+        if (!(head->invalid_start = (t_list *)malloc(sizeof(t_list))))
+            ft_perror("ft_init() malloc: ", NULL);
+        ft_null(head->invalid_start);
+        head->invalid_start->name = ft_findlastname(data->way);
+        head->invalid_start->path = ft_strdup(data->way);
     }
 }
 
 void    ft_prestart(t_head *head, char **argv, t_crutch *data)
 {
-    t_list          *argp;
-    t_list          *failp;
-    int             notfile;
-    int             argument;
+    t_list          *p_arg_dir;
+    t_list          *p_arg_file;
+    t_list          *p_inval_argp;
+    int             inval_argp;
+    int             arg_file;
+    int             arg_dir;
     
-    argument = 0;
-    notfile = 0;
+    arg_dir = 0;
+    arg_file = 0;
+    inval_argp = 0;
     while(argv[data->count])
     {
         data->way = ft_parsing(argv, data->way, &data->flags, &data->count);
-        if (lstat(data->way, &head->stat) < 0)
+        head->valid = lstat(data->way, &head->stat);   
+        if (head->valid == -1)
         {
-            if (notfile == 0)
+            if (inval_argp == 0)
             { 
-                ft_init(head, data, FAIL_FILE);
-                failp = head->fail_start;
-                notfile++;
+                ft_init(head, data, INVALID_ARG);
+                p_inval_argp = head->invalid_start;
+                inval_argp++;
                 continue ;
             }
-            failp = ft_fail_create(data, failp);
+            p_inval_argp = ft_invalid_create(data, p_inval_argp);
+        }
+        else if (S_ISDIR(head->stat.st_mode) == 0)
+        {
+            if (arg_file == 0)
+            {
+                ft_init(head, data, VALID_ARG_FILE);
+                p_arg_file = head->val_file_start;
+                arg_file++;
+                continue ;
+            }
+            p_arg_file = ft_file_create(data, p_arg_file);
         }
         else
         {
-            if (argument == 0)
+            if (arg_dir == 0)
             {
-                ft_init(head, data, EXIST_FILE);
-                argp = head->arg_start;
-                argument++;
+                ft_init(head, data, VALID_ARG_DIR);
+                p_arg_dir = head->val_dir_start;
+                arg_dir++;
                 continue ;
             }
-            argp = ft_arg_create(data, argp);
+            p_arg_dir = ft_dir_create(data, p_arg_dir);
+            arg_dir++;
         }
     }
-    if (argument)
-        argp->next = NULL;
-    if (notfile)
-        failp->next = NULL;
-    head->arg_start->next ? data->flags |= FLAG_ARG : 1;
+    if (arg_dir)
+        p_arg_dir->next = NULL;
+    if (arg_file)
+        p_arg_file->next = NULL;
+    if (inval_argp)
+        p_inval_argp->next = NULL;
+    arg_dir > 1 ? data->flags |= FLAG_ARG : 1;
 }
 
 int     main(int argc, char **argv)
 {
     t_head          head;
     t_crutch        data;
-    t_list          *argp;
-    t_list          *failp;
+    t_list          *arg_dir;
+    t_list          *arg_file;
+    t_list          *inval_argp;
     
     data.arg = 0;
     data.fail= 0;
@@ -293,19 +368,23 @@ int     main(int argc, char **argv)
         return (0);
     }
     ft_prestart(&head, argv, &data);
-    failp = sorting(head.fail_start, data.flags);
-    while(failp)
+    inval_argp = sorting(head.invalid_start, data.flags);
+    while(inval_argp)
     {
-        print(failp, data.flags);
-        failp = failp->next;
+        print(inval_argp, data.flags);
+        inval_argp = inval_argp->next;
     }
-    ft_free(head.fail_start);
-    argp = sorting(head.arg_start, data.flags);
-    while(argp)
+    ft_free(head.invalid_start);
+    arg_file = sorting(head.val_file_start, data.flags);
+        print(arg_file, data.flags);
+    head.val_dir_start && arg_file ? write(1, "\n", 1) : 1;
+    ft_free(head.val_file_start);
+    arg_dir = sorting(head.val_dir_start, data.flags);
+    while(arg_dir)
     {
-        ft_start(data.flags, argp->path);
-        argp = argp->next;
+        ft_start(data.flags, arg_dir->path);
+        arg_dir = arg_dir->next;
     }
-    ft_free(head.arg_start);
+    ft_free(head.val_dir_start);
     return (0);
 }
