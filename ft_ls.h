@@ -55,6 +55,7 @@ typedef struct		s_opt
     size_t             ogrp;
     size_t             r_maj;
     size_t             r_min;
+    int 				spec;
 }                   t_opt;
 
 typedef struct		s_list
@@ -135,5 +136,6 @@ void 			print_list(t_list *nm, int flags);
 
 void 			format_num_o(int date, size_t big);
 size_t          len_num_o(int src);
+int 		is_spec(t_list *nm);
 
 #endif

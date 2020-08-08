@@ -117,6 +117,23 @@ int             len_min(t_list *nm)
     return (res);
 }
 
+int 		is_spec(t_list *nm)
+{
+	int res;
+
+	res = 0;
+	while (nm)
+	{
+		if ((S_ISCHR(nm->stat.st_mode)) || (S_ISBLK(nm->stat.st_mode)))
+		{
+			res = 1;
+			return (res);
+		}
+		nm = nm->next;
+	}
+	return (res);
+}
+
 t_opt           *parse_big(t_list *nm)
 {
     t_opt       *lst;
@@ -128,5 +145,6 @@ t_opt           *parse_big(t_list *nm)
     lst->ogrp = len_grp(nm);
     lst->r_min = len_min(nm);
     lst->r_maj = len_maj(nm);
+	lst->spec = is_spec(nm);
     return (lst);
 }
