@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 23:19:59 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 23:41:08 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,50 +27,13 @@ void 			print_list(t_list *nm, int flags)
 	}
 }
 
-<<<<<<< HEAD
-void			big_str(t_list *nm, int flags)
-{
-	t_opt		*lst;
-
-	about_file(nm);
-	lst = parse_big(nm, flags);
-	while(nm)
-	{
-		if (!(flags & FLAG_A) && nm->name[0] == '.' && nm->file == 0)
-			nm = nm->next;
-		else 
-		{
-			nm->format = type_file(nm);
-			file_mode(nm->stat.st_mode);
-			format_num(nm->stat.st_nlink, lst->olink);
-			format_str(nm->pwd, lst->opwd);
-			format_str(nm->grp, lst->ogrp);
-			format_maj_size(nm, lst);
-			format_min_size(nm, lst);
-			format_time(nm->stat.st_mtimespec.tv_sec);
-			ft_putstr(nm->name);
-			soft_link(nm->path);
-			write(1, "\n", 1);
-			nm = nm->next;
-		}
-	}
-	free(lst);
-}
-
-void 			begin_of_list(t_list *nm)
-{
-	t_list  *cur;
-
-	cur = nm;
-	ft_printf("%s:\n", nm->dir);
-}
-
 int			crutch(t_list *list)
 {
 	if ((ft_strcmp("/dev/fd/3", list->path) == 0))
 	{
 		ft_printf("%s\n", list->path);
-		ft_printf("./ft_ls: %s: Not a directory", list->name);
+		// ft_printf("./ft_ls: %s: Not a directory", list->name);
+		ft_putstr("./ft_ls: %s: Not a directory");
 	}
 	else if ((ft_strcmp("/dev/fd/4", list->path) == 0))
 		ft_printf("./ft_ls: %s: directory causes a cycle\n", list->name);
@@ -91,8 +54,11 @@ int				print(t_list *nm, int flags)
 	if (lstat(cur->path, &cur->stat) < 0)
 		// return (ft_printf("./ft_ls: %s: No such file or directory\n", cur->name));
 		return (crutch(cur));
-	(flags & FLAG_ARG || (flags & FLAG_R)) && nm->file == 0 ? begin_of_list(nm) : 1;
-	!(flags & FLAG_ARG) && (flags & FLAG_R) ? flags ^= FLAG_ARG : 1;
+	// (flags & FLAG_ARG || (flags & FLAG_R)) && nm->file == 0 ? begin_of_list(nm) : 1;
+	// !(flags & FLAG_ARG) && (flags & FLAG_R) ? flags ^= FLAG_ARG : 1;
+	// (flags & FLAG_L) && nm->file == 0 ? ft_total(cur, flags) : 1;
+	(flags & FLAG_ARG) && nm->file == 0 ? begin_of_list(nm) : 1;
+	!(flags & FLAG_ARG) ? flags ^= FLAG_ARG : 1;
 	(flags & FLAG_L) && nm->file == 0 ? ft_total(cur, flags) : 1;
 	if (flags & FLAG_L)
 		big_str(cur, flags);
@@ -182,8 +148,6 @@ void			ft_init(t_head *head, t_crutch *data, int file)
 		if (!(head->val_file_start = (t_list *)malloc(sizeof(t_list))))
 			ft_perror("ft_init() malloc: ", NULL);
 		ft_null(head->val_file_start);
-		// head->val_file_start->name = ft_findlastname(data->way);			
-		// head->val_file_start->path = ft_strdup(data->way);
 		head->val_file_start->name = ft_strdup(data->way);			
 		head->val_file_start->path = ft_strdup(data->way);
 		lstat(head->val_file_start->path, &head->val_file_start->stat);

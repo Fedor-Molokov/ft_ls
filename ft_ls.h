@@ -115,6 +115,7 @@ void		copy(t_list *p1, t_list *p2);
 int			print(t_list *nm, int flags);
 t_list		*sorting(t_list *nm, int i);
 void		swap(t_list *a, t_list *b);
+void 		begin_of_list(t_list *nm);
 int			are_you_dir(t_list *cur);
 size_t		ft_strlen(const char *s);
 void		format_time(time_t date);
@@ -126,6 +127,7 @@ void		soft_link(char *way);
 int 		is_spec(t_list *nm);
 void		file_mode(int mode);
 void		file_mode(int mode);
+void		ft_free(t_list *nm);
 size_t		len_num(int src);
 
 #endif
