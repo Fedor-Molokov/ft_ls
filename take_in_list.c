@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 10:11:57 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 17:08:37 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -340,6 +340,7 @@ int				main(int argc, char **argv)
 	while(arg_dir)
 	{
 		ft_start(data.flags, arg_dir->path);
+		arg_dir->next ? write(1, "\n", 1) : 1;
 		arg_dir = arg_dir->next;
 	}
 	ft_free(head.val_dir_start);
