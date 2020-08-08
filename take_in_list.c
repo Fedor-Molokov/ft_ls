@@ -114,7 +114,7 @@ int				print(t_list *nm, int flags)
 	cur = nm;
 	if (lstat(cur->path, &cur->stat) < 0)
 		return (ft_printf("./ft_ls: %s: No such file or directory\n", cur->name));
-	(flags & FLAG_ARG) && nm->file == 0 ? begin_of_list(nm) : 1;
+	(flags & FLAG_ARG || (flags & FLAG_R)) && nm->file == 0 ? begin_of_list(nm) : 1;
 	!(flags & FLAG_ARG) && (flags & FLAG_R) ? flags ^= FLAG_ARG : 1;
 	(flags & FLAG_L) && nm->file == 0 ? ft_total(cur, flags) : 1;
 	if (flags & FLAG_L)

@@ -37,8 +37,8 @@ t_list		*ft_dir_create(t_crutch *data, t_list *argp)
     ft_null(argp);
     argp->name = ft_findlastname(data->way);
     argp->path = ft_strdup(data->way);
-    if (argp->file)                                             //
-        ft_printf("argp->file: %d\n", argp->file);          //
+    if (argp->file)
+        ft_printf("argp->file: %d\n", argp->file);
     argp->file = 0;
     data->arg++;
     return(argp);
