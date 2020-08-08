@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 18:11:06 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 18:36:41 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,7 +243,7 @@ void			ft_init(t_head *head, t_crutch *data, int file)
 		if (!(head->invalid_start = (t_list *)malloc(sizeof(t_list))))
 			ft_perror("ft_init() malloc: ", NULL);
 		ft_null(head->invalid_start);
-		head->invalid_start->name = ft_findlastname(data->way);
+		head->invalid_start->name = ft_strdup(data->way);
 		head->invalid_start->path = ft_strdup(data->way);
 	}
 }
