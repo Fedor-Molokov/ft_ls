@@ -14,7 +14,7 @@
 # include <fcntl.h>
 # include "libft/ft_printf/ft_printf.h"
 
-# define INVALID_ARG	0			// invalid argument
+# define INVALID_ARG	-1			// invalid argument
 # define VALID_ARG_DIR	1			// valid argument - directory
 # define VALID_ARG_FILE	2			// valid argument is not a directory
 
