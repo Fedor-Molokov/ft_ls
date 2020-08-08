@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 06:03:36 by cassunta          #+#    #+#             */
-/*   Updated: 2020/08/06 22:06:40 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 22:28:46 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ int					type_file(t_list *nm)
 		ft_putchar('p');
 	if (S_ISSOCK(nm->stat.st_mode))
 		ft_putchar('s');
-	if (S_ISWHT(nm->stat.st_mode))
-		ft_putstr("w");
 	return (0);
 }
 

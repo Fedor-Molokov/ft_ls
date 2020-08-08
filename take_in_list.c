@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 22:22:26 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 23:17:25 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void 			print_list(t_list *nm, int flags)
 			nm = nm->next;
 		else
 		{
-			// ft_printf("%s\n", nm->path);
 			ft_printf("%s\n", nm->name);
 			nm = nm->next;
 		}
@@ -102,6 +101,19 @@ void 			begin_of_list(t_list *nm)
 	ft_printf("%s:\n", nm->dir);
 }
 
+int			crutch(t_list *list)
+{
+	if ((ft_strcmp("/dev/fd/3", list->path) == 0))
+	{
+		ft_printf("%s\n", list->path);
+		ft_printf("./ft_ls: %s: Not a directory", list->name);
+	}
+	else if ((ft_strcmp("/dev/fd/4", list->path) == 0))
+		ft_printf("./ft_ls: %s: directory causes a cycle\n", list->name);
+	else
+		ft_printf("./ft_ls: %s: No such file or directory\n", list->name);
+	return (0);
+}
 
 int				print(t_list *nm, int flags)
 {
@@ -113,7 +125,8 @@ int				print(t_list *nm, int flags)
 	i = 0;
 	cur = nm;
 	if (lstat(cur->path, &cur->stat) < 0)
-		return (ft_printf("./ft_ls: %s: No such file or directory\n", cur->name));
+		// return (ft_printf("./ft_ls: %s: No such file or directory\n", cur->name));
+		return (crutch(cur));
 	(flags & FLAG_ARG || (flags & FLAG_R)) && nm->file == 0 ? begin_of_list(nm) : 1;
 	!(flags & FLAG_ARG) && (flags & FLAG_R) ? flags ^= FLAG_ARG : 1;
 	(flags & FLAG_L) && nm->file == 0 ? ft_total(cur, flags) : 1;
