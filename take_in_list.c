@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 23:41:08 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 23:59:21 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,16 @@ void 			print_list(t_list *nm, int flags)
 {
 	while(nm)
 	{
-		if ((flags ^ FLAG_A) && nm->name[0] == '.' && nm->file == 0)
+		// if ((flags & FLAG_A) && nm->name[0] == '.' && nm->file == 1)
+		// {
+		// 	ft_printf("%s\n", nm->name);
+		// 	nm = nm->next;
+		// }
+
+		
+		// if ((flags ^ FLAG_A) && nm->name[0] == '.' && nm->file == 0)
+			// nm = nm->next;
+		if ((flags ^ FLAG_A) && nm->name[0] == '.')
 			nm = nm->next;
 		else
 		{
