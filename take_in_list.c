@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 06:35:42 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 07:56:01 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,9 +211,17 @@ int    ft_start(int flags, char *way)
     if (!(names = (t_list *)malloc(sizeof(t_list))))
         ft_perror("ft_start() malloc: ", names);
     ft_null(names);
+    if (names->file != 0)                                              //
+        ft_printf("argp->file1: %d\n", names->file);                    //
     go = in_directory(way, names, flags);
+        if (go->file != 0)                                              //
+    ft_printf("argp->file2: %d\n", go->file);                            //
     go = sorting(go, flags);
+        if (go->file != 0)                                              //
+    ft_printf("argp->file3: %d\n", go->file);                            //
     print(go, flags);
+        if (go->file != 0)                                              //
+    ft_printf("argp->file4: %d\n", go->file);                            //
     ft_free(go);
     return (0);
 }
@@ -237,6 +245,8 @@ void    ft_init(t_head *head, t_crutch *data, int file)
         ft_null(head->val_dir_start);
         head->val_dir_start->name = ft_findlastname(data->way);
         head->val_dir_start->path = ft_strdup(data->way);
+        if (head->val_dir_start->file)                                              //
+            ft_printf("argp->file: %d\n", head->val_dir_start->file);               //
         head->val_dir_start->file = 0;
     }
     else if (file == INVALID_ARG)
@@ -287,7 +297,6 @@ void    ft_prestart(t_head *head, char **argv, t_crutch *data)
             }
             p_arg_file = ft_file_create(data, p_arg_file);
         }
-        // else if (S_ISDIR(head->stat.st_mode))
         else
         {
             if (arg_dir == 0)
@@ -300,18 +309,6 @@ void    ft_prestart(t_head *head, char **argv, t_crutch *data)
             p_arg_dir = ft_dir_create(data, p_arg_dir);
             arg_dir++;
         }
-        // else if (S_ISDIR(head->stat.st_mode) == 0)
-        // else
-        // {
-        //     if (arg_file == 0)
-        //     {
-        //         ft_init(head, data, VALID_ARG_FILE);
-        //         arg_file = head->val_file_start;
-        //         arg_file++;
-        //         continue ;
-        //     }
-        //     arg_file = ft_file_create(data, arg_file);
-        // }
     }
     if (arg_dir)
         p_arg_dir->next = NULL;
@@ -350,16 +347,18 @@ int     main(int argc, char **argv)
     }
     ft_free(head.invalid_start);
     arg_file = sorting(head.val_file_start, data.flags);
-    // while(arg_file)
-    // {
         print(arg_file, data.flags);
-        // arg_file = arg_file->next;
-    // }
     ft_free(head.val_file_start);
+    if (head.val_dir_start->file != 0)                                              //
+        ft_printf("argp->file: %d\n", head.val_dir_start->file);                    //
     arg_dir = sorting(head.val_dir_start, data.flags);
     while(arg_dir)
     {
+        if (arg_dir->file != 0)                                                     //
+            ft_printf("argp->file0: %d\n", arg_dir->file);                           //
         ft_start(data.flags, arg_dir->path);
+        if (arg_dir->file != 0)                                                     //
+            ft_printf("argp->file4: %d\n", arg_dir->file);                           //
         arg_dir->next ? write(1, "\n", 1) : 1;
         arg_dir = arg_dir->next;
     }

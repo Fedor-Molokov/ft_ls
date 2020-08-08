@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 01:54:40 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 05:28:08 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/08 07:39:12 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ t_list    *ft_dir_create(t_crutch *data, t_list *argp)
 {
     if (!(argp->next = (t_list *)malloc(sizeof(t_list))))
         ft_perror("ft_dir_create() malloc: ", NULL);
-    // if (data->arg > 1)
-    //     data->flags |= FLAG_ARG;
     if(lstat(data->way, &argp->stat) < 0)
         ft_perror("ft_dir_create() lstat: ", NULL);
     argp = argp->next;
     ft_null(argp);
     argp->name = ft_findlastname(data->way);
     argp->path = ft_strdup(data->way);
+    if (argp->file)                                             //
+        ft_printf("argp->file: %d\n", argp->file);          //
     argp->file = 0;
     data->arg++;
     return(argp);
