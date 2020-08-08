@@ -83,6 +83,7 @@ void			big_str(t_list *nm, int flags)
             write(1, "  ", 2);
 			format_str(nm->grp, lst->ogrp);
 			format_maj_size(nm, lst);
+			write(1, "  ", 2);
 			format_min_size(nm, lst);
 			format_time(nm->stat.st_mtimespec.tv_sec);
 			ft_putstr(nm->name);

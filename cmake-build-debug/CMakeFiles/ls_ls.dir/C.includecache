@@ -62,9 +62,7 @@ sys/stat.h
 sys/types.h
 -
 
-/Users/cassunta/ls_ls/take_in_list.c
+/Users/cassunta/ls_ls/parse_big.c
 ft_ls.h
 /Users/cassunta/ls_ls/ft_ls.h
-stdio.h
--
 

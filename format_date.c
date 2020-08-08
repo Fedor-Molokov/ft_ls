@@ -29,7 +29,7 @@ void				format_maj_size(t_list *nm, t_opt *lst)
 		}
 		ft_printf(" %d,", nm->rdev_maj);
 	}
-	if (nm->format == 0 && (lst->r_maj > 0))
+	if (nm->format == 0 && (lst->spec == 1))
 	{
 		diff = lst->r_maj + 2;
 		while (diff > 0)
