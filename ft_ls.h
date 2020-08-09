@@ -30,6 +30,20 @@
 
 // nm->file == 0 ? about_file(nm) : 1;
 
+typedef struct			s_point
+{
+	struct s_list		*p_arg_dir;
+	struct s_list		*p_arg_file;
+	struct s_list		*p_inval_argp;
+}						t_point;
+
+typedef struct			s_dop
+{
+	int					inval_argp;
+	int					arg_file;
+	int					arg_dir;
+}						t_dop;
+
 typedef struct			s_crutch
 {
 	char				*way;
