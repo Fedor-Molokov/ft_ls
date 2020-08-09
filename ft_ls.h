@@ -30,13 +30,6 @@
 
 // nm->file == 0 ? about_file(nm) : 1;
 
-typedef struct			s_point
-{
-	struct s_list		*p_arg_dir;
-	struct s_list		*p_arg_file;
-	struct s_list		*p_inval_argp;
-}						t_point;
-
 typedef struct			s_dop
 {
 	int					inval_argp;
@@ -92,6 +85,13 @@ typedef struct			s_list
 	struct s_list		*next;
 
 }						t_list;
+
+typedef struct			s_point
+{
+	struct s_list		*p_arg_dir;
+	struct s_list		*p_arg_file;
+	struct s_list		*p_inval_argp;
+}						t_point;
 
 char					*ft_parsing(char **argv, char *way, \
 int *flags, int *count);
@@ -161,3 +161,64 @@ void					ft_free(t_list *nm);
 size_t					len_num(int src);
 
 #endif
+
+
+// void			ft_prestart(t_head *head, char **argv, t_crutch *data)
+// {
+// 	t_list		*p_arg_dir;
+// 	t_list		*p_arg_file;
+// 	t_list		*p_inval_argp;
+// 	int			inval_argp;
+// 	int			arg_file;
+// 	int			arg_dir;
+
+// 	arg_dir = 0;
+// 	arg_file = 0;
+// 	inval_argp = 0;
+// 	while(argv[data->count])
+// 	{
+// 		data->way = ft_parsing(argv, data->way, &data->flags, &data->count);
+// 		head->valid = lstat(data->way, &head->stat);
+// 		if (head->valid == -1)
+// 		{
+// 			if (inval_argp == 0)
+// 			{
+// 				ft_init(head, data, INVALID_ARG);
+// 				p_inval_argp = head->invalid_start;
+// 				inval_argp++;
+// 				continue ;
+// 			}
+// 			p_inval_argp = ft_invalid_create(data, p_inval_argp);
+// 		}
+// 		else if (S_ISDIR(head->stat.st_mode) == 0)
+// 		{
+// 			if (arg_file == 0)
+// 			{
+// 				ft_init(head, data, VALID_ARG_FILE);
+// 				p_arg_file = head->val_file_start;
+// 				arg_file++;
+// 				continue ;
+// 			}
+// 			p_arg_file = ft_file_create(data, p_arg_file);
+// 		}
+// 		else
+// 		{
+// 			if (arg_dir == 0)
+// 			{
+// 				ft_init(head, data, VALID_ARG_DIR);
+// 				p_arg_dir = head->val_dir_start;
+// 				arg_dir++;
+// 				continue ;
+// 			}
+// 			p_arg_dir = ft_dir_create(data, p_arg_dir);
+// 			arg_dir++;
+// 		}
+// 	}
+// 	if (arg_dir)
+// 		p_arg_dir->next = NULL;
+// 	if (arg_file)
+// 		p_arg_file->next = NULL;
+// 	if (inval_argp)
+// 		p_inval_argp->next = NULL;
+// 	arg_dir > 1 ? data->flags |= FLAG_ARG : 1;
+// }
