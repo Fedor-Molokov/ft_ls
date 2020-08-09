@@ -17,7 +17,7 @@ int					crutch(t_list *list)
 	if ((ft_strcmp("/dev/fd/3", list->path) == 0))
 	{
 		ft_printf("%s\n", list->path);
-		ft_putstr("./ft_ls: %s: Not a directory");
+		ft_putstr("./ft_ls: 3: Not a directory");
 	}
 	else if ((ft_strcmp("/dev/fd/4", list->path) == 0))
 		ft_printf("./ft_ls: %s: directory causes a cycle\n", list->name);

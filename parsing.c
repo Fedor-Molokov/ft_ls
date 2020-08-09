@@ -15,7 +15,7 @@
 void		ft_usage(char c)
 {
 	ft_printf("./ft_ls: illegal option -- %c\n", c);
-	ft_putstr("usage: ls [-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1] [file ...]\n");
+	ft_putstr("usage: ls [-Raltr] [file ...]\n");
 	exit(0);
 }
 

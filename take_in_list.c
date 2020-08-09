@@ -13,6 +13,24 @@
 #include "ft_ls.h"
 #include <stdio.h>
 
+void 			if_child(t_list *nm, int flags)
+{
+	while(nm)
+	{
+		if(nm->child)
+		{
+			if (!(flags & FLAG_A) && nm->name[0] == '.')
+			{
+				nm = nm->next;
+				continue ;
+			}
+			write(1, "\n", 1);
+			print(nm->child, flags);
+		}
+		nm = nm->next;
+	}
+}
+
 int				print(t_list *nm, int flags)
 {
 	int			i;
@@ -31,20 +49,7 @@ int				print(t_list *nm, int flags)
 		big_str(cur, flags);
 	else
 		print_list(nm, flags);
-	while(nm)
-	{
-		if(nm->child)
-		{
-			if (!(flags & FLAG_A) && nm->name[0] == '.')
-			{
-				nm = nm->next;
-				continue ;
-			}
-			write(1, "\n", 1);
-			print(nm->child, flags);
-		}
-		nm = nm->next;
-	}
+	if_child(nm, flags);
 	return (0);
 }
 
@@ -55,7 +60,7 @@ void			ft_init(t_head *head, t_crutch *data, int file)
 		if (!(head->val_file_start = (t_list *)malloc(sizeof(t_list))))
 			ft_perror("ft_init() malloc: ", NULL);
 		ft_null(head->val_file_start);
-		head->val_file_start->name = ft_strdup(data->way);			
+		head->val_file_start->name = ft_strdup(data->way);
 		head->val_file_start->path = ft_strdup(data->way);
 		lstat(head->val_file_start->path, &head->val_file_start->stat);
 		head->val_file_start->file = 1;
@@ -143,6 +148,16 @@ void			ft_prestart(t_head *head, char **argv, t_crutch *data)
 	arg_dir > 1 ? data->flags |= FLAG_ARG : 1;
 }
 
+void			while_arg_dir(t_list *arg_dir, t_crutch data)
+{
+	while(arg_dir)
+	{
+		ft_start(data.flags, arg_dir->path);
+		arg_dir->next ? write(1, "\n", 1) : 1;
+		arg_dir = arg_dir->next;
+	}
+}
+
 int				main(int argc, char **argv)
 {
 	t_head		head;
@@ -175,12 +190,7 @@ int				main(int argc, char **argv)
 	head.val_dir_start && arg_file ? write(1, "\n", 1) : 1;
 	ft_free(head.val_file_start);
 	arg_dir = sorting(head.val_dir_start, data.flags);
-	while(arg_dir)
-	{
-		ft_start(data.flags, arg_dir->path);
-		arg_dir->next ? write(1, "\n", 1) : 1;
-		arg_dir = arg_dir->next;
-	}
+	while_arg_dir(arg_dir, data);
 	ft_free(head.val_dir_start);
 	return (0);
 }
