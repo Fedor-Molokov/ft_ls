@@ -52,3 +52,12 @@ void			swap(t_list *a, t_list *b)
 	copy(a, b);
 	copy(b, &tmp);
 }
+
+t_list			*ft_start_file(char *way, t_list *names)
+{
+	names->name = ft_findlastname(way);
+	names->path = ft_strdup(way);
+	names->child = NULL;
+	names->next = NULL;
+	return (names);
+}

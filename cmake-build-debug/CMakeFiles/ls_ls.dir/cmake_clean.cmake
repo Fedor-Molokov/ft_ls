@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/ls_ls.dir/additional.c.o"
+  "CMakeFiles/ls_ls.dir/begin.c.o"
   "CMakeFiles/ls_ls.dir/file_info.c.o"
   "CMakeFiles/ls_ls.dir/format.c.o"
   "CMakeFiles/ls_ls.dir/format_date.c.o"

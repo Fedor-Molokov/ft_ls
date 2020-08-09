@@ -6,6 +6,11 @@ CMakeFiles/ls_ls.dir/additional.c.o: ../ft_ls.h
 CMakeFiles/ls_ls.dir/additional.c.o: ../libft/ft_printf/ft_printf.h
 CMakeFiles/ls_ls.dir/additional.c.o: ../libft/libft.h
 
+CMakeFiles/ls_ls.dir/begin.c.o: ../begin.c
+CMakeFiles/ls_ls.dir/begin.c.o: ../ft_ls.h
+CMakeFiles/ls_ls.dir/begin.c.o: ../libft/ft_printf/ft_printf.h
+CMakeFiles/ls_ls.dir/begin.c.o: ../libft/libft.h
+
 CMakeFiles/ls_ls.dir/file_info.c.o: ../file_info.c
 CMakeFiles/ls_ls.dir/file_info.c.o: ../ft_ls.h
 CMakeFiles/ls_ls.dir/file_info.c.o: ../libft/ft_printf/ft_printf.h

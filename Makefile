@@ -6,7 +6,7 @@
 #    By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/24 22:57:41 by dmarsell          #+#    #+#              #
-#    Updated: 2020/08/08 23:20:52 by dmarsell         ###   ########.fr        #
+#    Updated: 2020/08/09 12:54:06 by cassunta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC = file_info.c \
 		parse_big.c     \
 		parse_big2.c	\
 		display.c		\
+		begin.c			\
         format_date.c	\
 		format.c
 all: $(NAME)

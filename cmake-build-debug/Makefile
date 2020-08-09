@@ -150,6 +150,33 @@ additional.c.s:
 	$(MAKE) -f CMakeFiles/ls_ls.dir/build.make CMakeFiles/ls_ls.dir/additional.c.s
 .PHONY : additional.c.s
 
+begin.o: begin.c.o
+
+.PHONY : begin.o
+
+# target to build an object file
+begin.c.o:
+	$(MAKE) -f CMakeFiles/ls_ls.dir/build.make CMakeFiles/ls_ls.dir/begin.c.o
+.PHONY : begin.c.o
+
+begin.i: begin.c.i
+
+.PHONY : begin.i
+
+# target to preprocess a source file
+begin.c.i:
+	$(MAKE) -f CMakeFiles/ls_ls.dir/build.make CMakeFiles/ls_ls.dir/begin.c.i
+.PHONY : begin.c.i
+
+begin.s: begin.c.s
+
+.PHONY : begin.s
+
+# target to generate assembly for a file
+begin.c.s:
+	$(MAKE) -f CMakeFiles/ls_ls.dir/build.make CMakeFiles/ls_ls.dir/begin.c.s
+.PHONY : begin.c.s
+
 file_info.o: file_info.c.o
 
 .PHONY : file_info.o
@@ -2430,6 +2457,9 @@ help:
 	@echo "... additional.o"
 	@echo "... additional.i"
 	@echo "... additional.s"
+	@echo "... begin.o"
+	@echo "... begin.i"
+	@echo "... begin.s"
 	@echo "... file_info.o"
 	@echo "... file_info.i"
 	@echo "... file_info.s"

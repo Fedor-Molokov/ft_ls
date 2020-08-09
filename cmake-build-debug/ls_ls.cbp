@@ -87,6 +87,9 @@
 		<Unit filename="/Users/cassunta/ls_ls/additional.c">
 			<Option target="ls_ls"/>
 		</Unit>
+		<Unit filename="/Users/cassunta/ls_ls/begin.c">
+			<Option target="ls_ls"/>
+		</Unit>
 		<Unit filename="/Users/cassunta/ls_ls/file_info.c">
 			<Option target="ls_ls"/>
 		</Unit>

@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "/Users/cassunta/ls_ls/additional.c" "/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir/additional.c.o"
+  "/Users/cassunta/ls_ls/begin.c" "/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir/begin.c.o"
   "/Users/cassunta/ls_ls/file_info.c" "/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir/file_info.c.o"
   "/Users/cassunta/ls_ls/format.c" "/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir/format.c.o"
   "/Users/cassunta/ls_ls/format_date.c" "/Users/cassunta/ls_ls/cmake-build-debug/CMakeFiles/ls_ls.dir/format_date.c.o"
