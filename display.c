@@ -17,7 +17,7 @@ void			ft_total(t_list *nm, int flags)
 	unsigned int res;
 
 	res = 0;
-	while(nm)
+	while (nm)
 	{
 		if (!(flags & FLAG_A) && nm->name[0] == '.')
 		{
@@ -49,9 +49,9 @@ void			ft_free(t_list *nm)
 	}
 }
 
-void 			begin_of_list(t_list *nm)
+void			begin_of_list(t_list *nm)
 {
-	t_list  *cur;
+	t_list		*cur;
 
 	cur = nm;
 	ft_printf("%s:\n", nm->dir);
@@ -63,7 +63,7 @@ void			big_str(t_list *nm, int flags)
 
 	about_file(nm);
 	lst = parse_big(nm, flags);
-	while(nm)
+	while (nm)
 	{
 		if (!(flags & FLAG_A) && nm->name[0] == '.' && nm->file == 0)
 			nm = nm->next;
