@@ -79,7 +79,7 @@ typedef struct			s_list
 
 }						t_list;
 
-char					*ft_parsing(char **argv, char *way,/
+char					*ft_parsing(char **argv, char *way, \
 int *flags, int *count);
 void					process(t_list *cur, char *name, char *way, int flags);
 t_list					*in_directory(char *way, t_list *names, int flags);
