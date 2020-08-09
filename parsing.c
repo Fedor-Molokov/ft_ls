@@ -6,7 +6,7 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 22:37:52 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/08 21:24:54 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/09 19:26:14 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@ void		ft_flags(char **argv, int *flags, int *i, int *j)
 	(*i)++;
 }
 
+char		*ft_parsing_n_n(char **argv, char *way, int *count, int j)
+{
+	if (!(argv[j]))
+	{
+		way = "./";
+		*count = j;
+	}
+	return (way);
+}
+
 char		*ft_parsing_next(char **argv, char *way, int *flags, int *count)
 {
 	int		i;
@@ -57,10 +67,7 @@ char		*ft_parsing_next(char **argv, char *way, int *flags, int *count)
 			ft_flags(argv, flags, &i, &j);
 		if (*flags & FLAG_NEXT)
 		{
-			if (argv[2])
-				way = argv[++(*count)];
-			else
-				way = "./";
+			way = argv[2] ? argv[++(*count)] : "./";
 			(*count)++;
 			break ;
 		}
@@ -73,12 +80,7 @@ char		*ft_parsing_next(char **argv, char *way, int *flags, int *count)
 		i = 1;
 		j++;
 	}
-	if (!(argv[j]))
-	{
-		way = "./";
-		*count = j;
-	}
-	return (way);
+	return (ft_parsing_n_n(argv, way, count, j));
 }
 
 char		*ft_parsing(char **argv, char *way, int *flags, int *count)

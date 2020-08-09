@@ -6,7 +6,7 @@
 #    By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/24 22:57:41 by dmarsell          #+#    #+#              #
-#    Updated: 2020/08/09 19:07:00 by dmarsell         ###   ########.fr        #
+#    Updated: 2020/08/09 19:09:50 by dmarsell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 SRC = file_info.c \
 		slash_strjoin.c \
 		sort.c          	\
-		take_in_list.c		\
+		main.c		\
 		time_sort.c			\
 		parsing.c			\
 		start_file.c		\
