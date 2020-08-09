@@ -99,6 +99,9 @@ typedef struct			s_point
 char					*ft_parsing(char **argv, char *way, \
 int *flags, int *count);
 void					process(t_list *cur, char *name, char *way, int flags);
+int						ft_inval(t_crutch *data, t_head *head, t_point *point);
+int						ft_farg(t_crutch *data, t_head *head, t_point *point);
+int						ft_darg(t_crutch *data, t_head *head, t_point *point);
 t_list					*in_directory(char *way, t_list *names, int flags);
 t_list					*ft_invalid_create(t_crutch *data, t_list *failp);
 void					ft_init(t_head *head, t_crutch *data, int file);

@@ -6,7 +6,7 @@
 #    By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/24 22:57:41 by dmarsell          #+#    #+#              #
-#    Updated: 2020/08/09 15:01:45 by cassunta         ###   ########.fr        #
+#    Updated: 2020/08/09 19:07:00 by dmarsell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,20 +27,21 @@ OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
 SRC = file_info.c \
 		slash_strjoin.c \
-		sort.c          \
-		take_in_list.c	\
-		time_sort.c		\
-		parsing.c		\
-		start_file.c	\
-		additional.c    \
-		parse_big.c     \
-		parse_big2.c	\
-		display.c		\
-		begin.c			\
-		if_args.c		\
-        format_date.c	\
-		to_print.c		\
-		format.c
+		sort.c          	\
+		take_in_list.c		\
+		time_sort.c			\
+		parsing.c			\
+		start_file.c		\
+		additional.c    	\
+		parse_big.c     	\
+		parse_big2.c		\
+		display.c			\
+		begin.c				\
+		if_args.c			\
+        format_date.c		\
+		to_print.c			\
+		format.c			\
+		create_arg_list.c
 all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJ)

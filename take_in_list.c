@@ -6,55 +6,34 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/09 18:55:07 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/09 19:06:06 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include <stdio.h>
 
-int			ft_darg(t_crutch *data, t_head *head, t_point *point)
+void			ft_next_null(t_head *head, t_point *point)
 {
-	if (head->arg_dir == 0)
-	{
-		ft_init(head, data, VALID_ARG_DIR);
-		point->p_arg_dir = head->val_dir_start;
-		head->arg_dir++;
-		return (1);
-	}
-	point->p_arg_dir = ft_dir_create(data, point->p_arg_dir);
-	head->arg_dir++;
-	return (0);
+	if (head->arg_dir)
+		point->p_arg_dir->next = NULL;
+	if (head->arg_file)
+		point->p_arg_file->next = NULL;
+	if (head->inval_argp)
+		point->p_inval_argp->next = NULL;
 }
 
-int			ft_farg(t_crutch *data, t_head *head, t_point *point)
+void			while_arg_dir(t_list *arg_dir, t_crutch data)
 {
-	if (head->arg_file == 0)
+	while(arg_dir)
 	{
-		ft_init(head, data, VALID_ARG_FILE);
-		point->p_arg_file = head->val_file_start;
-		head->arg_file++;
-		return (1);
+		ft_start(data.flags, arg_dir->path);
+		arg_dir->next ? write(1, "\n", 1) : 1;
+		arg_dir = arg_dir->next;
 	}
-	point->p_arg_file = ft_file_create(data, point->p_arg_file);
-	return (0);
 }
 
-int			ft_inval(t_crutch *data, t_head *head, t_point *point)
-{
-
-	if (head->inval_argp == 0)
-	{
-		ft_init(head, data, INVALID_ARG);
-		point->p_inval_argp = head->invalid_start;
-		head->inval_argp++;
-		return (1);
-	}
-	point->p_inval_argp = ft_invalid_create(data, point->p_inval_argp);
-	return (0);
-}
-
-void			ft_prestart(t_head *head, char **argv, t_crutch *data, t_point *point)
+void	ft_prestart(t_head *head, char **argv, t_crutch *data, t_point *point)
 {
 	while(argv[data->count])
 	{
@@ -76,25 +55,10 @@ void			ft_prestart(t_head *head, char **argv, t_crutch *data, t_point *point)
 				continue ;
 		}
 	}
-	if (head->arg_dir)
-		point->p_arg_dir->next = NULL;
-	if (head->arg_file)
-		point->p_arg_file->next = NULL;
-	if (head->inval_argp)
-		point->p_inval_argp->next = NULL;
+	ft_next_null(head, point);
 }
 
-void			while_arg_dir(t_list *arg_dir, t_crutch data)
-{
-	while(arg_dir)
-	{
-		ft_start(data.flags, arg_dir->path);
-		arg_dir->next ? write(1, "\n", 1) : 1;
-		arg_dir = arg_dir->next;
-	}
-}
-
-void	preprestart(t_head *head, char **argv, t_crutch data, t_point *point)
+void	take_in_list(t_head *head, char **argv, t_crutch data, t_point *point)
 {
 	ft_prestart(head, argv, &data, point);
 	point->p_inval_argp = sorting(head->invalid_start, data.flags);
@@ -136,6 +100,6 @@ int				main(int argc, char **argv)
 		ft_start(data.flags, data.way);
 		return (0);
 	}
-	preprestart(&head, argv, data, &point);
+	take_in_list(&head, argv, data, &point);
 	return (0);
 }
