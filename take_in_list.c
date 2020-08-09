@@ -6,48 +6,48 @@
 /*   By: dmarsell <dmarsell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 01:03:54 by dmarsell          #+#    #+#             */
-/*   Updated: 2020/08/09 18:47:50 by dmarsell         ###   ########.fr       */
+/*   Updated: 2020/08/09 18:55:07 by dmarsell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include <stdio.h>
 
-int			ft_darg(t_dop *dop, t_crutch *data, t_head *head, t_point *point)
+int			ft_darg(t_crutch *data, t_head *head, t_point *point)
 {
-	if (dop->arg_dir == 0)
+	if (head->arg_dir == 0)
 	{
 		ft_init(head, data, VALID_ARG_DIR);
 		point->p_arg_dir = head->val_dir_start;
-		dop->arg_dir++;
+		head->arg_dir++;
 		return (1);
 	}
 	point->p_arg_dir = ft_dir_create(data, point->p_arg_dir);
-	dop->arg_dir++;
+	head->arg_dir++;
 	return (0);
 }
 
-int			ft_farg(t_dop *dop, t_crutch *data, t_head *head, t_point *point)
+int			ft_farg(t_crutch *data, t_head *head, t_point *point)
 {
-	if (dop->arg_file == 0)
+	if (head->arg_file == 0)
 	{
 		ft_init(head, data, VALID_ARG_FILE);
 		point->p_arg_file = head->val_file_start;
-		dop->arg_file++;
+		head->arg_file++;
 		return (1);
 	}
 	point->p_arg_file = ft_file_create(data, point->p_arg_file);
 	return (0);
 }
 
-int			ft_inval(t_dop *dop, t_crutch *data, t_head *head, t_point *point)
+int			ft_inval(t_crutch *data, t_head *head, t_point *point)
 {
 
-	if (dop->inval_argp == 0)
+	if (head->inval_argp == 0)
 	{
 		ft_init(head, data, INVALID_ARG);
 		point->p_inval_argp = head->invalid_start;
-		dop->inval_argp++;
+		head->inval_argp++;
 		return (1);
 	}
 	point->p_inval_argp = ft_invalid_create(data, point->p_inval_argp);
@@ -56,39 +56,31 @@ int			ft_inval(t_dop *dop, t_crutch *data, t_head *head, t_point *point)
 
 void			ft_prestart(t_head *head, char **argv, t_crutch *data, t_point *point)
 {
-	// t_list		*p_arg_dir;
-	// t_list		*p_arg_file;
-	// t_list		*p_inval_argp;
-	t_dop		dop;
-
-	dop.arg_dir = 0;
-	dop.arg_file = 0;
-	dop.inval_argp = 0;
 	while(argv[data->count])
 	{
 		data->way = ft_parsing(argv, data->way, &data->flags, &data->count);
 		head->valid = lstat(data->way, &head->stat);
 		if (head->valid == -1)
 		{
-			if (ft_inval(&dop, data, head, point))
+			if (ft_inval(data, head, point))
 				continue ;
 		}
 		else if (S_ISDIR(head->stat.st_mode) == 0)
 		{
-			if (ft_farg(&dop, data, head, point))
+			if (ft_farg(data, head, point))
 				continue ;
 		}
 		else
 		{
-			if (ft_darg(&dop, data, head, point))
+			if (ft_darg(data, head, point))
 				continue ;
 		}
 	}
-	if (dop.arg_dir)
+	if (head->arg_dir)
 		point->p_arg_dir->next = NULL;
-	if (dop.arg_file)
+	if (head->arg_file)
 		point->p_arg_file->next = NULL;
-	if (dop.inval_argp)
+	if (head->inval_argp)
 		point->p_inval_argp->next = NULL;
 }
 
@@ -134,6 +126,9 @@ int				main(int argc, char **argv)
 	data.fail= 0;
 	data.flags = 0;
 	data.count = 1;
+	head.arg_dir = 0;
+	head.arg_file = 0;
+	head.inval_argp = 0;	
 	if (argc == 1)
 	{
 		data.way = "./";
@@ -142,20 +137,5 @@ int				main(int argc, char **argv)
 		return (0);
 	}
 	preprestart(&head, argv, data, &point);
-	// ft_prestart(&head, argv, &data, &point);
-	// point.p_inval_argp = sorting(head.invalid_start, data.flags);
-	// while(point.p_inval_argp)
-	// {
-	// 	print(point.p_inval_argp, data.flags);
-	// 	point.p_inval_argp = point.p_inval_argp->next;
-	// }
-	// ft_free(head.invalid_start);
-	// point.p_arg_file = sorting(head.val_file_start, data.flags);
-	// 	print(point.p_arg_file, data.flags);
-	// head.val_dir_start && point.p_arg_file ? write(1, "\n", 1) : 1;
-	// ft_free(head.val_file_start);
-	// point.p_arg_dir = sorting(head.val_dir_start, data.flags);
-	// while_arg_dir(point.p_arg_dir, data);
-	// ft_free(head.val_dir_start);
 	return (0);
 }

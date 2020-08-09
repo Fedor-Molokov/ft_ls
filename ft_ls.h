@@ -49,6 +49,9 @@ typedef struct			s_crutch
 typedef struct			s_head
 {
 	int					valid;
+	int					inval_argp;
+	int					arg_file;
+	int					arg_dir;
 	struct stat			stat;
 	struct s_list		*val_file_start;
 	struct s_list		*val_dir_start;
